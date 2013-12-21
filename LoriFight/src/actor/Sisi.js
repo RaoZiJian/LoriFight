@@ -16,6 +16,7 @@ var Sisi = ccs.Armature.extend({
 
     target: null,
     moving: false,
+    attacking: false,
 
     body: null,
 
@@ -54,10 +55,7 @@ var Sisi = ccs.Armature.extend({
         this.target = tar;
         this.moving = true;
 
-        if(this.target.x < this.getPosition().x)
-            this.setScaleX(-1);
-        else
-            this.setScaleX(1);
+        this.setDirection(this.target.x - this.getPosition().x);
 
         this.walk();
     },
@@ -79,7 +77,14 @@ var Sisi = ccs.Armature.extend({
         this.getAnimation().stop();
     },
 
+    stopAttack: function() {
+        this.attacking = false;
+        this.moving ? this.walk() : this.stand();
+    },
+
     attack: function(pos) {
+        this.attacking = true;
+        this.unschedule(this.stopAttack);
         var now = Date.now();
         if(now - this.lastAttack > this.attackSpeed)
         {
@@ -87,10 +92,11 @@ var Sisi = ccs.Armature.extend({
             this.attackPos = pos;
             this.scheduleOnce(this.slash,0);
         }
+        this.scheduleOnce(this.stopAttack, 1.5);
     },
     slash:function(){
         this.slashobj = new Slash(this.attackPos);
-        this.getAnimation().play(["Attacking", "Standing"]);
+        this.getAnimation().play(["Attacking", this.moving ? "Walking" : "Standing"]);
     },
 
     walk: function() {
@@ -109,11 +115,15 @@ var Sisi = ccs.Armature.extend({
 
     },
 
+    setDirection: function(x) {
+        x < 0 ? this.setScaleX(-1) : this.setScaleX(1);
+    },
+
     updateSisi: function() {
         // Control sprite's physic node
         // Apply force with speed
         var tar = this.target, pos;
-        if(this.moving && tar) {
+        if(!this.attacking && this.moving && tar) {
             this.body.targetMove(tar, this.moveSpeed);
 
             pos = this.body.body.p;

@@ -46,7 +46,7 @@ var Enemy = cc.Sprite.extend({
     hp:100,
     attack:10,
     level:1,
-    maxSpeed:10,
+    maxSpeed:50,
     accel:20,
     body:null,
     radius:20,
@@ -74,11 +74,17 @@ var Enemy = cc.Sprite.extend({
             this.activated = true;
         }
     },
+
     hurt:function(angle){
         // Backward
-        var v = cc.p(12000, 0);
+        var v = cc.p(300, 0);
         var impulse = cc.pRotateByAngle(v, cc.p(0,0), angle);
+        this.body.setMaxSpeed(500);
         this.body.body.applyImpulse(impulse, cp.v(0, 0));
+        var self = this;
+        this.scheduleOnce(function() {
+            self.body.setMaxSpeed(self.maxSpeed);
+        }, 0.2);
 
         //spawn a particle
         if(!this.blood)
