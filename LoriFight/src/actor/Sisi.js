@@ -113,6 +113,8 @@ var Sisi = ccs.Armature.extend({
         else {
             this.scheduleOnce(this.resetPreserved, mushroom.duration);
         }
+
+        this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0)
     },
 
     explode: function() {

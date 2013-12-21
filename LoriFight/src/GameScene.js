@@ -40,11 +40,18 @@ var GameScene = BaseScene.extend({
     items: null,
     staticObjs: null,
     gameMenuUI: null,
+    difficult: 1,
+
+    // Enemies
+    enemies: null,
+    enemiesClass: [SlimeLeader, WolfLeader, ZombieLeader],
 
     // Camera
     camera: null,
     sisi: null,
-    winMid:null,
+    winMid: null,
+    mapSize: cc.size(0, 0),
+    mapSisiPos: cc.p(0, 0),
 
     // Pause
     pause: false,
@@ -80,7 +87,6 @@ var GameScene = BaseScene.extend({
 
         this.pause = false;
 
-        var test = new ZombieLeader(1, cc.p(200,400), 30);
         var shinningMushroom = new goldenMushroom(cc.p(200,300));
         shinningMushroom.trigger();
         this.camera.addChild(shinningMushroom);
@@ -89,6 +95,41 @@ var GameScene = BaseScene.extend({
         sticky.trigger();
         this.camera.addChild(sticky);
 
+        this.setup(cc.size(960 * 2, 640 * 2), cc.p(300, 200), 1, 3);
+
+    },
+
+    setup: function(size, sisiPos, difficult, maxlvl) {
+        this.mapSize = size;
+        this.mapSisiPos = sisiPos;
+        this.difficult = difficult;
+
+        var origin = cc.pSub(sisiPos, this.sisi.getPosition());
+
+        var w = size.width, h = size.height;
+        var nb = (w * h / (960*640)) * this.difficult;
+        if(nb == 0) nb = 1;
+        for(var i = 0; i < nb; ++i) {
+            var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), origin );
+
+            var classid = Math.floor(Math.random() * 3);
+            var count;
+            if(classid == 0) {
+                count = Math.round(Math.random() * 50);
+            }
+            else if(classid == 1) {
+                count = Math.round(Math.random() * 30);
+            }
+            else {
+                count = Math.round(Math.random() * 20);
+            }
+
+            this.addEnemies(this.enemiesClass[classid], Math.ceil(Math.random()*maxlvl), pos, count);
+        }
+    },
+
+    addEnemies: function(type, level, pos, count) {
+        new type(level, pos, count);
     },
 
     update:function()
@@ -100,9 +141,6 @@ var GameScene = BaseScene.extend({
             this.sisi.updateSisi();
             var sisipos = this.sisi.getPosition();
             this.camera.setPosition(cc.pAdd(cc.pNeg(sisipos), this.winMid));
-
-            //this.camera.update();
         }
-    },
-
+    }
 });
