@@ -14,8 +14,9 @@ var Camera = cc.Layer.extend({
         this.setAnchorPoint(0.5, 0.5);
         this.setPosition(winSize.width/2, winSize.height/2);
         this.target = target;
-        this.target.setAnchorPoint(0.5, 0.5);
-        this.target.setPosition(0, 0);
+        target.setAnchorPoint(0.5, 0.5);
+        target.setPosition(0, 0);
+        this.addChild(target);
     },
 
     update: function() {

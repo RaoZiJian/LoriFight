@@ -10,6 +10,7 @@ var Sisi = cc.Sprite.extend({
     moveSpeed: 0,
     weight: 10,
     radius: 20,
+    anger: 0,
 
     body: null,
 
