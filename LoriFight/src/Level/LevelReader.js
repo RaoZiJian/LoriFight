@@ -2,20 +2,24 @@
  * Created by panda on 12/20/13.
  */
 
-var LevelLayer = ({
-
-    level:0,
-    init: function(level) {
+var LevelLayer =
+({
+    init: function(level)
+    {
        // this._super(level);
-
         return true;
     }
 });
-LevelLayer.create = function (level) {
-    var layer = new LevelLayer();
-    if (layer && layer.init(level)) {
-        return layer;
+LevelLayer.create = function (level)
+{
+    var levelData;
+    if(level == 1)
+    {
+        return Level1.create;
     }
-    return null;
+    else if(level == 2)
+    {
+        return Level2.create;
+    }
 };
 
