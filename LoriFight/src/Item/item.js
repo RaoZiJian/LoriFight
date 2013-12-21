@@ -2,7 +2,7 @@
  * Created by panda on 12/20/13.
  */
 
-var ITEM_COL_TYPE = 30;
+var MUSHROOM_COL_TYPE = 30;
 
 var itemSprite = cc.Sprite.extend({
 
@@ -21,7 +21,7 @@ var itemSprite = cc.Sprite.extend({
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, 0, pos);
         this.body.setView(this);
-        this.body.shape.setCollisionType(ENEMY_COL_TYPE);
+        this.body.shape.setCollisionType(MUSHROOM_COL_TYPE);
 
         this.setPosition(pos);
     },
