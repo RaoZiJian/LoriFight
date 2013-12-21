@@ -29,6 +29,8 @@ var GameScene = BaseScene.extend({
         this.layer = GameLayer.create(new cc.Color4B(0,0,255,255));
         this.addChild(this.layer);
         this.scheduleUpdate();
+        this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
+        this.addChild(this.debugNode);
     },
     update:function()
     {
