@@ -42,8 +42,8 @@ var Physics = {
         var space = this.world = new cp.Space();
         space.iterations = 20;
         //space.gravity = cp.v(0, 0);//no gravity
-        space.sleepTimeThreshold = 0.1;
-        space.damping = 0.5;
+        space.sleepTimeThreshold = 1;
+        space.damping = 0.6;
         // comment this if does not work on JSB
         space.useSpatialHash(50,200);
     },
@@ -81,11 +81,13 @@ var PhysicsObject = cc.Class.extend({
     targetMove:function(point, force){
         var v = cc.p(force,0);
         var angle = cc.pToAngle(cc.pSub(point, this.body.p));
-        console.log(angle);
         var impulse = cc.pRotateByAngle(v, cc.p(0,0), angle);
         this.body.applyImpulse(impulse, cp.v(0,0));
     },
     setMaxSpeed:function(maxSpeed){
         this.body.v_limit = maxSpeed;
+    },
+    getPosition:function(){
+        return this.body.p;
     }
 });
