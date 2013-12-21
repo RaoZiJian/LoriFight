@@ -82,8 +82,13 @@ var GameScene = BaseScene.extend({
 
         var test = new ZombieLeader(1, cc.p(200,400), 30);
         var shinningMushroom = new goldenMushroom(cc.p(200,300));
-        shinningMushroom.trigger(100);
+        shinningMushroom.trigger();
         this.camera.addChild(shinningMushroom);
+
+        var sticky = new stickyMushroom(cc.p(400,500));
+        sticky.trigger();
+        this.camera.addChild(sticky);
+
     },
 
     update:function()

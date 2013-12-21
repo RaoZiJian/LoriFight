@@ -35,9 +35,10 @@ var itemSprite = cc.Sprite.extend({
 
    destroyMushroom:function(){
 
+       Physics.world.removeShape(this.body.shape);
+       Physics.world.removeBody(this.body.body);
        this.removeFromParent();
    }
-
 });
 
 var goldenMushroom = itemSprite.extend({
@@ -82,7 +83,8 @@ var stickyMushroom = itemSprite.extend({
    trigger:function(){
 
        var sisiLocal = GameController.gameScene.sisi;
-       sisiLocal.setMoveSpeed(0.2 * sisiLocal.moveSpeed);
+       sisiLocal.setMoveSpeed(0.5 * sisiLocal.moveSpeed);
+       sisiLocal.setAttackSpeed(0.5 * sisiLocal.attackSpeed);
    }
 });
 
@@ -145,7 +147,7 @@ var visibleMushroom = itemSprite.extend({
     ctor:function(pos){
         this._super(pos);
         this.angerValue = 60;
-        this.name = "golden";
+        this.name = "visible";
         this.duration = 9999999999;
         this.initWithFile(s_VisibleMushroom_Png);
     },
