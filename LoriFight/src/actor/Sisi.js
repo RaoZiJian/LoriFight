@@ -1,12 +1,15 @@
 /**
  * Created by panda on 12/20/13.
  */
+var ATTACK_COL_TYPE  = 20;
+
 
 var Sisi = cc.Sprite.extend({
 
     level: 1,
     attack: 0,
-    attackSpeed: 0,
+    attackSpeed: 300,
+    lastAttack:0,
     moveSpeed: 100,
     weight: 10,
     radius: 20,
@@ -21,6 +24,7 @@ var Sisi = cc.Sprite.extend({
 
     skill: null,
 
+    attackPos:null,
     ctor: function() {
         this._super();
         this.init(s_sisi, cc.rect(0, 0, 52, 110));
@@ -58,8 +62,17 @@ var Sisi = cc.Sprite.extend({
     },
 
 
-    attack: function(angle) {
-
+    attack: function(pos) {
+        var now = Date.now();
+        if(now - this.lastAttack > this.attackSpeed)
+        {
+            this.lastAttack = now;
+            this.attackPos = pos;
+            this.scheduleOnce(this.slash,0);
+        }
+    },
+    slash:function(){
+        this.slashobj = new Slash(this.attackPos);
     },
 
     walk: function() {
@@ -98,27 +111,17 @@ var Sisi = cc.Sprite.extend({
 
 });
 
-var SisiLayer = cc.Layer.extend({
-    sisi: null,
+var Slash = cc.Node.extend({
 
-    ctor: function() {
-        this._super();
-        this.setTouchEnabled(true);
-        this.scheduleUpdate();
+    ctor:function(pos){
+        this.pbody = new PhysicsObject(1, 20, 1, pos);
+        this.pbody.shape.setSensor(true);
+        this.pbody.shape.setCollisionType(ATTACK_COL_TYPE);
+        cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(this,this.remove,0,0,0.2);
     },
-
-    setSisi: function(sisi) {
-        this.sisi = sisi;
-        this.addChild(this.sisi);
-    },
-
-    onTouchBegan: function(touch, event) {
-        var pos = touch.getLocation();
-        this.sisi.setTarget(cc.pSub(pos, GameController.gameScene.getPosition()));
-    },
-    update:function(){
-        //get sisi location
-        var sisipos = this.sisi.getPosition();
-        this.setPosition(cc.pNeg(sisipos));
+    remove:function(){
+        Physics.world.removeShape(this.pbody.shape);
+        Physics.world.removeBody(this.pbody.body);
+        console.log("remove");
     }
 });

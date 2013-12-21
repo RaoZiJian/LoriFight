@@ -57,6 +57,7 @@ var Enemy = cc.Sprite.extend({
     ctor:function(lvl, pos, color){
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, this.maxSpeed, pos);
+        this.body.setView(this);
         //remove this after sprite is properly inited
         this.init(s_sisi, cc.rect(0, 0, 52, 110));
         this.setPosition(pos);
