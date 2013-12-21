@@ -2,24 +2,35 @@
  * Created by panda on 12/20/13.
  */
 
-var Sisi = Actor.extend({
+var Sisi = cc.Sprite.extend({
 
-    movementShift: cc.p(0, 0),
+    level: 1,
+    attack: 0,
+    attackSpeed: 0,
+    moveSpeed: 0,
+    weight: 10,
+    radius: 20,
 
-    physic_node: null,
+    body: null,
 
     mushroom: null,
 
     skill: null,
 
     ctor: function() {
-        this._super(s_sisi, cc.rect(0, 0, 52, 110));
+        this._super();
+        this.init(s_sisi, cc.rect(0, 0, 52, 110));
+        this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
     },
 
     initWithConfig: function(config) {
         this.level = config.level;
         this.moveSpeed = config.speed;
         this.attackSpeed = config.speed;
+
+        this.setPosition(config.pos);
+        this.body.setPosition(config.pos);
+
     },
 
     setMoveSpeed: function(speed) {
@@ -28,11 +39,6 @@ var Sisi = Actor.extend({
 
     setAttackSpeed: function(speed) {
         this.attackSpeed = speed;
-    },
-
-    setMovementShift: function(x, y) {
-        this.movementShift.x = x;
-        this.movementShift.y = y;
     },
 
     setMushroom: function(mushroom) {

@@ -4,10 +4,11 @@
 
 var Actor = cc.Sprite.extend({
 
-    ctor: function(filename, rect) {
-        this._super();
+    level: 1,
 
-        this.init(filename, rect);
+
+    ctor: function(filename, rect) {
+
     }
 
 

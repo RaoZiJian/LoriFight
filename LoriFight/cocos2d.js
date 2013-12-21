@@ -56,7 +56,8 @@
 
             'src/Item/item.js',
             'src/UILayer/UILayer.js',
-            'src/Level/LevelLayer.js'
+            'src/Level/LevelLayer.js',
+            'src/Level/Level1.js'
             //'src/myApp.js'//add your own files in order here
         ]
     };
