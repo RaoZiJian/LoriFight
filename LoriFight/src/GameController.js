@@ -64,7 +64,7 @@ var PhysicsObject = cc.Class.extend({
         this.setMaxSpeed(maxSpeed);
         if(pos)
         {
-
+            this.body.p = pos;
         }
     },
     setPosition:function(pos){
