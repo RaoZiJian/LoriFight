@@ -58,7 +58,7 @@ var Sisi = cc.Sprite.extend({
     },
 
 
-    attack: function() {
+    attack: function(angle) {
 
     },
 
@@ -112,8 +112,8 @@ var SisiLayer = cc.Layer.extend({
         this.addChild(this.sisi);
     },
 
-    onTouchesBegan: function(touches, event) {
-        var pos = touches[0].getLocation();
+    onTouchBegan: function(touch, event) {
+        var pos = touch.getLocation();
         this.sisi.setTarget(cc.pSub(pos, GameController.gameScene.getPosition()));
     },
     update:function(){

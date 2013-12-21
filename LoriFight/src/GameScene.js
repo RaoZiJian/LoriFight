@@ -68,7 +68,7 @@ var GameScene = BaseScene.extend({
         //...
 
         camera.setTouchEnabled(true);
-        camera.onTouchesBegan = this.onTouchesBegan.bind(this);
+        camera.onTouchBegan = this.onTouchBegan.bind(this);
     },
     update:function()
     {
@@ -82,8 +82,8 @@ var GameScene = BaseScene.extend({
 
         //this.camera.update();
     },
-    onTouchesBegan:function(touches){
-        var pos = touches[0].getLocation();
+    onTouchBegan:function(touch){
+        var pos = touch.getLocation();
         this.sisi.setTarget(cc.pSub(pos,this.camera.getPosition()));
     }
 });
