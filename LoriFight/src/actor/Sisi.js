@@ -1,12 +1,14 @@
 /**
  * Created by panda on 12/20/13.
  */
+var ATTACK_COL_TYPE  = 20;
 
 var Sisi = ccs.Armature.extend({
 
     level: 1,
     attack: 0,
-    attackSpeed: 0,
+    attackSpeed: 300,
+    lastAttack:0,
     moveSpeed: 100,
     weight: 10,
     radius: 20,
@@ -22,6 +24,7 @@ var Sisi = ccs.Armature.extend({
 
     skill: null,
 
+    attackPos:null,
     ctor: function() {
         this._super();
 
@@ -76,7 +79,17 @@ var Sisi = ccs.Armature.extend({
         this.getAnimation().stop();
     },
 
-    attack: function(angle) {
+    attack: function(pos) {
+        var now = Date.now();
+        if(now - this.lastAttack > this.attackSpeed)
+        {
+            this.lastAttack = now;
+            this.attackPos = pos;
+            this.scheduleOnce(this.slash,0);
+        }
+    },
+    slash:function(){
+        this.slashobj = new Slash(this.attackPos);
         this.getAnimation().play(["Attacking", "Standing"]);
     },
 
@@ -84,8 +97,8 @@ var Sisi = ccs.Armature.extend({
         this.getAnimation().play("Walking");
     },
 
-    stand: function(delay, duration) {
-        this.getAnimation().play("Standing", delay, duration);
+    stand: function() {
+        this.getAnimation().play("Standing");
     },
 
     attacked: function() {
@@ -107,7 +120,7 @@ var Sisi = ccs.Armature.extend({
             if(cc.pDistance(pos,tar)<5) {
                 this.moving = false;
                 this.body.body.setVel(cc.p(0, 0));
-                this.attack();
+                this.stand();
             }
         }
         else pos = this.body.body.p;
@@ -117,26 +130,17 @@ var Sisi = ccs.Armature.extend({
 
 });
 
-var SisiLayer = cc.Layer.extend({
-    sisi: null,
+var Slash = cc.Node.extend({
 
-    ctor: function() {
-        this._super();
-        this.scheduleUpdate();s.setTouchEnabled(true);
+    ctor:function(pos){
+        this.pbody = new PhysicsObject(1, 30, 1, pos);
+        this.pbody.shape.setSensor(true);
+        this.pbody.shape.setCollisionType(ATTACK_COL_TYPE);
+        cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(this,this.remove,0,0,0.2);
     },
-
-    setSisi: function(sisi) {
-        this.sisi = sisi;
-        this.addChild(this.sisi);
-    },
-
-    onTouchBegan: function(touch, event) {
-        var pos = touch.getLocation();
-        this.sisi.setTarget(cc.pSub(pos, GameController.gameScene.getPosition()));
-    },
-    update:function(){
-        //get sisi location
-        var sisipos = this.sisi.getPosition();
-        this.setPosition(cc.pNeg(sisipos));
+    remove:function(){
+        Physics.world.removeShape(this.pbody.shape);
+        Physics.world.removeBody(this.pbody.body);
+        //console.log("remove");
     }
 });

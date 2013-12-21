@@ -53,7 +53,7 @@ var MenuScene = BaseScene.extend({
 
     onEnter: function () {
         this._super();
-        this.layer = MenuLayer.create(new cc.Color4B(255,0,0,255));
+        this.layer = MenuLayer.create(cc.c4b(255,0,0,255));
         this.addChild(this.layer);
     }
 });
