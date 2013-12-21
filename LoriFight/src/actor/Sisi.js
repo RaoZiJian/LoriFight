@@ -145,6 +145,7 @@ var Sisi = ccs.Armature.extend({
         else pos = this.body.body.p;
 
         this.setPosition(pos);
+        this.setZOrder(-pos.y);
     }
 
 });

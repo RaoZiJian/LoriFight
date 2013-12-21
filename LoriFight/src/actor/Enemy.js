@@ -37,7 +37,9 @@ var EnemyController = {
         {
             var enemy = EnemyActive[j];
             enemy.body.targetMove(playerPos, enemy.accel);
-            enemy.setPosition(enemy.body.getPosition());
+            var bodyPos = enemy.body.getPosition();
+            enemy.setPosition(bodyPos);
+            enemy.setZOrder(-bodyPos.y);
         }
     }
 };
