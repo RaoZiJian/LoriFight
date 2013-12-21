@@ -20,11 +20,11 @@ var MenuLayer = cc.LayerColor.extend({
     },
 
     onTouchBegan: function(touch, event) {
-        //gameController.transitionToScene(gameController.gameScene);
+        gameController.transitionToScene(gameController.gameScene);
     },
 
     onMouseDown: function() {
-        //gameController.transitionToScene(gameController.gameScene);
+        gameController.transitionToScene(gameController.gameScene);
     },
 
     onTouchMoved: function(touch, event) {
