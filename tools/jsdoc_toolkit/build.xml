@@ -127,7 +127,7 @@
                 <include name="CocoStudio/GUI/Layouts/UILayoutParameter.js"/>
                 <include name="CocoStudio/GUI/Layouts/UILayoutDefine.js"/>
                 <include name="CocoStudio/GUI/System/UIHelper.js"/>
-                <include name="CocoStudio/GUI/System/UILayer.js"/>
+                <include name="CocoStudio/GUI/System/GameUILayer.js"/>
                 <include name="CocoStudio/GUI/UIWidgets/UIButton.js"/>
                 <include name="CocoStudio/GUI/UIWidgets/UICheckBox.js"/>
                 <include name="CocoStudio/GUI/UIWidgets/UIImageView.js"/>

@@ -30,6 +30,7 @@ var menu_resources = [
     {src:s_settingBtn},
     {src:s_settingBtnPush},
     {src:s_slider_heart},
+    {src:s_labelatlasimg},
     // YUYE
 
     // HUABIN

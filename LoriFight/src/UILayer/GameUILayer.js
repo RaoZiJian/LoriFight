@@ -14,6 +14,10 @@ var shinningLayer = cc.Layer.extend({
    }
 });
 
-var gameMenuUI = cc.UILayer.extend({
+var GameUILayer = cc.UILayer.extend({
 
-})
+    init:function(){
+
+        this.addWidget(cc.UIHelper.getInstance().createWidget(s_GameMenuUI_1));
+    }
+});

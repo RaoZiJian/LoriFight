@@ -219,7 +219,7 @@
             '../extensions/CocoStudio/GUI/System/CocosGUI.js',
             '../extensions/CocoStudio/GUI/System/UIHelper.js',
             '../extensions/CocoStudio/GUI/System/UIInputManager.js',
-            '../extensions/CocoStudio/GUI/System/UILayer.js',
+            '../extensions/CocoStudio/GUI/System/GameUILayer.js',
             '../extensions/CocoStudio/GUI/UIWidgets/UIButton.js',
             '../extensions/CocoStudio/GUI/UIWidgets/UICheckBox.js',
             '../extensions/CocoStudio/GUI/UIWidgets/UIImageView.js',
