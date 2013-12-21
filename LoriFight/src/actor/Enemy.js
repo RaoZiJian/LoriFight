@@ -325,6 +325,7 @@ var Wolf = Enemy.extend({
         this.attackAnime = cc.RepeatForever.create(cc.Animate.create(attack));
         this.runAnime.retain();
         this.attackAnime.retain();
+        this.scheduleOnce(this.walk, Math.random());
     }
 });
 var WolfLeader = Wolf.extend({
@@ -375,6 +376,7 @@ var Zombie = Enemy.extend({
         this.attackAnime = cc.RepeatForever.create(cc.Animate.create(attack));
         this.runAnime.retain();
         this.attackAnime.retain();
+        this.scheduleOnce(this.walk, Math.random());
     }
 });
 var ZombieLeader = Zombie.extend({

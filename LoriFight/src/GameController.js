@@ -68,7 +68,7 @@ var Physics = {
         space.useSpatialHash(50,200);
         var emptyFunction = function(){return true};
 
-        space.addCollisionHandler(10,ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
+        space.addCollisionHandler(SISI_COL_TYPE, ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
             var sisi = GameController.gameScene.sisi;
             var v = Physics.calculVector(a);
             sisi.setDirection(v.x);
@@ -89,7 +89,7 @@ var Physics = {
             return true
         }, null, null,null);
 
-        space.addCollisionHandler(ATTACK_COL_TYPE, MUSHROOM_COL_TYPE,function(a){
+        space.addCollisionHandler(SISI_COL_TYPE, MUSHROOM_COL_TYPE,function(a){
             var sisi = GameController.gameScene.sisi;
             var mushroom = a.getShapes()[1].obj.view;
             sisi.gotMushroom(mushroom);

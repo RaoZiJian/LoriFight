@@ -1,6 +1,7 @@
 /**
  * Created by panda on 12/20/13.
  */
+var SISI_COL_TYPE = 10;
 var ATTACK_COL_TYPE  = 20;
 
 var SISI_DATA = {
@@ -60,22 +61,22 @@ var Sisi = ccs.Armature.extend({
         this.uiLayer = GameController.gameScene.gameMenuUI;
 
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
-        this.body.shape.setCollisionType(10);
+        this.body.shape.setCollisionType(SISI_COL_TYPE);
 
         if(!this.loadFromLocal())
             this.setLevel(1);
     },
 
     saveToLocal: function() {
-        localStorage.setItem("sisilevel", this.level);
-        localStorage.setItem("sisiexp", this.exp);
+        sys.localStorage.setItem("sisilevel", this.level);
+        sys.localStorage.setItem("sisiexp", this.exp);
     },
 
     loadFromLocal: function() {
         var level;
-        if(level = localStorage.getItem("sisilevel")) {
+        if(level = sys.localStorage.getItem("sisilevel")) {
             this.level = level;
-            this.exp = localStorage.getItem("sisiexp");
+            this.exp = sys.localStorage.getItem("sisiexp");
             return true;
         }
         else return false;
