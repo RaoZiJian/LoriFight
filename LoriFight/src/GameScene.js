@@ -58,6 +58,9 @@ var GameScene = BaseScene.extend({
         var winMid = this.winMid = cc.p(winSize.width/2, winSize.height/2);
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
 
+        this.gameMenuUI = new GameUILayer();
+        this.gameMenuUI.init();
+
         var camera = this.camera = new CameraLayer(cc.c4b(0,255,0,30));
         this.addChild(camera);
         //camera.addChild(this.debugNode);
@@ -69,29 +72,14 @@ var GameScene = BaseScene.extend({
 
         this.sisi = new Sisi();
         this.sisi.setPosition(0,0);
-        //this.sisi.setAnchorPoint(0.5, 0.5);
         this.sisi.body.setPosition(cc.p(0,0));
         camera.addChild(this.sisi);
 
-/*        var sisilayer = new SisiLayer();
-        sisilayer.setContentSize(winSize);
-        sisilayer.setAnchorPoint(0, 0);
-        sisilayer.setPosition(0, 0);
-        sisilayer.setZOrder(2);
-        sisilayer.setSisi(this.sisi);
-        this.addChild(sisilayer);*/
-
-        //this.camera = new Camera(this.sisi, this);
-
-        this.gameMenuUI = new GameUILayer();
-        this.gameMenuUI.init();
-        this.addChild(gameMenuUI,5);
-        //...
-
+        this.addChild(this.gameMenuUI, 5);
 
         this.pause = false;
 
-        var test = new WolfLeader(5,cc.p(200,400), 30)
+        var test = new ZombieLeader(5,cc.p(200,400), 30)
     },
 
     update:function()

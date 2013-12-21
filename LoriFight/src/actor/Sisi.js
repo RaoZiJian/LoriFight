@@ -6,7 +6,9 @@ var ATTACK_COL_TYPE  = 20;
 var Sisi = ccs.Armature.extend({
 
     level: 1,
-    hp: 10000,
+    exp: 0,
+    hp: 500,
+    fullHp: 500,
     power: 50,
     attackSpeed: 500,
     lastAttack:0,
@@ -18,6 +20,8 @@ var Sisi = ccs.Armature.extend({
     target: null,
     moving: false,
     attacking: false,
+
+    uiLayer: null,
 
     body: null,
 
@@ -32,6 +36,8 @@ var Sisi = ccs.Armature.extend({
 
         //this.init(s_sisi, cc.rect(0, 0, 52, 110));
         this.init("CCArmature");
+
+        this.uiLayer = GameController.gameScene.gameMenuUI;
 
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(10);
@@ -60,11 +66,10 @@ var Sisi = ccs.Armature.extend({
         this.mushroom = mushroom;
         mushroom.trigger();
         this.anger += mushroom.anger;
-        var menuUI = GameController.gameScene.gameMenuUI;
 
-        var prev = menuUI.angerFire.length;
-        menuUI.setAngerExpression(this.anger);
-        var curr = menuUI.angerFire.length;
+        var prev = this.uiLayer.angerFire.length;
+        this.uiLayer.setAngerExpression(this.anger);
+        var curr = this.uiLayer.angerFire.length;
         if(prev == 4 && curr == 5)
             this.explode();
     },
@@ -113,6 +118,8 @@ var Sisi = ccs.Armature.extend({
 
     attacked: function(power) {
         this.hp -= power;
+
+        this.uiLayer.setBloodBarPercent(100 * this.hp / this.fullHp);
         if(this.hp < 0)
             this.falldown();
     },

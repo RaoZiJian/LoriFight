@@ -96,6 +96,11 @@ var Enemy = cc.Sprite.extend({
         }
     },
 
+    stopAttack: function() {
+        this.attacking = false;
+        this.walk();
+    },
+
     attack: function() {
         this.attacking = true;
         this.unschedule(this.stopAttack);
@@ -105,6 +110,7 @@ var Enemy = cc.Sprite.extend({
             this.lastAttack = now;
             this.scheduleOnce(this.slash,0);
         }
+        this.scheduleOnce(this.stopAttack, 0.8);
     },
 
     slash: function() {
@@ -154,7 +160,8 @@ var Enemy = cc.Sprite.extend({
         this.hp -= GameController.gameScene.sisi.power;
         if(this.hp<=0)
         {
-            this.scheduleOnce(this.die,0);
+            this.unschedule(this.stopAttack);
+            this.scheduleOnce(this.die, 0);
         }
     },
     die:function(){
