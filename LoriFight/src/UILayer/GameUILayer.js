@@ -2,17 +2,6 @@
  * Created by panda on 12/20/13.
  */
 
-var shinningLayer = cc.Layer.extend({
-    shinningLevel:null,
-
-    ctor:function(){
-        this._super();
-        var shinningSprite = cc.Sprite.create(s_Shinning_Png);
-        this.addChild(shinningSprite,0);
-        GameController.gameScene.addChild(this, 4);
-    }
-});
-
 var GameUILayer = ccs.UILayer.extend({
 
     settingBtn:null,
@@ -29,7 +18,7 @@ var GameUILayer = ccs.UILayer.extend({
             this.winSize = cc.Director.getInstance().getWinSize();
             //        this.addWidget(ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1));
             this.widget = ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1);
-            this.addWidget(this.widget);
+            this.addWidget(this.widget, 2);
 
             //this.settingBtn    = this.getWidgetByName("settingBtn");
             this.bloodBar      = this.getWidgetByName("blood");
@@ -110,5 +99,14 @@ var GameUILayer = ccs.UILayer.extend({
     setScore:function(value){
 
         this.distanceScore.setStringValue(value);
+    },
+
+    setShinningLevel:function(level){
+
+        var shinningSprite = cc.Sprite.create(s_Shinning_Png);
+        shinningSprite.setOpacity(200);
+        shinningSprite.setAnchorPoint(0,0);
+        shinningSprite.setPosition(cc.p(0,0));
+        this.addChild(shinningSprite,1);
     }
 });

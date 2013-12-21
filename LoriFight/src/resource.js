@@ -79,6 +79,8 @@ var menu_resources = [
     {src:s_Anger5_Png},
     {src:s_AngerFire_Png},
     {src:s_Shinning_Png},
+    {src:s_ShineMushroom_Png},
+    {src:s_ShineBuff_Png},
     // YUYE
 
     // HUABIN

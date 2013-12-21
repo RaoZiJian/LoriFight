@@ -55,7 +55,6 @@ var goldenMushroom = itemSprite.extend({
     shine:function(){
 
         this.attackTimes++;
-        var goldenLayer = new shinningLayer();
     }
 });
 
