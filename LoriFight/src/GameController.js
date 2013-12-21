@@ -6,7 +6,7 @@ var BaseScene = cc.Scene.extend({
         this._super();
     }
 });
-
+var FIRST_IN = true;
 var GameController ={
     app: null,
     director: null,
@@ -16,12 +16,12 @@ var GameController ={
     configScene: null,
 
     current: null,
-
     init: function(app) {
         this.app = app;
         this.menuScene = new MenuScene();
         this.levelScene = new LevelScene();
         this.gameScene = new GameScene();
+        this.gameScene.retain();
         this.director = cc.Director.getInstance();
         Physics.init();
     },
@@ -30,7 +30,16 @@ var GameController ={
         //load resources
         var director = this.director;
         cc.LoaderScene.preload(scene.res, function () {
+                            
+        if (FIRST_IN)
+        {
+            director.runWithScene(scene);
+            FIRST_IN = false;
+        }
+        else
+        {
             director.replaceScene(scene);
+        }
         }, this.app);
     }
 };
@@ -46,20 +55,18 @@ var Physics = {
         space.damping = 0.6;
         // comment this if does not work on JSB
         space.useSpatialHash(50,200);
-        space.addCollisionHandler(10,ENEMY_COL_TYPE,null,function(a,b,c){
-            var sisi = gameController.gameScene.sisi;
-            var n = a.contacts[0].n;
-            sisi.setDirection(n.x);
-            sisi.attack(a.getPoint(0));
+        var emptyFunction = function(){return true};
+        space.addCollisionHandler(10,ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
+            //var angle = cc.RADIANS_TO_DEGREES(cc.pToAngle(cc.pNeg(cc.p(a.contacts[0].n.x, a.contacts[0].n.y))));
+            //TODO: player attack this angle
+            gameController.gameScene.sisi.attack(a.getPoint(0));
             return true;
-        });
+                                  },emptyFunction,emptyFunction);
 
-        space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE, function(a){
+        space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE, emptyFunction,function(a){
             var enemy = a.getB().obj.view;
-            var n = a.contacts[0].n;
-            var dir = cc.v2f(n.x, -n.y);
-            enemy.hurt(cc.pToAngle(dir));
-        });
+            enemy.hurt(0);
+        },emptyFunction,emptyFunction);
     },
     update:function(){
         this.world.step(CPSTEP);
