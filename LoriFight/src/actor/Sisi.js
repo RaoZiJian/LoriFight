@@ -86,7 +86,7 @@ var Sisi = cc.Sprite.extend({
             this.body.targetMove(tar, this.moveSpeed);
 
             pos = this.body.body.p;
-            if(Math.abs(pos.x - tar.x) < 10 && Math.abs(pos.y - tar.y) < 10) {
+            if(cc.pDistance(pos,tar)<5) {
                 this.moving = false;
                 this.body.body.setVel(cc.p(0, 0));
             }
@@ -104,6 +104,7 @@ var SisiLayer = cc.Layer.extend({
     ctor: function() {
         this._super();
         this.setTouchEnabled(true);
+        this.scheduleUpdate();
     },
 
     setSisi: function(sisi) {
@@ -113,6 +114,11 @@ var SisiLayer = cc.Layer.extend({
 
     onTouchesBegan: function(touches, event) {
         var pos = touches[0].getLocation();
-        this.sisi.setTarget(pos);
+        this.sisi.setTarget(cc.pSub(pos, GameController.gameScene.getPosition()));
+    },
+    update:function(){
+        //get sisi location
+        var sisipos = this.sisi.getPosition();
+        this.setPosition(cc.pNeg(sisipos));
     }
 });

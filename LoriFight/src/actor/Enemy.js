@@ -53,6 +53,7 @@ var Enemy = cc.Sprite.extend({
     weight:1,
     activated:false,
     color:null,
+    blood:null,
     ctor:function(lvl, pos, color){
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, this.maxSpeed, pos);
@@ -60,7 +61,7 @@ var Enemy = cc.Sprite.extend({
         this.init(s_sisi, cc.rect(0, 0, 52, 110));
         this.setPosition(pos);
         GameController.gameScene.camera.addChild(this);
-        this.setScale(0.5);
+        //this.setScale(0.5);
         this.body.shape.setCollisionType(ENEMY_COL_TYPE);
         if(color)
         this.setColor(color);
@@ -72,8 +73,21 @@ var Enemy = cc.Sprite.extend({
             this.activated = true;
         }
     },
-    hurt:function(){
+    hurt:function(angle){
         //spawn a particle
+        if(!this.blood)
+        {
+            this.blood = cc.ParticleSystem.create(fx_blood);
+            this.addChild(this.blood);
+            this.blood.setRotation(-angle);
+            this.blood.setPositionType(cc.PARTICLE_TYPE_RELATIVE);
+            console.log(this.blood);
+            //this.blood.setAutoRemoveOnFinish(true)
+        }
+        else{
+            this.blood.setRotation(-angle);
+            this.blood.resetSystem();
+        }
     }
 });
 
