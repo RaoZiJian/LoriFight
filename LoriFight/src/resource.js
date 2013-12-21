@@ -27,16 +27,6 @@ s_StickyBuff_Png        = "res/ItemPic/stickyBuff.png";
 s_StickyMushroom_Png    = "res/ItemPic/stickyMushroom.png";
 s_VisibleBuff_Png       = "res/ItemPic/visibleBuff.png";
 s_VisibleMushroom_Png   = "res/ItemPic/visibleMushroom.png";
-s_Slime1_Png            = "res/Animations/slime1.png";
-s_Slime2_Png            = "res/Animations/slime2.png";
-s_WolfBite1_Png         = "res/Animations/wolfBite1.png";
-s_WolfBite2_Png         = "res/Animations/wolfBite2.png";
-s_WolfWalk1_Png         = "res/Animations/wolfWalk1.png";
-s_WolfWalk2_Png         = "res/Animations/wolfWalk2.png";
-s_ZombieAttack3_Png     = "res/Animations/zombieAttack3.png";
-s_ZombieAttack4_Png     = "res/Animations/zombieAttack4.png";
-s_ZombieMove1_Png       = "res/Animations/zombieMove1.png";
-s_ZombieMove2_Png       = "res/Animations/zombieMove2.png";
 s_Anger1_Png            = "res/UI/anger1.png";
 s_Anger2_Png            = "res/UI/anger2.png";
 s_Anger3_Png            = "res/UI/anger3.png";
@@ -49,6 +39,12 @@ s_AngerFire_Png         = "res/UI/angerFire.png";
 // HUABIN
 var s_sisi = "res/grossini.png";
 var s_logo = "res/logo.png";
+var s_slime_png = "res/Animations/slime.png";
+var s_slime_plist = "res/Animations/slime.plist";
+var s_loup_png = "res/Animations/loup.png";
+var s_loup_plist = "res/Animations/loup.plist";
+var s_zombie_png = "res/Animations/zombie.png";
+var s_zombie_plist = "res/Animations/zombie.plist";
 
 
 var menu_resources = [
@@ -75,16 +71,6 @@ var menu_resources = [
     {src:s_StickyBuff_Png},
     {src:s_StickyMushroom_Png},
     {src:s_VisibleBuff_Png},
-    {src:s_Slime1_Png},
-    {src:s_Slime2_Png},
-    {src:s_WolfBite1_Png},
-    {src:s_WolfBite2_Png},
-    {src:s_WolfWalk1_Png},
-    {src:s_WolfWalk2_Png},
-    {src:s_ZombieAttack3_Png},
-    {src:s_ZombieAttack4_Png},
-    {src:s_ZombieMove1_Png},
-    {src:s_ZombieMove2_Png},
     {src:s_Anger1_Png},
     {src:s_Anger2_Png},
     {src:s_Anger3_Png},
@@ -98,7 +84,13 @@ var menu_resources = [
     {src:s_logo},
     {src:s_CCArmature_ExportJson},
     {src:s_CCArmature_Plist},
-    {src:s_CCArmature_Png}
+    {src:s_CCArmature_Png},
+    {src:s_slime_plist},
+    {src:s_slime_png},
+    {src:s_loup_plist},
+    {src:s_loup_png},
+    {src:s_zombie_plist},
+    {src:s_zombie_png}
 
 ];
 
