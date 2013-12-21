@@ -7,10 +7,9 @@ var shinningLayer = cc.Layer.extend({
 
     ctor:function(){
         this._super();
-    },
-
-    init:function(){
-
+        var shinningSprite = cc.Sprite.create(s_Shinning_Png);
+        this.addChild(shinningSprite,0);
+        GameController.gameScene.addChild(this, 4);
     }
 });
 

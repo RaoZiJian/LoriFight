@@ -7,6 +7,7 @@ var itemSprite = cc.Sprite.extend({
     name:null,
     texture:null,
     duration:null,
+    angerValue:null,
 
     ctor:function(){
         this.__super();
@@ -31,6 +32,7 @@ var goldenMushroom = itemSprite.extend({
         this._super();
         this.name = "golden";
         this.duration = 9999999999;
+        this.angerValue = 30;
     },
 
     trigger:function(){
@@ -41,7 +43,7 @@ var goldenMushroom = itemSprite.extend({
     shine:function(){
 
         this.attackTimes++;
-
+        var goldenLayer = new shinningLayer();
     }
 });
 
@@ -52,6 +54,7 @@ var stickyMushroom = itemSprite.extend({
        this.name = "sticky";
        this.duration = 30;
        this.initWithFile(s_StickyMushroom_Png);
+       this.angerValue = 40;
    },
 
    trigger:function(){
@@ -71,6 +74,7 @@ var roarMushroom = itemSprite.extend({
         this.name = "roar";
         this.duration = 30;
         this.initWithFile(s_RoarMushroom_Png);
+        this.angerValue = 50;
     },
 
     trigger:function(){
@@ -88,12 +92,13 @@ var shiftMushroom = itemSprite.extend({
 
     shiftType:null,
 
-    ctor:function(){
+    ctor:function(type){
 
         this.__super();
         this.name = "shift";
         this.duration = 30;
         this.shiftType = type;
+        this.angerValue = 30;
         if(this.shiftType == "acute"){
             this.initWithFile(s_AcuteMushroom_Png);
         }else if(this.shiftType == "slow"){
@@ -120,6 +125,7 @@ var visibleMushroom = itemSprite.extend({
 
     ctor:function(){
         this._super();
+        this.angerValue = 60;
         this.name = "golden";
         this.duration = 9999999999;
         this.initWithFile(s_VisibleMushroom_Png);
