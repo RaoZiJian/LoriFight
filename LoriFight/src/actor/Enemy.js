@@ -153,6 +153,29 @@ var Enemy = cc.Sprite.extend({
             this.blood.setRotation(-angle);
             this.blood.resetSystem();
         }
+
+        this.hp -= GameController.gameScene.sisi.power;
+        if(this.hp<=0)
+        {
+            this.scheduleOnce(this.die,0);
+        }
+    },
+    die:function(){
+        //this.removeFromParent();
+        this.runAction(
+            cc.Sequence.create(
+                cc.FadeOut.create(0.3),
+                cc.DelayTime.create(0.9),
+                cc.CallFunc.create(function(){
+                    this.removeFromParent();
+                }, this)
+            )
+        );
+        var pop = cc.ParticleSystem.create(fx_pop);
+        pop.setAutoRemoveOnFinish(true);
+        this.addChild(pop);
+        Physics.world.removeShape(this.body.shape);
+        Physics.world.removeBody(this.body.body);
     }
 });
 
@@ -169,7 +192,7 @@ var SlimeLeader = Slime.extend({
         this._super(lvl, pos);
         this.buddies = [];
         EnemyLeaderContainer.push(this);
-        var offset = this.radius*10+groupsize;
+        var offset = this.radius*12+groupsize*3;
         for(var i = 0; i < groupsize; i++)
         {
             var buddy = new Slime(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));

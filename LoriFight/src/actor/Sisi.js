@@ -7,7 +7,7 @@ var Sisi = ccs.Armature.extend({
 
     level: 1,
     hp: 10000,
-    power: 0,
+    power: 50,
     attackSpeed: 500,
     lastAttack:0,
     moveSpeed: 200,

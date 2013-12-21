@@ -62,13 +62,13 @@ var Physics = {
             return true;
         },emptyFunction,emptyFunction);
 
-        space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE, emptyFunction,function(a){
+        space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE,function(a){
             var enemy = a.getB().obj.view;
             var n = a.contacts[0].n;
             var dir = cc.v2f(n.x, -n.y);
             enemy.hurt(cc.pToAngle(dir));
             enemy.attack();
-        });
+        }, emptyFunction, emptyFunction);
     },
     update:function(){
         this.world.step(CPSTEP);
