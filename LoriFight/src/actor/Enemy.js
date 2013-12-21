@@ -4,6 +4,10 @@
 
 var DIST_TO_PLAYER = 300;
 
+//collision type constants
+var ENEMY_COL_TYPE = 3;
+
+
 var EnemyLeaderContainer = [];
 var EnemyActive = [];
 var EnemyController = {
@@ -56,6 +60,8 @@ var Enemy = cc.Sprite.extend({
         this.setPosition(pos);
         GameController.gameScene.camera.addChild(this);
         this.setScale(0.5);
+        this.body.shape.setCollisionType(ENEMY_COL_TYPE);
+
     },
     activate:function(){
         if(!this.activated)

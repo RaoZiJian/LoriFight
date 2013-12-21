@@ -46,6 +46,12 @@ var Physics = {
         space.damping = 0.6;
         // comment this if does not work on JSB
         space.useSpatialHash(50,200);
+        space.addCollisionHandler(10,ENEMY_COL_TYPE,function(a,b,c){
+            var angle = cc.RADIANS_TO_DEGREES(cc.pToAngle(cc.pNeg(cc.p(a.contacts[0].n.x, a.contacts[0].n.y))));
+            //TODO: player attack this angle
+            console.log(angle);
+            return true;
+        });
     },
     update:function(){
         this.world.step(CPSTEP);

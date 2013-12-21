@@ -25,6 +25,7 @@ var Sisi = cc.Sprite.extend({
         this._super();
         this.init(s_sisi, cc.rect(0, 0, 52, 110));
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
+        this.body.shape.setCollisionType(10);
     },
 
     initWithConfig: function(config) {
