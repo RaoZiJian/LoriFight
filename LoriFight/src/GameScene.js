@@ -47,7 +47,7 @@ var GameScene = BaseScene.extend({
 
         var camera = this.camera = cc.LayerColor.create(cc.c4b(0,255,0,30));
         this.addChild(camera);
-        camera.addChild(this.debugNode);
+        //camera.addChild(this.debugNode);
         camera.setPosition(winMid);
 
 /*        var layer = GameLayer.create(new cc.Color4B(0,0,255,40));
@@ -79,6 +79,8 @@ var GameScene = BaseScene.extend({
         camera.onTouchBegan = this.onTouchBegan.bind(this);
 
         this.pause = false;
+
+        var test = new SlimeLeader(5,cc.p(200,400), 3)
     },
 
     update:function()
