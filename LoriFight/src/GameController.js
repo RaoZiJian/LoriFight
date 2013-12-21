@@ -67,6 +67,7 @@ var Physics = {
         // comment this if does not work on JSB
         space.useSpatialHash(50,200);
         var emptyFunction = function(){return true};
+
         space.addCollisionHandler(10,ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
             var sisi = GameController.gameScene.sisi;
             var v = Physics.calculVector(a);
@@ -76,18 +77,21 @@ var Physics = {
         },emptyFunction,emptyFunction);
 
         space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE,function(a){
-            var enemy = a.getB().obj.view;
+            var sisi = GameController.gameScene.sisi;
+            var enemy = a.getShapes()[1].obj.view;
             var dir = Physics.calculAngle(a);
-            enemy.hurt(dir);
-            enemy.attack();
+            var die = enemy.hurt(dir);
+            if(die)
+                sisi.killedOne(enemy);
+            else
+                enemy.attack();
         }.bind(this), null, null,null);
-                                  //}, emptyFunction, emptyFunction);
 
         space.addCollisionHandler(ATTACK_COL_TYPE, MUSHROOM_COL_TYPE,function(a){
+            var sisi = GameController.gameScene.sisi;
             var mushroom = a.getB().obj.view;
-            GameController.gameScene.sisi.gotMushroom(mushroom);
-        //}, emptyFunction, emptyFunction);
-                                 }.bind(this), null, null,null);
+            sisi.gotMushroom(mushroom);
+        }.bind(this), null, null,null);
     },
     update:function(){
         this.world.step(CPSTEP);

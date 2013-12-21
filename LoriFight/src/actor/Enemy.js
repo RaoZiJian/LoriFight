@@ -7,6 +7,41 @@ var DIST_TO_PLAYER = 300;
 //collision type constants
 var ENEMY_COL_TYPE = 3;
 
+var ENEMY_DATA = {
+    slime: {
+        hp: 40,
+        base_exp: 20,
+        power: 2,
+        power_step: 1,
+        maxSpeed: 40,
+        accel: 20,
+        radius: 20,
+        weight: 1
+    },
+
+    wolf: {
+        hp: 70,
+        base_exp: 40,
+        power: 10,
+        power_step: 3,
+        maxSpeed: 100,
+        accel: 40,
+        radius: 20,
+        weight: 3
+    },
+
+    zombie: {
+        hp: 100,
+        base_exp: 50,
+        power: 8,
+        power_step: 2,
+        maxSpeed: 55,
+        accel: 10,
+        radius: 20,
+        weight: 10
+    }
+}
+
 
 var EnemyLeaderContainer = [];
 var EnemyActive = [];
@@ -46,8 +81,9 @@ var EnemyController = {
 
 var Enemy = cc.Sprite.extend({
     hp:100,
+    exp:0,
     power:10,
-    attackSpeed:800,
+    attackSpeed:80,
     level:1,
     maxSpeed:50,
     accel:20,
@@ -128,8 +164,9 @@ var Enemy = cc.Sprite.extend({
     },
 
     walk: function() {
-        if(this.runAnime)
+        if(this.runAnime) {
             this.runAction(this.runAnime);
+        }
     },
 
     hurt:function(angle){
@@ -168,7 +205,9 @@ var Enemy = cc.Sprite.extend({
         {
             this.unschedule(this.stopAttack);
             this.scheduleOnce(this.die, 0);
+            return true;
         }
+        else return false;
     },
     die:function(){
         //this.removeFromParent();
@@ -191,8 +230,17 @@ var Enemy = cc.Sprite.extend({
 
 var Slime = Enemy.extend({
 
+    maxSpeed: ENEMY_DATA.slime.maxSpeed,
+    accel: ENEMY_DATA.slime.accel,
+    radius: ENEMY_DATA.slime.radius,
+    weight: ENEMY_DATA.slime.weight,
+
     ctor:function(lvl, pos){
         this._super(lvl, pos);
+
+        this.exp = ENEMY_DATA.slime.base_exp * (1 + 0.1 * lvl);
+        this.power = ENEMY_DATA.slime.power + ENEMY_DATA.slime.power_step * lvl;
+        this.hp = ENEMY_DATA.slime.hp * (1 + 0.15 * lvl);
 
         var cache = this.spriteFrameCache;
         cache.addSpriteFrames(s_slime_plist, s_slime_png);
@@ -232,8 +280,17 @@ var SlimeLeader = Slime.extend({
 
 var Wolf = Enemy.extend({
 
+    maxSpeed: ENEMY_DATA.wolf.maxSpeed,
+    accel: ENEMY_DATA.wolf.accel,
+    radius: ENEMY_DATA.wolf.radius,
+    weight: ENEMY_DATA.wolf.weight,
+
     ctor:function(lvl, pos){
         this._super(lvl, pos);
+
+        this.exp = ENEMY_DATA.wolf.base_exp * (1 + 0.1 * lvl);
+        this.power = ENEMY_DATA.wolf.power + ENEMY_DATA.wolf.power_step * lvl;
+        this.hp = ENEMY_DATA.wolf.hp * (1 + 0.15 * lvl);
 
         var cache = this.spriteFrameCache;
         cache.addSpriteFrames(s_loup_plist, s_loup_png);
@@ -273,8 +330,17 @@ var WolfLeader = Wolf.extend({
 
 var Zombie = Enemy.extend({
 
+    maxSpeed: ENEMY_DATA.zombie.maxSpeed,
+    accel: ENEMY_DATA.zombie.accel,
+    radius: ENEMY_DATA.zombie.radius,
+    weight: ENEMY_DATA.zombie.weight,
+
     ctor:function(lvl, pos){
         this._super(lvl, pos);
+
+        this.exp = ENEMY_DATA.zombie.base_exp * (1 + 0.1 * lvl);
+        this.power = ENEMY_DATA.zombie.power + ENEMY_DATA.zombie.power_step * lvl;
+        this.hp = ENEMY_DATA.zombie.hp * (1 + 0.15 * lvl);
 
         var cache = this.spriteFrameCache;
         cache.addSpriteFrames(s_zombie_plist, s_zombie_png);

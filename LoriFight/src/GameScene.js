@@ -80,7 +80,7 @@ var GameScene = BaseScene.extend({
 
         this.pause = false;
 
-        var test = new ZombieLeader(5,cc.p(200,400), 30);
+        var test = new ZombieLeader(1, cc.p(200,400), 30);
         var shinningMushroom = new goldenMushroom(cc.p(200,300));
         shinningMushroom.trigger(100);
         this.camera.addChild(shinningMushroom);
