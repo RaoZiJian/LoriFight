@@ -32,6 +32,7 @@ s_Anger2_Png            = "res/UI/anger2.png";
 s_Anger3_Png            = "res/UI/anger3.png";
 s_Anger4_Png            = "res/UI/anger4.png";
 s_Anger5_Png            = "res/UI/anger5.png";
+s_AngerFire_Png         = "res/UI/angerFire.png";
 
 // YUYE
 
@@ -75,6 +76,7 @@ var menu_resources = [
     {src:s_Anger3_Png},
     {src:s_Anger4_Png},
     {src:s_Anger5_Png},
+    {src:s_AngerFire_Png},
     // YUYE
 
     // HUABIN
