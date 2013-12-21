@@ -11,6 +11,7 @@ var GameUILayer = ccs.UILayer.extend({
     angerExpression:null,
     angerFire:null,
     winSize:null,
+    shinningSprite:null,
 
     init:function(){
 
@@ -18,20 +19,32 @@ var GameUILayer = ccs.UILayer.extend({
             this.winSize = cc.Director.getInstance().getWinSize();
             //        this.addWidget(ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1));
             this.widget = ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1);
-            this.addWidget(this.widget, 2);
+            this.addWidget(this.widget);
 
             //this.settingBtn    = this.getWidgetByName("settingBtn");
             this.bloodBar      = this.getWidgetByName("blood");
             this.distanceScore = this.getWidgetByName("Score");
-            this.angerExpression = this.setAngerExpression(50);
+            this.setAngerExpression(50);
 
             //this.settingBtn.addTouchEventListener(this.settingBtnCallback, this);
             this.setBloodBarPercent(100);
             this.setScore(0);
+
+            this.shinningSprite = cc.Sprite.create(s_Shinning_Png);
+            this.shinningSprite.setVisible(false);
+            this.shinningSprite.setAnchorPoint(0,0);
+            this.shinningSprite.setPosition(cc.p(0,0));
+            this.addChild(this.shinningSprite,-1);
         }
     },
 
     setAngerExpression: function(angerValue){
+
+        if(this.angerExpression != null){
+
+            this.angerExpression.removeFromParent();
+            this.angerExpression == null;
+        }
 
         if(this.angerFire!=null){
             for(var i=0;i<this.angerFire.length;i++){
@@ -102,11 +115,7 @@ var GameUILayer = ccs.UILayer.extend({
     },
 
     setShinningLevel:function(level){
-
-        var shinningSprite = cc.Sprite.create(s_Shinning_Png);
-        shinningSprite.setOpacity(200);
-        shinningSprite.setAnchorPoint(0,0);
-        shinningSprite.setPosition(cc.p(0,0));
-        this.addChild(shinningSprite,1);
+        this.shinningSprite.setVisible(true);
+        this.shinningSprite.setOpacity(level);
     }
 });

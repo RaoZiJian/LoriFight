@@ -32,7 +32,6 @@ var itemSprite = cc.Sprite.extend({
    trigger:function(){
 
    }
-
 });
 
 var goldenMushroom = itemSprite.extend({
@@ -47,16 +46,21 @@ var goldenMushroom = itemSprite.extend({
         this.angerValue = 30;
     },
 
-    trigger:function(){
-
-      this.shine();
+    trigger:function(value){
+        this.attackTimes = 0;
     },
 
-    shine:function(){
+    sisiAttacked:function(sisi){
 
         this.attackTimes++;
+        GameController.gameScene.gameMenuUI.setShinningLevel(this.attackTimes*22);
+        if(this.attackTimes<10){
+            return false
+        }else {
+            return true;
+        }
     }
-});
+  });
 
 var stickyMushroom = itemSprite.extend({
 
