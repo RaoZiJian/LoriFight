@@ -61,6 +61,9 @@ var Sisi = ccs.Armature.extend({
 
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(10);
+
+        if(!this.loadFromLocal())
+            this.setLevel(1);
     },
 
     saveToLocal: function() {
@@ -73,7 +76,9 @@ var Sisi = ccs.Armature.extend({
         if(level = localStorage.getItem("sisilevel")) {
             this.level = level;
             this.exp = localStorage.getItem("sisiexp");
+            return true;
         }
+        else return false;
     },
 
     setLevel: function(lvl) {

@@ -4,7 +4,7 @@
 
 var MUSHROOM_COL_TYPE = 40;
 
-var itemSprite = cc.Sprite.extend({
+var goldenMushroom = cc.Sprite.extend({
 
     weight: 500,
     radius: 20,
@@ -17,6 +17,8 @@ var itemSprite = cc.Sprite.extend({
     // physique
     body: null,
 
+    attackTimes:null,
+
     ctor:function(pos){
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, 0, pos);
@@ -25,28 +27,7 @@ var itemSprite = cc.Sprite.extend({
         this.body.shape.setCollisionType(MUSHROOM_COL_TYPE);
 
         this.setPosition(pos);
-    },
 
-    /**
-     * Trigger the buffer.
-     */
-   trigger:function(){
-
-   },
-
-   destroyMushroom:function(){
-       this.removeFromParent();
-       Physics.world.removeShape(this.body.shape);
-       Physics.world.removeBody(this.body.body);
-   }
-});
-
-var goldenMushroom = itemSprite.extend({
-
-    attackTimes:null,
-
-    ctor:function(pos){
-        this._super(pos);
         this.initWithFile(s_ShineMushroom_Png, cc.rect(0, 0, 50, 57));
         this.name = "golden";
         this.duration = 0;
@@ -67,10 +48,27 @@ var goldenMushroom = itemSprite.extend({
         }else{
             return false;
         }
+    },
+    
+    destroyMushroom:function(){
+        this.removeFromParent();
+        Physics.world.removeShape(this.body.shape);
+        Physics.world.removeBody(this.body.body);
     }
   });
 
-var stickyMushroom = itemSprite.extend({
+var stickyMushroom = cc.Sprite.extend({
+
+    weight: 500,
+    radius: 20,
+
+    name:null,
+    texture:null,
+    duration:null,
+    angerValue:null,
+
+    // physique
+    body: null,
 
    ctor:function(pos){
        this._super(pos);
@@ -85,10 +83,26 @@ var stickyMushroom = itemSprite.extend({
        var sisiLocal = GameController.gameScene.sisi;
        sisiLocal.setMoveSpeed(0.5 * sisiLocal.moveSpeed);
        sisiLocal.setAttackSpeed(0.5 * sisiLocal.attackSpeed);
-   }
+   },
+
+    destroyMushroom:function(){
+        this.removeFromParent();
+        Physics.world.removeShape(this.body.shape);
+        Physics.world.removeBody(this.body.body);
+    }
 });
 
-var roarMushroom = itemSprite.extend({
+var roarMushroom = cc.Sprite.extend({
+    weight: 500,
+    radius: 20,
+
+    name:null,
+    texture:null,
+    duration:null,
+    angerValue:null,
+
+    // physique
+    body: null,
 
     ctor:function(pos){
         this._super(pos);
@@ -106,10 +120,26 @@ var roarMushroom = itemSprite.extend({
     roarWerewolf:function(){
 
 
+    },
+
+    destroyMushroom:function(){
+        this.removeFromParent();
+        Physics.world.removeShape(this.body.shape);
+        Physics.world.removeBody(this.body.body);
     }
 });
 
-var shiftMushroom = itemSprite.extend({
+var shiftMushroom = cc.Sprite.extend({
+    weight: 500,
+    radius: 20,
+
+    name:null,
+    texture:null,
+    duration:null,
+    angerValue:null,
+
+    // physique
+    body: null,
 
     shiftType:null,
 
@@ -139,10 +169,26 @@ var shiftMushroom = itemSprite.extend({
         }else if(this.shiftType == "slow"){
 
         }
+    },
+
+    destroyMushroom:function(){
+        this.removeFromParent();
+        Physics.world.removeShape(this.body.shape);
+        Physics.world.removeBody(this.body.body);
     }
 });
 
-var visibleMushroom = itemSprite.extend({
+var visibleMushroom = cc.Sprite.extend({
+    weight: 500,
+    radius: 20,
+
+    name:null,
+    texture:null,
+    duration:null,
+    angerValue:null,
+
+    // physique
+    body: null,
 
     ctor:function(pos){
         this._super(pos);
@@ -154,6 +200,12 @@ var visibleMushroom = itemSprite.extend({
 
     trigger:function(){
 
+    },
+
+    destroyMushroom:function(){
+        this.removeFromParent();
+        Physics.world.removeShape(this.body.shape);
+        Physics.world.removeBody(this.body.body);
     }
 })
 

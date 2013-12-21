@@ -31,7 +31,7 @@ var ENEMY_DATA = {
     },
 
     zombie: {
-        hp: 100,
+        hp: 10000,
         base_exp: 50,
         power: 8,
         power_step: 2,
@@ -112,6 +112,8 @@ var Enemy = cc.Sprite.extend({
 
     spriteFrameCache: null,
 
+    actionManager: null,
+
     ctor:function(lvl, pos, color){
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, this.maxSpeed, pos);
@@ -127,6 +129,8 @@ var Enemy = cc.Sprite.extend({
 
         this.enemy = GameController.gameScene.sisi;
         this.spriteFrameCache = cc.SpriteFrameCache.getInstance();
+
+        this.actionManager = cc.Director.getInstance().getActionManager();
     },
     activate:function(){
         if(!this.activated)
@@ -155,7 +159,7 @@ var Enemy = cc.Sprite.extend({
 
     slash: function() {
         if(this.attackAnime) {
-            this.attackAnime.stop();
+            this.actionManager.removeAllActionsFromTarget(this);
             this.runAction(this.attackAnime);
         }
 
@@ -171,7 +175,7 @@ var Enemy = cc.Sprite.extend({
 
     walk: function() {
         if(this.runAnime) {
-            this.runAnime.stop();
+            this.actionManager.removeAllActionsFromTarget(this);
             this.runAction(this.runAnime);
         }
     },
@@ -180,8 +184,8 @@ var Enemy = cc.Sprite.extend({
         // Direction
         var left = Math.abs(angle) < Math.PI/2 ? true : false;
         if(left)
-            this.setScaleX(-1);
-        else this.setScaleX(1);
+            this.setScaleX(1);
+        else this.setScaleX(-1);
 
         // Backward
         var v = cc.p(300, 0);
