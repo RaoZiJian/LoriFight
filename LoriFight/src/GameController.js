@@ -55,9 +55,10 @@ var Physics = {
         space.useSpatialHash(50,200);
         var emptyFunction = function(){return true};
         space.addCollisionHandler(10,ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
-            //var angle = cc.RADIANS_TO_DEGREES(cc.pToAngle(cc.pNeg(cc.p(a.contacts[0].n.x, a.contacts[0].n.y))));
-            //TODO: player attack this angle
-            GameController.gameScene.sisi.attack(a.getPoint(0));
+            var sisi = GameController.gameScene.sisi;
+            var n = a.contacts[0].n;
+            sisi.setDirection(n.x);
+            sisi.attack(a.getPoint(0));
             return true;
         },emptyFunction,emptyFunction);
 

@@ -80,7 +80,11 @@ var Sisi = ccs.Armature.extend({
 
     stopAttack: function() {
         this.attacking = false;
-        this.moving ? this.walk() : this.stand();
+        if( this.moving ) {
+            this.walk();
+            this.setDirection(this.target.x - this.getPosition().x);
+        }
+        else this.stand();
     },
 
     attack: function(pos) {
@@ -93,7 +97,7 @@ var Sisi = ccs.Armature.extend({
             this.attackPos = pos;
             this.scheduleOnce(this.slash,0);
         }
-        this.scheduleOnce(this.stopAttack, 1.5);
+        this.scheduleOnce(this.stopAttack, 0.8);
     },
     slash:function(){
         this.slashobj = new Slash(this.attackPos);
