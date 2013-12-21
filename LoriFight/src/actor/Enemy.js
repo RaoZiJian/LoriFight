@@ -52,7 +52,8 @@ var Enemy = cc.Sprite.extend({
     radius:20,
     weight:1,
     activated:false,
-    ctor:function(lvl, pos){
+    color:null,
+    ctor:function(lvl, pos, color){
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, this.maxSpeed, pos);
         //remove this after sprite is properly inited
@@ -61,7 +62,8 @@ var Enemy = cc.Sprite.extend({
         GameController.gameScene.camera.addChild(this);
         this.setScale(0.5);
         this.body.shape.setCollisionType(ENEMY_COL_TYPE);
-
+        if(color)
+        this.setColor(color);
     },
     activate:function(){
         if(!this.activated)
@@ -69,7 +71,9 @@ var Enemy = cc.Sprite.extend({
             EnemyActive.push(this);
             this.activated = true;
         }
-
+    },
+    hurt:function(){
+        //spawn a particle
     }
 });
 
