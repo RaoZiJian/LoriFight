@@ -24,6 +24,7 @@ var MenuLayer = cc.LayerColor.extend({
     },
 
     onTouchBegan: function(touch, event) {
+        cc.log("asdjanjksdnajksdna");
     },
 
     onTouchMoved: function(touch, event) {

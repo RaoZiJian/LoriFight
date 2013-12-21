@@ -67,15 +67,15 @@ var Sisi = ccs.Armature.extend({
     },
 
     saveToLocal: function() {
-        localStorage.setItem("sisilevel", this.level);
-        localStorage.setItem("sisiexp", this.exp);
+        sys.localStorage.setItem("sisilevel", this.level);
+        sys.localStorage.setItem("sisiexp", this.exp);
     },
 
     loadFromLocal: function() {
         var level;
-        if(level = localStorage.getItem("sisilevel")) {
+        if(level = sys.localStorage.getItem("sisilevel")) {
             this.level = level;
-            this.exp = localStorage.getItem("sisiexp");
+            this.exp = sys.localStorage.getItem("sisiexp");
             return true;
         }
         else return false;
@@ -186,7 +186,6 @@ var Sisi = ccs.Armature.extend({
         this.slashobj = new Slash(this.attackPos);
         this.getAnimation().play(["Attacking", this.moving ? "Walking" : "Standing"]);
     },
-
     walk: function() {
         this.getAnimation().play("Walking");
     },
