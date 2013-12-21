@@ -54,7 +54,6 @@ var GameScene = BaseScene.extend({
     update:function()
     {
         Physics.update();
-
-        this.camera.update();
+        EnemyController.update();
     }
 });

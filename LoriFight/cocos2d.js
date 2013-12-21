@@ -31,7 +31,7 @@
         box2d:false,
         chipmunk:true,
         showFPS:true,
-        loadExtension:false,
+        loadExtension:true,
         frameRate:60,
         renderMode:0,       //Choose of RenderMode: 0(default), 1(Canvas only), 2(WebGL only)
         tag:'gameCanvas', //the dom element to run cocos2d on
@@ -39,6 +39,14 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',
+            
+
+            'src/actor/Actor.js',
+            'src/actor/Sisi.js',
+            'src/actor/Enemy.js',
+            'src/actor/Emotion.js',
+            'src/actor/Skill.js',
+            'src/actor/Weapon.js',
 
             'src/GameController.js',
             'src/MenuScene.js',
@@ -47,13 +55,6 @@
             'src/ConfigScene.js',
             'src/GameController.js',
             'src/Camera.js',
-
-            'src/actor/Actor.js',
-            'src/actor/Sisi.js',
-            'src/actor/Enemy.js',
-            'src/actor/Emotion.js',
-            'src/actor/Skill.js',
-            'src/actor/Weapon.js',
 
             'src/Item/item.js',
             'src/UILayer/GameUILayer.js',
