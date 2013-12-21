@@ -46,7 +46,7 @@
             'src/GameScene.js',
             'src/ConfigScene.js',
             'src/GameController.js',
-            'src/Camera',
+            'src/Camera.js',
 
             'src/actor/Actor.js',
             'src/actor/Sisi.js',
