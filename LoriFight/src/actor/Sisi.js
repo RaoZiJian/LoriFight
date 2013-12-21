@@ -187,7 +187,6 @@ var Sisi = ccs.Armature.extend({
         this.slashobj = new Slash(this.attackPos);
         this.getAnimation().play(["Attacking", this.moving ? "Walking" : "Standing"]);
     },
-
     walk: function() {
         this.getAnimation().play("Walking");
     },
