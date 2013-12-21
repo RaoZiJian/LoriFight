@@ -45,6 +45,16 @@ var GameController ={
 var CPSTEP = 1/60;
 var Physics = {
     world:null,
+    calculVector: function(a) {
+        var s = a.a, d = a.b;
+        var cs = cc.p((s.bb_b+s.bb_t)/2, (s.bb_l+s.bb_r)/2);
+        var cd = cc.p((d.bb_b+d.bb_t)/2, (d.bb_l+d.bb_r)/2);
+        return cc.pSub(cs, cd);
+    },
+    calculAngle: function(a) {
+        return cc.pToAngle( this.calculVector(a) );
+    },
+
     init:function(){
         var space = this.world = new cp.Space();
         space.iterations = 20;
@@ -56,18 +66,22 @@ var Physics = {
         var emptyFunction = function(){return true};
         space.addCollisionHandler(10,ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
             var sisi = GameController.gameScene.sisi;
-            var n = a.contacts[0].n;
-            sisi.setDirection(-n.x);
+            var v = Physics.calculVector(a);
+            sisi.setDirection(v.x);
             sisi.attack(a.getPoint(0));
             return true;
         },emptyFunction,emptyFunction);
 
         space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE,function(a){
             var enemy = a.getB().obj.view;
-            var n = a.contacts[0].n;
-            var dir = cc.v2f(n.x, -n.y);
-            enemy.hurt(cc.pToAngle(dir));
+            var dir = Physics.calculAngle(a);
+            enemy.hurt(dir);
             enemy.attack();
+        }, emptyFunction, emptyFunction);
+
+        space.addCollisionHandler(ATTACK_COL_TYPE, MUSHROOM_COL_TYPE,function(a){
+            var mushroom = a.getB().obj.view;
+            GameController.gameScene.sisi.gotMushroom(mushroom);
         }, emptyFunction, emptyFunction);
     },
     update:function(){

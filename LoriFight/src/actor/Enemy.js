@@ -45,7 +45,7 @@ var EnemyController = {
 };
 
 var Enemy = cc.Sprite.extend({
-    hp:100,
+    hp:10000,
     power:10,
     attackSpeed:800,
     level:1,
@@ -133,6 +133,11 @@ var Enemy = cc.Sprite.extend({
     },
 
     hurt:function(angle){
+        // Direction
+        if(Math.abs(angle) < Math.PI/2)
+            this.setScaleX(-1);
+        else this.setScaleX(1);
+
         // Backward
         var v = cc.p(300, 0);
         var impulse = cc.pRotateByAngle(v, cc.p(0,0), angle);
