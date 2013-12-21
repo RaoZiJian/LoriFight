@@ -38,9 +38,12 @@ var GameScene = BaseScene.extend({
         this.scheduleUpdate();
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
 
+        var winSize = cc.Director.getInstance().getWinSize();
         this.sisi = new Sisi();
+        this.sisi.setAnchorPoint(0.5, 0.5);
+        this.sisi.setPosition(cc.p(winSize.width/2, winSize.height/2));
+        this.addChild(this.sisi);
 
-        // Sisi will be added automatically
         this.camera = new Camera(this.sisi, this);
         this.sisi.setZOrder(2);
 
@@ -55,5 +58,9 @@ var GameScene = BaseScene.extend({
     {
         Physics.update();
         EnemyController.update();
+
+        this.sisi.update();
+
+        this.camera.update();
     }
 });
