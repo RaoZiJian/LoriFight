@@ -97,8 +97,8 @@ var Sisi = ccs.Armature.extend({
         this.getAnimation().play("Walking");
     },
 
-    stand: function(delay, duration) {
-        this.getAnimation().play("Standing", delay, duration);
+    stand: function() {
+        this.getAnimation().play("Standing");
     },
 
     attacked: function() {
@@ -120,6 +120,7 @@ var Sisi = ccs.Armature.extend({
             if(cc.pDistance(pos,tar)<5) {
                 this.moving = false;
                 this.body.body.setVel(cc.p(0, 0));
+                this.stand();
             }
         }
         else pos = this.body.body.p;
