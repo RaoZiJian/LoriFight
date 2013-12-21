@@ -30,7 +30,7 @@ var GameUILayer = ccs.UILayer.extend({
             this.setBloodBarPercent(100);
             this.setScore(0);
 
-            this.shinningSprite = cc.Sprite.create(s_Shinning_Png);
+            this.shinningSprite = cc.Sprite.create(s_Shinning_Png, cc.rect(0,0,960,640));
             this.shinningSprite.setVisible(false);
             this.shinningSprite.setAnchorPoint(0,0);
             this.shinningSprite.setPosition(cc.p(0,0));
@@ -56,21 +56,21 @@ var GameUILayer = ccs.UILayer.extend({
 
         cc.log("anger value is" + angerValue);
 
-        if(angerValue>=100){
-            this.angerExpression = cc.Sprite.create(s_Anger2_Png);
+        if(angerValue<=50){
+            this.angerExpression = cc.Sprite.create(s_Anger5_Png, cc.rect(0,0,80,84));
+            this.angerFire = new Array(1);
+        }else if(angerValue<100 && angerValue>50){
+            this.angerExpression = cc.Sprite.create(s_Anger1_Png, cc.rect(0,0,78,82));
+            this.angerFire = new Array(2);
+        }else if(200>angerValue && angerValue>=100){
+            this.angerExpression = cc.Sprite.create(s_Anger2_Png, cc.rect(0,0,76,79));
             this.angerFire = new Array(3);
-        }else if(300>angerValue>=200){
-            this.angerExpression = cc.Sprite.create(s_Anger3_Png);
+        }else if(300>angerValue && angerValue>=200){
+            this.angerExpression = cc.Sprite.create(s_Anger3_Png, cc.rect(0,0,76,69));
             this.angerFire = new Array(4);
         }else if(angerValue>=300){
-            this.angerExpression = cc.Sprite.create(s_Anger4_Png);
+            this.angerExpression = cc.Sprite.create(s_Anger4_Png, cc.rect(0,0,81,84));
             this.angerFire = new Array(5);
-        }else if(angerValue<=50){
-            this.angerExpression = cc.Sprite.create(s_Anger5_Png);
-            this.angerFire = new Array(1);
-        }else if(50<angerValue<100){
-            this.angerExpression = cc.Sprite.create(s_Anger1_Png);
-            this.angerFire = new Array(2);
         }
 
         this.angerExpression.setScale(0.6);
@@ -84,7 +84,7 @@ var GameUILayer = ccs.UILayer.extend({
     setAngerFire:function(){
         for(var i=0; i<this.angerFire.length;i++){
 
-            var angerFireSprite = cc.Sprite.create(s_AngerFire_Png);
+            var angerFireSprite = cc.Sprite.create(s_AngerFire_Png,cc.rect(0,0,45,59));
             angerFireSprite.setAnchorPoint(cc.p(0,0));
             angerFireSprite.setPosition(cc.p(this.winSize.width/4 + 55*(i+1), this.winSize.height/6-5));
             this.addChild(angerFireSprite);

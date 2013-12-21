@@ -31,7 +31,13 @@ var itemSprite = cc.Sprite.extend({
      */
    trigger:function(){
 
+   },
+
+   destroyMushroom:function(){
+
+       this.removeFromParent();
    }
+
 });
 
 var goldenMushroom = itemSprite.extend({
@@ -46,7 +52,7 @@ var goldenMushroom = itemSprite.extend({
         this.angerValue = 30;
     },
 
-    trigger:function(value){
+    trigger:function(){
         this.attackTimes = 0;
     },
 
@@ -54,7 +60,7 @@ var goldenMushroom = itemSprite.extend({
 
         this.attackTimes++;
         GameController.gameScene.gameMenuUI.setShinningLevel(240);
-        if(this.attackTimes>10){
+        if(this.attackTimes>5){
             GameController.gameScene.gameMenuUI.setShinningLevel(0);
             return true;
         }else{
