@@ -28,7 +28,8 @@ var goldenMushroom = cc.Sprite.extend({
 
         this.setPosition(pos);
 
-        this.initWithFile(s_ShineMushroom_Png, cc.rect(0, 0, 50, 57));
+        var mushroom = cc.SpriteBatchNode.create(s_ShineMushroom_Png);
+        this.initWithTexture(mushroom.getTexture(), cc.rect(0, 0, 50, 57), false);
         this.name = "golden";
         this.duration = 0;
         this.angerValue = 30;
@@ -49,7 +50,7 @@ var goldenMushroom = cc.Sprite.extend({
             return false;
         }
     },
-    
+
     destroyMushroom:function(){
         this.removeFromParent();
         Physics.world.removeShape(this.body.shape);
@@ -74,7 +75,9 @@ var stickyMushroom = cc.Sprite.extend({
        this._super(pos);
        this.name = "sticky";
        this.duration = 30;
-       this.initWithFile(s_StickyMushroom_Png, cc.rect(0, 0, 50, 54));
+
+       var mushroom = cc.SpriteBatchNode.create(s_StickyMushroom_Png);
+       this.initWithTexture(mushroom, cc.rect(0, 0, 50, 54), false);
        this.angerValue = 40;
    },
 
@@ -108,7 +111,8 @@ var roarMushroom = cc.Sprite.extend({
         this._super(pos);
         this.name = "roar";
         this.duration = 30;
-        this.initWithFile(s_RoarMushroom_Png, cc.rect(0, 0, 50, 53));
+        var mushroom = cc.SpriteBatchNode.create(s_RoarMushroom_Png);
+        this.initWithTexture(mushroom, cc.rect(0, 0, 50, 53), false);
         this.angerValue = 50;
     },
 
@@ -151,9 +155,11 @@ var shiftMushroom = cc.Sprite.extend({
         this.shiftType = type;
         this.angerValue = 30;
         if(this.shiftType == "acute"){
-            this.initWithFile(s_AcuteMushroom_Png, cc.rect(0, 0, 41, 66));
+            var mushroom = cc.SpriteBatchNode.create(s_AcuteMushroom_Png);
+            this.initWithTexture(mushroom, cc.rect(0, 0, 41, 66), false);
         }else if(this.shiftType == "slow"){
-            this.initWithFile(s_SlowMushroom_Png, cc.rect(0, 0, 47, 60))
+            var mushroom = cc.SpriteBatchNode.create(s_SlowMushroom_Png);
+            this.initWithTexture(mushroom, cc.rect(0, 0, 47, 60), false);
         }
     },
 
@@ -195,7 +201,8 @@ var visibleMushroom = cc.Sprite.extend({
         this.angerValue = 60;
         this.name = "visible";
         this.duration = 9999999999;
-        this.initWithFile(s_VisibleMushroom_Png, cc.rect(0, 0, 52, 60));
+        var mushroom = cc.SpriteBatchNode.create(s_VisibleMushroom_Png);
+        this.initWithTexture(mushroom, cc.rect(0, 0, 52, 60), false);
     },
 
     trigger:function(){
