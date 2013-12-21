@@ -47,6 +47,10 @@ var GameScene = BaseScene.extend({
         this.camera = new Camera(this.sisi, this);
         this.sisi.setZOrder(2);
 
+        var gameMenuUI = new GameUILayer();
+        gameMenuUI.init();
+        this.addChild(gameMenuUI,5);
+
         // All layer add to camera
         this.camera.addChild(this.debugNode);
         this.camera.addChild(layer);
