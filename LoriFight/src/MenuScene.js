@@ -13,6 +13,18 @@ var MenuLayer = cc.LayerColor.extend({
         this.sisi.setPosition(100, 100);
         this.addChild(this.sisi);
 
+        var winSize = cc.Director.getInstance().getWinSize();
+        var logo = cc.Sprite.create(s_logo);
+
+        var enterGame = cc.MenuItemSprite.create(logo);
+        enterGame.setCallback(function(){
+            gameController.transitionToScene(gameController.gameScene);
+        }, this);
+        var menu = cc.Menu.create(enterGame);
+        menu.alignItemsVerticallyWithPadding(10);
+        this.addChild(menu, 1, 2);
+        menu.setPosition(winSize.width / 2, winSize.height / 2);
+
         this.setTouchEnabled(true);
         this.setMouseEnabled(true);
 
@@ -20,11 +32,9 @@ var MenuLayer = cc.LayerColor.extend({
     },
 
     onTouchBegan: function(touch, event) {
-        gameController.transitionToScene(gameController.gameScene);
     },
 
     onMouseDown: function() {
-        gameController.transitionToScene(gameController.gameScene);
     },
 
     onTouchMoved: function(touch, event) {
