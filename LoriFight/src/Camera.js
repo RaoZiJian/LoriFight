@@ -2,34 +2,24 @@
  * Created by panda on 12/21/13.
  */
 
-var Camera = cc.Layer.extend({
+var Camera = cc.Class.extend({
 
     target: null,
+    scene: null,
+    prevPos: null,
+    winCenter: null,
 
-    ctor: function(target) {
-        this._super();
-        this.init();
-
+    ctor: function(target, scene) {
+        this.scene = scene;
         this.target = target;
-
-        this.setAnchorPoint(0.5, 0.5);
-        this.setPosition(target.getPosition());
-
-        this.setTouchEnabled(true);
+        this.prevPos = this.target.getPosition();
+        var winSize = cc.Director.getInstance().getWinSize();
+        this.winCenter = cc.p(winSize.width/2, winSize.height/2);
     },
 
     update: function() {
-        var tarpos = this.target.getPosition(), x = tarpos.x, y = tarpos.y,
-            pos = this.getPosition(), dx = x - pos.x, dy = y - pos.y;
-        if(dx == 0 && dy == 0)
-            return;
-
-        this.setPosition(tarpos);
-    },
-
-    onTouchesBegan: function(touches, event) {
-        var pos = touches[0].getLocation();
-        var targetpos = cc.pSub(pos, this.getPosition());
-        this.target.setTarget(targetpos);
+        var currPos = cc.pAdd(this.target.getPosition(), this.scene.getPosition());
+        var dpos = cc.pSub(this.winCenter, currPos);
+        this.scene.setPosition(cc.pAdd(this.scene.getPosition(), dpos));
     }
 });

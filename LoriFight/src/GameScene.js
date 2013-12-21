@@ -20,6 +20,8 @@ GameLayer.create = function (color) {
 
 
 var GameScene = BaseScene.extend({
+    res: game_resources,
+
     // Layers
     ground: null,
     items: null,
@@ -27,36 +29,40 @@ var GameScene = BaseScene.extend({
 
     // Camera
     camera: null,
-
-    res: game_resources,
     sisi: null,
 
     onEnter: function () {
         this._super();
         var layer = GameLayer.create(new cc.Color4B(0,0,255,80));
+        layer.setContentSize(cc.size(400, 200));
 
+        var winSize = cc.Director.getInstance().getWinSize();
         this.scheduleUpdate();
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
 
-        var winSize = cc.Director.getInstance().getWinSize();
         this.sisi = new Sisi();
+        this.sisi.setPosition(winSize.width/2, winSize.height/2);
         this.sisi.setAnchorPoint(0.5, 0.5);
-        this.sisi.setPosition(cc.p(winSize.width/2, winSize.height/2));
-        this.addChild(this.sisi);
+        this.sisi.body.setPosition(cc.p(winSize.width/2, winSize.height/2));
+
+        var sisilayer = new SisiLayer();
+        sisilayer.setContentSize(winSize);
+        sisilayer.setAnchorPoint(0, 0);
+        sisilayer.setPosition(0, 0);
+        sisilayer.setZOrder(2);
+        sisilayer.setSisi(this.sisi);
+        this.addChild(sisilayer);
 
         this.camera = new Camera(this.sisi, this);
-        this.sisi.setZOrder(2);
 
         var gameMenuUI = new GameUILayer();
         gameMenuUI.init();
         this.addChild(gameMenuUI,5);
 
         // All layer add to camera
-        this.camera.addChild(this.debugNode);
-        this.camera.addChild(layer);
+        this.addChild(this.debugNode);
+        this.addChild(layer);
         //...
-
-        this.addChild(this.camera);
     },
     update:function()
     {
