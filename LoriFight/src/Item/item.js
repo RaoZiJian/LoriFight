@@ -12,11 +12,6 @@ var itemSprite = cc.Sprite.extend({
         this.__super();
     },
 
-    init:function(){
-
-        this._super();
-    },
-
     /**
      * Trigger the buffer.
      */
@@ -32,10 +27,7 @@ var goldenMushroom = itemSprite.extend({
 
     ctor:function(){
         this._super();
-    },
-
-    init:function(){
-
+        this.initWithFile(s_ShineMushroom_Png);
         this._super();
         this.name = "golden";
         this.duration = 9999999999;
@@ -56,14 +48,10 @@ var goldenMushroom = itemSprite.extend({
 var stickyMushroom = itemSprite.extend({
 
    ctor:function(){
-       this.__super();
-   },
-
-   init:function(){
-
        this._super();
        this.name = "sticky";
        this.duration = 30;
+       this.initWithFile(s_StickyMushroom_Png);
    },
 
    trigger:function(){
@@ -79,14 +67,10 @@ var stickyMushroom = itemSprite.extend({
 var roarMushroom = itemSprite.extend({
 
     ctor:function(){
-        this.__super();
-    },
-
-    init:function(){
-
         this._super();
         this.name = "roar";
         this.duration = 30;
+        this.initWithFile(s_RoarMushroom_Png);
     },
 
     trigger:function(){
@@ -105,15 +89,16 @@ var shiftMushroom = itemSprite.extend({
     shiftType:null,
 
     ctor:function(){
+
         this.__super();
-    },
-
-    init:function(type){
-
-        this._super();
         this.name = "shift";
         this.duration = 30;
         this.shiftType = type;
+        if(this.shiftType == "acute"){
+            this.initWithFile(s_AcuteMushroom_Png);
+        }else if(this.shiftType == "slow"){
+            this.initWithFile(s_SlowMushroom_Png)
+        }
     },
 
     trigger:function(){
@@ -135,18 +120,13 @@ var visibleMushroom = itemSprite.extend({
 
     ctor:function(){
         this._super();
-    },
-
-    init:function(){
-
-        this._super();
         this.name = "golden";
         this.duration = 9999999999;
+        this.initWithFile(s_VisibleMushroom_Png);
     },
 
     trigger:function(){
 
-        this.shine();
     }
 })
 
