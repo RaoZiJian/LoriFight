@@ -3818,20 +3818,7 @@
 /// Switch the space to use a spatial has as it's spatial index.
     Space.prototype.useSpatialHash = function(dim, count)
     {
-        throw new Error('Spatial Hash not yet implemented!');
 
-        var staticShapes = new SpaceHash(dim, count, null);
-        var activeShapes = new SpaceHash(dim, count, staticShapes);
-
-        this.staticShapes.each(function(shape){
-            staticShapes.insert(shape, shape.hashid);
-        });
-        this.activeShapes.each(function(shape){
-            activeShapes.insert(shape, shape.hashid);
-        });
-
-        this.staticShapes = staticShapes;
-        this.activeShapes = activeShapes;
     };
 
     /* Copyright (c) 2007 Scott Lembcke

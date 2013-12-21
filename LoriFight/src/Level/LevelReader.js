@@ -2,31 +2,20 @@
  * Created by panda on 12/20/13.
  */
 
-var LevelLayer = cc.LayerColor.extend({
+var LevelLayer = ({
 
-    init: function(color) {
-        this._super(color);
+    level:0,
+    init: function(level) {
+       // this._super(level);
 
         return true;
     }
 });
-LevelLayer.create = function (color) {
+LevelLayer.create = function (level) {
     var layer = new LevelLayer();
-    if (layer && layer.init(color)) {
+    if (layer && layer.init(level)) {
         return layer;
     }
     return null;
 };
 
-
-var LevelScene = BaseScene.extend({
-    layer: null,
-
-    res: level_resources,
-
-    onEnter: function () {
-        this._super();
-        this.layer = LevelLayer.create(new cc.Color4B(0,255,0,255));
-        this.addChild(this.layer);
-    }
-});

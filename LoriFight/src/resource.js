@@ -1,59 +1,51 @@
+// WUHAO
+
+// ZIJIAN
+
+// YUYE
+
+// HUABIN
 s_sisi = "res/grossini.png";
 
 
 var menu_resources = [
-    //image
+    // WUHAO
+
+    // ZIJIAN
+
+    // YUYE
+
+    // HUABIN
     {src:s_sisi}
 
-    //plist
-
-    //fnt
-
-    //tmx
-
-    //bgm
-
-    //effect
 ];
 
 var level_resources = [
-    //image
+    // WUHAO
 
-    //plist
+    // ZIJIAN
 
-    //fnt
+    // YUYE
 
-    //tmx
-
-    //bgm
-
-    //effect
+    // HUABIN
 ];
 
 var game_resources = [
-    //image
+    // WUHAO
 
-    //plist
+    // ZIJIAN
 
-    //fnt
+    // YUYE
 
-    //tmx
-
-    //bgm
-
-    //effect
+    // HUABIN
 ];
 
 var config_resources = [
-    //image
+    // WUHAO
 
-    //plist
+    // ZIJIAN
 
-    //fnt
+    // YUYE
 
-    //tmx
-
-    //bgm
-
-    //effect
+    // HUABIN
 ];

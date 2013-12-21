@@ -4,12 +4,13 @@
 
 var Sisi = Actor.extend({
 
-    level: 0,
-    moveSpeed: 0,
-    attackSpeed: 0,
     movementShift: cc.p(0, 0),
 
+    physic_node: null,
+
     mushroom: null,
+
+    skill: null,
 
     ctor: function() {
         this._super(s_sisi, cc.rect(0, 0, 52, 110));
@@ -36,6 +37,33 @@ var Sisi = Actor.extend({
 
     setMushroom: function(mushroom) {
         this.mushroom = mushroom;
+        mushroom.trigger();
+    },
+
+
+    attack: function() {
+
+    },
+
+    walk: function() {
+
+    },
+
+    stand: function() {
+
+    },
+
+    attacked: function() {
+
+    },
+
+    falldown: function() {
+
+    },
+
+    update: function() {
+        // Control sprite's physic node
+        // Apply force with speed
     }
 
 });
