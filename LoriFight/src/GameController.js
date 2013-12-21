@@ -76,12 +76,14 @@ var PhysicsObject = cc.Class.extend({
         var v = cc.p(force,0);
         var impulse = cc.pRotateByAngle(v, cc.p(0,0), cc.DEGREES_TO_RADIANS(direction));
         this.body.applyImpulse(impulse, cp.v(0,0));
-        return impulse;
     },
     //move towards a point, regardless of where i am
     targetMove:function(point, force){
-        var angle = cc.pSub(point, this.body.p);
-
+        var v = cc.p(force,0);
+        var angle = cc.pToAngle(cc.pSub(point, this.body.p));
+        console.log(angle);
+        var impulse = cc.pRotateByAngle(v, cc.p(0,0), angle);
+        this.body.applyImpulse(impulse, cp.v(0,0));
     },
     setMaxSpeed:function(maxSpeed){
         this.body.v_limit = maxSpeed;
