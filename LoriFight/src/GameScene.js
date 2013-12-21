@@ -20,20 +20,33 @@ GameLayer.create = function (color) {
 
 
 var GameScene = BaseScene.extend({
-    layer: null,
+    // Layers
+    ground: null,
+    items: null,
+    staticObjs: null,
+
+    // Camera
+    camera: null,
 
     res: game_resources,
+    sisi: null,
 
     onEnter: function () {
         this._super();
-        this.layer = GameLayer.create(new cc.Color4B(0,0,255,255));
-        this.addChild(this.layer);
+        var layer = GameLayer.create(new cc.Color4B(0,0,255,255));
+        this.addChild(layer);
         this.scheduleUpdate();
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
         this.addChild(this.debugNode);
+
+        this.sisi = new Sisi();
+
+        this.camera = new Camera(this.sisi, this);
     },
     update:function()
     {
         Physics.update();
+
+        this.camera.update();
     }
 });
