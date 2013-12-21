@@ -80,7 +80,7 @@ var GameScene = BaseScene.extend({
 
         this.pause = false;
 
-        var test = new SlimeLeader(5,cc.p(200,400), 3)
+        var test = new SlimeLeader(5,cc.p(200,400), 30)
     },
 
     update:function()

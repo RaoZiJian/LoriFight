@@ -1,5 +1,6 @@
 // WUHAO
 fx_blood            = "res/spark.plist";
+fx_pop              = "res/pop.plist";
 
 // ZIJIAN
 s_blood                 = "res/UI/blood.png";
@@ -53,6 +54,7 @@ var s_logo = "res/logo.png";
 var menu_resources = [
     // WUHAO
     {src:fx_blood},
+    {src:fx_pop},
 
     // ZIJIAN
     {src:s_blood},
