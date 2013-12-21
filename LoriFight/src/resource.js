@@ -18,8 +18,8 @@ s_CCArmature_Png        = "res/Animations/CCArmature0.png";
 // YUYE
 
 // HUABIN
-s_sisi = "res/grossini.png";
-s_logo = "res/logo.png";
+var s_sisi = "res/grossini.png";
+var s_logo = "res/logo.png";
 
 
 var menu_resources = [
@@ -36,9 +36,6 @@ var menu_resources = [
     {src:s_settingBtnPush},
     {src:s_slider_heart},
     {src:s_labelatlasimg},
-    {src:s_CCArmature_ExportJson},
-    {src:s_CCArmature_Plist},
-    {src:s_CCArmature_Png},
     // YUYE
 
     // HUABIN
@@ -65,6 +62,9 @@ var game_resources = [
     // YUYE
 
     // HUABIN
+    {src:s_CCArmature_ExportJson},
+    {src:s_CCArmature_Plist},
+    {src:s_CCArmature_Png}
 ];
 
 var config_resources = [

@@ -2,7 +2,7 @@
  * Created by panda on 12/20/13.
  */
 
-var Sisi = cc.Sprite.extend({
+var Sisi = ccs.Armature.extend({
 
     level: 1,
     attack: 0,
@@ -18,25 +18,33 @@ var Sisi = cc.Sprite.extend({
     body: null,
 
     mushroom: null,
+    emotion: null,
 
     skill: null,
 
     ctor: function() {
         this._super();
-        this.init(s_sisi, cc.rect(0, 0, 52, 110));
+
+        //this.init(s_sisi, cc.rect(0, 0, 52, 110));
+        this.init("CCArmature");
+        this.getAnimation().play("Walking");
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(10);
     },
 
-    initWithConfig: function(config) {
-        this.level = config.level;
-        this.moveSpeed = config.speed;
-        this.attackSpeed = config.speed;
+    showEmotion: function(emotion) {
+        if(!this.emotion) {
+            this.emotion = emotion;
+            emotion.setAnchorPoint(0.5, 0);
+            var size = this.getContentSize();
+            emotion.setPosition(size.width/2, size.height + 10);
+            this.addChild(emotion, "emotion");
+            this.schedule(this.removeEmotion, 3);
+        }
+    },
 
-        this.setPosition(config.pos);
-        this.body.setPosition(config.pos);
-        this.target = config.pos;
-
+    removeEmotion: function() {
+        this.removeChildByTag("emotion");
     },
 
     setTarget: function(tar) {
@@ -78,7 +86,7 @@ var Sisi = cc.Sprite.extend({
 
     },
 
-    update: function() {
+    updateSisi: function() {
         // Control sprite's physic node
         // Apply force with speed
         var tar = this.target, pos;
@@ -103,8 +111,8 @@ var SisiLayer = cc.Layer.extend({
 
     ctor: function() {
         this._super();
-        this.setTouchEnabled(true);
-        this.scheduleUpdate();
+        thi
+        this.scheduleUpdate();s.setTouchEnabled(true);
     },
 
     setSisi: function(sisi) {

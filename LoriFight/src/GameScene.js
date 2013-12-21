@@ -32,6 +32,9 @@ var GameScene = BaseScene.extend({
     sisi: null,
     winMid:null,
     onEnter: function () {
+        // Load armature
+        ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
+
         this._super();
         this.scheduleUpdate();
         var winSize = this.winMid = cc.Director.getInstance().getWinSize();
@@ -70,12 +73,13 @@ var GameScene = BaseScene.extend({
         camera.setTouchEnabled(true);
         camera.onTouchBegan = this.onTouchBegan.bind(this);
     },
+
     update:function()
     {
         Physics.update();
         EnemyController.update();
 
-        this.sisi.update();
+        this.sisi.updateSisi();
         var sisipos = this.sisi.getPosition();
         var ws = this.winMid;
         this.camera.setPosition(cc.pAdd(cc.pNeg(sisipos), cc.p(ws.width/2, ws.height/2)));
