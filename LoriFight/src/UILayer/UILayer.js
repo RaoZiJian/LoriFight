@@ -13,3 +13,7 @@ var shinningLayer = cc.Layer.extend({
 
    }
 });
+
+var gameMenuUI = cc.UILayer.extend({
+
+})
