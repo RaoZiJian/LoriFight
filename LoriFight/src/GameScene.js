@@ -54,7 +54,7 @@ var GameScene = BaseScene.extend({
         ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
 
         this._super();
-        this.scheduleUpdate();
+
         var winSize = cc.Director.getInstance().getWinSize();
         var winMid = this.winMid = cc.p(winSize.width/2, winSize.height/2);
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
@@ -88,7 +88,7 @@ var GameScene = BaseScene.extend({
         var sticky = new stickyMushroom(cc.p(400,500));
         sticky.trigger();
         this.camera.addChild(sticky);
-
+        this.scheduleUpdate();
     },
 
     update:function()

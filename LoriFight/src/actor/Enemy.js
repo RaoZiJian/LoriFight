@@ -59,12 +59,16 @@ var EnemyController = {
         for(var i=0; i < EnemyLeaderContainer.length; i++)
         {
             var enemy = EnemyLeaderContainer[i];
-            var dist = cc.pDistance(enemy.getPosition(),playerPos);
+            var pos = enemy.getPosition();
+            if(pos)
+            {
+                var dist = cc.pDistance(enemy.getPosition(),playerPos);
             //console.log(dist);
 
-            if(dist <= DIST_TO_PLAYER)
-            {
-                enemy.activate();
+                if(dist <= DIST_TO_PLAYER)
+                {
+                    enemy.activate();
+                }
             }
         }
         //get player position, so monster will go after it
@@ -225,6 +229,9 @@ var Enemy = cc.Sprite.extend({
         this.addChild(pop);
         Physics.world.removeShape(this.body.shape);
         Physics.world.removeBody(this.body.body);
+        var idx = EnemyActive.indexOf(this);
+        if(idx !== -1)
+             EnemyActive.splice(idx,1);
     }
 });
 
@@ -275,6 +282,12 @@ var SlimeLeader = Slime.extend({
         {
             this.buddies[i].activate();
         }
+    },
+    die:function(){
+        this._super();
+        var idx = EnemyLeaderContainer.indexOf(this);
+        if(idx !== -1)
+            EnemyLeaderContainer.splice(idx,1);
     }
 });
 

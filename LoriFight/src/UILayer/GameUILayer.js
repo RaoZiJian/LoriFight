@@ -32,7 +32,7 @@ var GameUILayer = ccs.UILayer.extend({
 
             this.shinningSprite = cc.Sprite.create(s_Shinning_Png, cc.rect(0,0,960,640));
             this.shinningSprite.setVisible(false);
-            this.shinningSprite.setAnchorPoint(0,0);
+            this.shinningSprite.setAnchorPoint(cc.p(0,0));
             this.shinningSprite.setPosition(cc.p(0,0));
             this.addChild(this.shinningSprite,-1);
         }

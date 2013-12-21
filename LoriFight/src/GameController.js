@@ -63,7 +63,7 @@ var Physics = {
         space.iterations = 20;
         //space.gravity = cp.v(0, 0);//no gravity
         space.sleepTimeThreshold = 1;
-        space.damping = 0.1;
+        space.damping = 0.025;
         // comment this if does not work on JSB
         space.useSpatialHash(50,200);
         var emptyFunction = function(){return true};
@@ -85,7 +85,9 @@ var Physics = {
                 sisi.killedOne(enemy);
             else
                 enemy.attack();
-        }.bind(this), null, null,null);
+
+            return true
+        }, null, null,null);
 
         space.addCollisionHandler(ATTACK_COL_TYPE, MUSHROOM_COL_TYPE,function(a){
             var sisi = GameController.gameScene.sisi;

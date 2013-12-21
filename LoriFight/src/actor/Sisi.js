@@ -146,7 +146,7 @@ var Sisi = ccs.Armature.extend({
                     this.mushroom = null;
                 }
             }
-            this.scheduleOnce(this.slash,0);
+            this.scheduleOnce(this.slash,0.0016);
         }
         this.scheduleOnce(this.stopAttack, 0.8);
     },
@@ -211,13 +211,13 @@ var Sisi = ccs.Armature.extend({
 
 });
 
-var Slash = cc.Node.extend({
+var Slash = cc.Class.extend({
 
     ctor:function(pos){
         this.pbody = new PhysicsObject(1, 30, 1, pos);
         this.pbody.shape.setSensor(true);
         this.pbody.shape.setCollisionType(ATTACK_COL_TYPE);
-        cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(this,this.remove,0,0,0.2);
+        cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(this,this.remove,0,0,0);
     },
     remove:function(){
         Physics.world.removeShape(this.pbody.shape);
