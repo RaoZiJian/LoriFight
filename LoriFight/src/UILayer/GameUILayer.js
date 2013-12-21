@@ -22,8 +22,8 @@ var GameUILayer = ccs.UILayer.extend({
             this.addWidget(this.widget);
 
             //this.settingBtn    = this.getWidgetByName("settingBtn");
-            this.bloodBar      = this.getWidgetByName("blood");
-            this.distanceScore = this.getWidgetByName("Score");
+            this.bloodBar = this.getWidgetByName("blood");
+            this.score = this.getWidgetByName("Score");
             this.setAngerExpression(50);
 
             //this.settingBtn.addTouchEventListener(this.settingBtnCallback, this);
@@ -53,6 +53,8 @@ var GameUILayer = ccs.UILayer.extend({
                 this.angerFire[i] = null;
             }
         }
+
+        cc.log("anger value is" + angerValue);
 
         if(angerValue>=100){
             this.angerExpression = cc.Sprite.create(s_Anger2_Png);
@@ -111,7 +113,7 @@ var GameUILayer = ccs.UILayer.extend({
 
     setScore:function(value){
 
-        this.distanceScore.setStringValue(value);
+        this.score.setStringValue(value);
     },
 
     setShinningLevel:function(level){

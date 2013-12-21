@@ -53,11 +53,12 @@ var goldenMushroom = itemSprite.extend({
     sisiAttacked:function(sisi){
 
         this.attackTimes++;
-        GameController.gameScene.gameMenuUI.setShinningLevel(this.attackTimes*22);
-        if(this.attackTimes<10){
-            return false
-        }else {
+        GameController.gameScene.gameMenuUI.setShinningLevel(240);
+        if(this.attackTimes>10){
+            GameController.gameScene.gameMenuUI.setShinningLevel(0);
             return true;
+        }else{
+            return false;
         }
     }
   });
@@ -74,11 +75,8 @@ var stickyMushroom = itemSprite.extend({
 
    trigger:function(){
 
-       this.slowDown();
-   },
-
-   slowDown:function(){
-
+       var sisiLocal = GameController.gameScene.sisi;
+       sisiLocal.setMoveSpeed(0.2 * sisiLocal.moveSpeed);
    }
 });
 
