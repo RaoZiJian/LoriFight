@@ -6,7 +6,6 @@ var BaseScene = cc.Scene.extend({
         this._super();
     }
 });
-var FIRST_IN = true;
 var GameController ={
     app: null,
     director: null,
@@ -31,15 +30,14 @@ var GameController ={
         var director = this.director;
         cc.LoaderScene.preload(scene.res, function () {
                             
-        if (FIRST_IN)
-        {
-            director.runWithScene(scene);
-            FIRST_IN = false;
-        }
-        else
-        {
-            director.replaceScene(scene);
-        }
+            if (director.getRunningScene())
+            {
+                director.replaceScene(scene);
+            }
+            else
+            {
+                director.runWithScene(scene);
+            }
         }, this.app);
     }
 };

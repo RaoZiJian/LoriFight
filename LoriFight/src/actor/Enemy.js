@@ -103,7 +103,6 @@ var Enemy = cc.Sprite.extend({
         if(now - this.lastAttack > this.attackSpeed)
         {
             this.lastAttack = now;
-            this.attackPos = pos;
             this.scheduleOnce(this.slash,0);
         }
         this.scheduleOnce(this.stopAttack, 1.5);

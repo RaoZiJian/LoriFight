@@ -81,7 +81,10 @@ var menu_resources = [
 
     // HUABIN
     {src:s_sisi},
-    {src:s_logo}
+    {src:s_logo},
+    {src:s_CCArmature_ExportJson},
+    {src:s_CCArmature_Plist},
+    {src:s_CCArmature_Png}
 
 ];
 
@@ -103,9 +106,6 @@ var game_resources = [
     // YUYE
 
     // HUABIN
-    {src:s_CCArmature_ExportJson},
-    {src:s_CCArmature_Plist},
-    {src:s_CCArmature_Png}
 ];
 
 var config_resources = [
