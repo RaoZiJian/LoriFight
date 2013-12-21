@@ -14,6 +14,18 @@ s_labelatlasimg         = "res/UI/GUI/labelatlasimg.png";
 s_CCArmature_ExportJson = "res/Animations/CCArmature.ExportJson";
 s_CCArmature_Plist      = "res/Animations/CCArmature0.plist";
 s_CCArmature_Png        = "res/Animations/CCArmature0.png";
+s_AcuteBuff_Png         = "res/ItemPic/acuteBuff.png";
+s_AcuteMushroom_Png     = "res/ItemPic/acuteMushroom.png";
+s_RoarBuff_Png          = "res/ItemPic/roarBuff.png";
+s_RoarMushroom_Png      = "res/ItemPic/roarMushroom.png";
+s_ShineBuff_Png         = "res/ItemPic/shineBuff.png";
+s_ShineMushroom_Png     = "res/ItemPic/shineMushroom.png";
+s_SlowBuff_Png          = "res/ItemPic/slowBuff.png";
+s_SlowMushroom_Png      = "res/ItemPic/slowMushroom.png";
+s_StickyBuff_Png        = "res/ItemPic/stickyBuff.png";
+s_StickyMushroom_Png    = "res/ItemPic/stickyMushroom.png";
+s_VisibleBuff_Png       = "res/ItemPic/visibleBuff.png";
+s_VisibleMushroom_Png   = "res/ItemPic/visibleMushroom.png";
 
 // YUYE
 
@@ -36,6 +48,16 @@ var menu_resources = [
     {src:s_settingBtnPush},
     {src:s_slider_heart},
     {src:s_labelatlasimg},
+    {src:s_AcuteBuff_Png},
+    {src:s_AcuteMushroom_Png},
+    {src:s_RoarMushroom_Png},
+    {src:s_RoarBuff_Png},
+    {src:s_SlowBuff_Png},
+    {src:s_SlowMushroom_Png},
+    {src:s_StickyBuff_Png},
+    {src:s_StickyMushroom_Png},
+    {src:s_VisibleBuff_Png},
+    {src:s_VisibleMushroom_Png},
     // YUYE
 
     // HUABIN
