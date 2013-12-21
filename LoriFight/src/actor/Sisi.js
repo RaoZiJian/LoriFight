@@ -27,7 +27,7 @@ var Sisi = ccs.Armature.extend({
 
         //this.init(s_sisi, cc.rect(0, 0, 52, 110));
         this.init("CCArmature");
-        this.getAnimation().play("Walking");
+
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(10);
     },
@@ -50,6 +50,13 @@ var Sisi = ccs.Armature.extend({
     setTarget: function(tar) {
         this.target = tar;
         this.moving = true;
+
+        if(this.target.x < this.getPosition().x)
+            this.setScaleX(-1);
+        else
+            this.setScaleX(1);
+
+        this.walk();
     },
 
     setMoveSpeed: function(speed) {
@@ -65,17 +72,20 @@ var Sisi = ccs.Armature.extend({
         mushroom.trigger();
     },
 
+    stop: function() {
+        this.getAnimation().stop();
+    },
 
     attack: function(angle) {
-
+        this.getAnimation().play(["Attacking", "Standing"]);
     },
 
     walk: function() {
-
+        this.getAnimation().play("Walking");
     },
 
-    stand: function() {
-
+    stand: function(delay, duration) {
+        this.getAnimation().play("Standing", delay, duration);
     },
 
     attacked: function() {
@@ -97,6 +107,7 @@ var Sisi = ccs.Armature.extend({
             if(cc.pDistance(pos,tar)<5) {
                 this.moving = false;
                 this.body.body.setVel(cc.p(0, 0));
+                this.attack();
             }
         }
         else pos = this.body.body.p;
@@ -111,7 +122,6 @@ var SisiLayer = cc.Layer.extend({
 
     ctor: function() {
         this._super();
-        thi
         this.scheduleUpdate();s.setTouchEnabled(true);
     },
 
