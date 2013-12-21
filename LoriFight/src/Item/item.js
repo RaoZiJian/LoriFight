@@ -2,7 +2,7 @@
  * Created by panda on 12/20/13.
  */
 
-var MUSHROOM_COL_TYPE = 30;
+var MUSHROOM_COL_TYPE = 40;
 
 var itemSprite = cc.Sprite.extend({
 
@@ -21,6 +21,7 @@ var itemSprite = cc.Sprite.extend({
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, 0, pos);
         this.body.setView(this);
+        this.body.shape.setSensor(true);
         this.body.shape.setCollisionType(MUSHROOM_COL_TYPE);
 
         this.setPosition(pos);
@@ -46,7 +47,7 @@ var goldenMushroom = itemSprite.extend({
 
     ctor:function(pos){
         this._super(pos);
-        this.initWithFile(s_ShineMushroom_Png);
+        this.initWithFile(s_ShineMushroom_Png, cc.rect(0, 0, 50, 57));
         this.name = "golden";
         this.duration = 0;
         this.angerValue = 30;
@@ -75,7 +76,7 @@ var stickyMushroom = itemSprite.extend({
        this._super(pos);
        this.name = "sticky";
        this.duration = 30;
-       this.initWithFile(s_StickyMushroom_Png);
+       this.initWithFile(s_StickyMushroom_Png, cc.rect(0, 0, 50, 54));
        this.angerValue = 40;
    },
 
@@ -93,7 +94,7 @@ var roarMushroom = itemSprite.extend({
         this._super(pos);
         this.name = "roar";
         this.duration = 30;
-        this.initWithFile(s_RoarMushroom_Png);
+        this.initWithFile(s_RoarMushroom_Png, cc.rect(0, 0, 50, 53));
         this.angerValue = 50;
     },
 
@@ -120,9 +121,9 @@ var shiftMushroom = itemSprite.extend({
         this.shiftType = type;
         this.angerValue = 30;
         if(this.shiftType == "acute"){
-            this.initWithFile(s_AcuteMushroom_Png);
+            this.initWithFile(s_AcuteMushroom_Png, cc.rect(0, 0, 41, 66));
         }else if(this.shiftType == "slow"){
-            this.initWithFile(s_SlowMushroom_Png)
+            this.initWithFile(s_SlowMushroom_Png, cc.rect(0, 0, 47, 60))
         }
     },
 
@@ -148,7 +149,7 @@ var visibleMushroom = itemSprite.extend({
         this.angerValue = 60;
         this.name = "visible";
         this.duration = 9999999999;
-        this.initWithFile(s_VisibleMushroom_Png);
+        this.initWithFile(s_VisibleMushroom_Png, cc.rect(0, 0, 52, 60));
     },
 
     trigger:function(){

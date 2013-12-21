@@ -154,8 +154,10 @@ var Enemy = cc.Sprite.extend({
     },
 
     slash: function() {
-        if(this.attackAnime)
+        if(this.attackAnime) {
+            this.attackAnime.stop();
             this.runAction(this.attackAnime);
+        }
 
         this.enemy.attacked(this.power);
     },
@@ -169,6 +171,7 @@ var Enemy = cc.Sprite.extend({
 
     walk: function() {
         if(this.runAnime) {
+            this.runAnime.stop();
             this.runAction(this.runAnime);
         }
     },
@@ -312,8 +315,8 @@ var Wolf = Enemy.extend({
         cache.addSpriteFrames(s_loup_plist, s_loup_png);
         this.initWithSpriteFrame(cache.getSpriteFrame("wolfWalk1.png"));
 
-        var run = cc.Animation.create([cache.getSpriteFrame("wolfWalk1.png"), cache.getSpriteFrame("wolfWalk2.png")], 0.3);
-        var attack = cc.Animation.create([cache.getSpriteFrame("wolfBite1.png"), cache.getSpriteFrame("wolfBite2.png")], 0.3);
+        var run = cc.Animation.create([cache.getSpriteFrame("wolfWalk1.png"), cache.getSpriteFrame("wolfWalk2.png")], 0.2);
+        var attack = cc.Animation.create([cache.getSpriteFrame("wolfBite1.png"), cache.getSpriteFrame("wolfBite2.png")], 0.2);
         this.runAnime = cc.RepeatForever.create(cc.Animate.create(run));
         this.attackAnime = cc.RepeatForever.create(cc.Animate.create(attack));
         this.runAnime.retain();
@@ -362,8 +365,8 @@ var Zombie = Enemy.extend({
         cache.addSpriteFrames(s_zombie_plist, s_zombie_png);
         this.initWithSpriteFrame(cache.getSpriteFrame("zombieMove1.png"));
 
-        var run = cc.Animation.create([cache.getSpriteFrame("zombieMove1.png"), cache.getSpriteFrame("zombieMove2.png")], 0.3);
-        var attack = cc.Animation.create([cache.getSpriteFrame("zombieAttack3.png"), cache.getSpriteFrame("zombieAttack4.png")], 0.3);
+        var run = cc.Animation.create([cache.getSpriteFrame("zombieMove1.png"), cache.getSpriteFrame("zombieMove2.png")], 0.2);
+        var attack = cc.Animation.create([cache.getSpriteFrame("zombieAttack3.png"), cache.getSpriteFrame("zombieAttack4.png")], 0.2);
         this.runAnime = cc.RepeatForever.create(cc.Animate.create(run));
         this.attackAnime = cc.RepeatForever.create(cc.Animate.create(attack));
         this.runAnime.retain();

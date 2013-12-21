@@ -63,6 +63,19 @@ var Sisi = ccs.Armature.extend({
         this.body.shape.setCollisionType(10);
     },
 
+    saveToLocal: function() {
+        localStorage.setItem("sisilevel", this.level);
+        localStorage.setItem("sisiexp", this.exp);
+    },
+
+    loadFromLocal: function() {
+        var level;
+        if(level = localStorage.getItem("sisilevel")) {
+            this.level = level;
+            this.exp = localStorage.getItem("sisiexp");
+        }
+    },
+
     setLevel: function(lvl) {
         this.level = lvl;
         this.levelup_exp = SISI_DATA.base_levelup_xp + SISI_DATA.levelup_xp_step * lvl;
@@ -158,6 +171,8 @@ var Sisi = ccs.Armature.extend({
         this.exp += enemy.exp;
         if(this.exp > this.levelup_exp) {
             this.setLevel(this.level+1);
+            this.exp = 0;
+            this.saveToLocal();
         }
         this.uiLayer.setScore(this.killed);
     },

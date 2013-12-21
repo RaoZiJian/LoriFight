@@ -91,7 +91,7 @@ var Physics = {
 
         space.addCollisionHandler(ATTACK_COL_TYPE, MUSHROOM_COL_TYPE,function(a){
             var sisi = GameController.gameScene.sisi;
-            var mushroom = a.getB().obj.view;
+            var mushroom = a.getShapes()[1].obj.view;
             sisi.gotMushroom(mushroom);
         }.bind(this), null, null,null);
     },
