@@ -133,7 +133,7 @@ var Sisi = ccs.Armature.extend({
 var Slash = cc.Node.extend({
 
     ctor:function(pos){
-        this.pbody = new PhysicsObject(1, 20, 1, pos);
+        this.pbody = new PhysicsObject(1, 30, 1, pos);
         this.pbody.shape.setSensor(true);
         this.pbody.shape.setCollisionType(ATTACK_COL_TYPE);
         cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(this,this.remove,0,0,0.2);
@@ -141,6 +141,6 @@ var Slash = cc.Node.extend({
     remove:function(){
         Physics.world.removeShape(this.pbody.shape);
         Physics.world.removeBody(this.pbody.body);
-        console.log("remove");
+        //console.log("remove");
     }
 });

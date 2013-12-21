@@ -82,7 +82,6 @@ var Enemy = cc.Sprite.extend({
             this.addChild(this.blood);
             this.blood.setRotation(-angle);
             this.blood.setPositionType(cc.PARTICLE_TYPE_RELATIVE);
-            console.log(this.blood);
             //this.blood.setAutoRemoveOnFinish(true)
         }
         else{
