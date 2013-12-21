@@ -7,7 +7,97 @@
       "name": "CCArmature",
       "bone_data": [
         {
-          "name": "Body1",
+          "name": "CCAttack3",
+          "parent": "",
+          "x": 17.000015258789062,
+          "y": 12.660003662109375,
+          "z": 8,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "display_data": [
+            {
+              "name": "CCAttack3.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CCAttck2",
+          "parent": "",
+          "x": -4.3333244323730469,
+          "y": 11.326669692993164,
+          "z": 7,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "display_data": [
+            {
+              "name": "CCAttack2.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CCAttack1",
+          "parent": "",
+          "x": -0.66664886474609375,
+          "y": 10.993334770202637,
+          "z": 6,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "display_data": [
+            {
+              "name": "CCAttack1.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Body",
           "parent": "",
           "x": 7.6467514038085938,
           "y": -13.273246765136719,
@@ -33,45 +123,43 @@
                   "kY": -1.77543819
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Head1",
-          "parent": "Body1",
-          "x": 19.259387969970703,
-          "y": -0.349691241979599,
-          "z": 5,
-          "cX": 1.0,
-          "cY": 1.0,
-          "kX": -0.0403368473,
-          "kY": 0.0403368473,
-          "arrow_x": 39.758514404296875,
-          "arrow_y": 1.4335430023493245E-05,
-          "effectbyskeleton": true,
-          "display_data": [
+            },
             {
-              "name": "CCHead.png",
+              "name": "CCBody2.png",
               "displayType": 0,
               "skin_data": [
                 {
-                  "x": 22.3347054,
-                  "y": -0.941169262,
-                  "cX": 1.00000012,
-                  "cY": 1.00000012,
-                  "kX": 1.81577516,
-                  "kY": -1.81577587
+                  "x": 5.302104,
+                  "y": 0.942183733,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.77543831,
+                  "kY": -1.77543831
+                }
+              ]
+            },
+            {
+              "name": "CCBody3.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 5.302104,
+                  "y": 0.942183733,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.77543831,
+                  "kY": -1.77543831
                 }
               ]
             }
           ]
         },
         {
-          "name": "LeftArm1",
-          "parent": "Body1",
+          "name": "LeftArm",
+          "parent": "Body",
           "x": 16.125358581542969,
           "y": 2.1245353221893311,
-          "z": 4,
+          "z": 5,
           "cX": 1.0,
           "cY": 1.0,
           "kX": 3.93010473,
@@ -93,12 +181,84 @@
                   "kY": 2.15466666
                 }
               ]
+            },
+            {
+              "name": "CCLeftArm2.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 12.2170563,
+                  "y": 3.27774239,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 4.12851858,
+                  "kY": -4.12851858
+                }
+              ]
+            },
+            {
+              "name": "CCLeftArm3.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 12.2170563,
+                  "y": 3.27774239,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 4.12851858,
+                  "kY": -4.12851858
+                }
+              ]
             }
           ]
         },
         {
-          "name": "LeftFoot1",
-          "parent": "Body1",
+          "name": "Head",
+          "parent": "Body",
+          "x": 19.259391784667969,
+          "y": -0.34969109296798706,
+          "z": 4,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -0.0403368473,
+          "kY": 0.0403368473,
+          "arrow_x": 39.758514404296875,
+          "arrow_y": 1.4335430023493245E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "CCHead.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 22.3347054,
+                  "y": -0.941169262,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 1.81577516,
+                  "kY": -1.81577587
+                }
+              ]
+            },
+            {
+              "name": "CCHead2.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 22.3347054,
+                  "y": -0.941169262,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 1.81577516,
+                  "kY": -1.81577516
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RightFoot",
+          "parent": "Body",
           "x": 0.66639196872711182,
           "y": 4.9682474136352539,
           "z": 2,
@@ -123,12 +283,40 @@
                   "kY": 1.89853442
                 }
               ]
+            },
+            {
+              "name": "CCRightFoot2.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 9.532649,
+                  "y": -0.07844806,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.38465071,
+                  "kY": -4.38465071
+                }
+              ]
+            },
+            {
+              "name": "CCRightFoot3.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 9.532649,
+                  "y": -0.07844806,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.38465071,
+                  "kY": -4.38465071
+                }
+              ]
             }
           ]
         },
         {
-          "name": "RightFoot1",
-          "parent": "Body1",
+          "name": "LeftFoot",
+          "parent": "Body",
           "x": -0.21773199737071991,
           "y": -1.0490721464157105,
           "z": 1,
@@ -153,6 +341,34 @@
                   "kY": 1.01389456
                 }
               ]
+            },
+            {
+              "name": "CCLeftFoot2.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 13.4770994,
+                  "y": 0.0228853226,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.01389492,
+                  "kY": 1.01389492
+                }
+              ]
+            },
+            {
+              "name": "CCLeftFoot3.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 13.4770994,
+                  "y": 0.0228853226,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.01389492,
+                  "kY": 1.01389492
+                }
+              ]
             }
           ]
         }
@@ -165,53 +381,15 @@
       "mov_data": [
         {
           "name": "Walking",
-          "dr": 11,
+          "dr": 21,
           "lp": true,
           "to": 0,
           "drTW": 0,
           "twE": 0,
-          "sc": 0.333333343,
+          "sc": 0.6666667,
           "mov_bone_data": [
             {
-              "name": "Head1",
-              "dl": 0.0,
-              "frame_data": [
-                {
-                  "dI": 0,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 0,
-                  "twE": 0,
-                  "tweenFrame": true
-                },
-                {
-                  "dI": 0,
-                  "x": -1.9582672119140625,
-                  "y": 0.40643304586410522,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0146324392,
-                  "kY": -0.0146324392,
-                  "fi": 10,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "color": {
-                    "a": 255,
-                    "r": 255,
-                    "g": 255,
-                    "b": 255
-                  }
-                }
-              ]
-            },
-            {
-              "name": "LeftArm1",
+              "name": "LeftArm",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -245,11 +423,75 @@
                     "g": 255,
                     "b": 255
                   }
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true
                 }
               ]
             },
             {
-              "name": "Body1",
+              "name": "Head",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": -1.9582672119140625,
+                  "y": 0.40643304586410522,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0146324392,
+                  "kY": -0.0146324392,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "color": {
+                    "a": 255,
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                  }
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true
+                }
+              ]
+            },
+            {
+              "name": "Body",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -277,11 +519,24 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true
                 }
               ]
             },
             {
-              "name": "LeftFoot1",
+              "name": "RightFoot",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -315,11 +570,30 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": -0.18474215269088745,
+                  "y": 1.5703086853027344,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "color": {
+                    "a": 255,
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                  }
                 }
               ]
             },
             {
-              "name": "RightFoot1",
+              "name": "LeftFoot",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -353,6 +627,165 @@
                     "g": 255,
                     "b": 255
                   }
+                },
+                {
+                  "dI": 0,
+                  "x": 0.2032163143157959,
+                  "y": 0.97913360595703125,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Attacking",
+          "dr": 41,
+          "lp": false,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "sc": 0.333333343,
+          "mov_bone_data": [
+            {
+              "name": "CCAttack3",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -2,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 30,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 40,
+                  "twE": 0,
+                  "tweenFrame": true
+                }
+              ]
+            },
+            {
+              "name": "CCAttck2",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -2,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": -2,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true
+                }
+              ]
+            },
+            {
+              "name": "CCAttack1",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": -2,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true
                 }
               ]
             }
@@ -398,6 +831,30 @@
       "name": "rightFoot",
       "width": 14.0,
       "height": 20.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "CCAttack2",
+      "width": 71.0,
+      "height": 94.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "CCAttack3",
+      "width": 96.0,
+      "height": 93.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "CCAttack1",
+      "width": 68.0,
+      "height": 93.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""
