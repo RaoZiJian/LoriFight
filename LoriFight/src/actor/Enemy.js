@@ -83,7 +83,7 @@ var Enemy = cc.Sprite.extend({
         //this.setScale(0.5);
         this.body.shape.setCollisionType(ENEMY_COL_TYPE);
         if(color)
-        this.setColor(color);
+            this.setColor(color);
 
         this.enemy = GameController.gameScene.sisi;
         this.spriteFrameCache = cc.SpriteFrameCache.getInstance();

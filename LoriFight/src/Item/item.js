@@ -2,15 +2,28 @@
  * Created by panda on 12/20/13.
  */
 
+var ITEM_COL_TYPE = 30;
+
 var itemSprite = cc.Sprite.extend({
+
+    weight: 500,
+    radius: 20,
 
     name:null,
     texture:null,
     duration:null,
     angerValue:null,
 
-    ctor:function(){
-        this.__super();
+    // physique
+    body: null,
+
+    ctor:function(pos){
+        this._super();
+        this.body = new PhysicsObject(this.weight, this.radius, 0, pos);
+        this.body.setView(this);
+        this.body.shape.setCollisionType(ENEMY_COL_TYPE);
+
+        this.setPosition(pos);
     },
 
     /**
@@ -26,10 +39,9 @@ var goldenMushroom = itemSprite.extend({
 
     attackTimes:null,
 
-    ctor:function(){
-        this._super();
+    ctor:function(pos){
+        this._super(pos);
         this.initWithFile(s_ShineMushroom_Png);
-        this._super();
         this.name = "golden";
         this.duration = 9999999999;
         this.angerValue = 30;
@@ -49,8 +61,8 @@ var goldenMushroom = itemSprite.extend({
 
 var stickyMushroom = itemSprite.extend({
 
-   ctor:function(){
-       this._super();
+   ctor:function(pos){
+       this._super(pos);
        this.name = "sticky";
        this.duration = 30;
        this.initWithFile(s_StickyMushroom_Png);
@@ -69,8 +81,8 @@ var stickyMushroom = itemSprite.extend({
 
 var roarMushroom = itemSprite.extend({
 
-    ctor:function(){
-        this._super();
+    ctor:function(pos){
+        this._super(pos);
         this.name = "roar";
         this.duration = 30;
         this.initWithFile(s_RoarMushroom_Png);
@@ -92,9 +104,9 @@ var shiftMushroom = itemSprite.extend({
 
     shiftType:null,
 
-    ctor:function(type){
+    ctor:function(pos, type){
 
-        this.__super();
+        this._super(pos);
         this.name = "shift";
         this.duration = 30;
         this.shiftType = type;
@@ -123,8 +135,8 @@ var shiftMushroom = itemSprite.extend({
 
 var visibleMushroom = itemSprite.extend({
 
-    ctor:function(){
-        this._super();
+    ctor:function(pos){
+        this._super(pos);
         this.angerValue = 60;
         this.name = "golden";
         this.duration = 9999999999;
