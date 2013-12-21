@@ -46,6 +46,8 @@ var CPSTEP = 1/60;
 var Physics = {
     world:null,
     calculVector: function(a) {
+        cc.log(a.getNormal(0).x);
+        cc.log(a.getNormal(0).y);
         var s = a.a, d = a.b;
         var cs = cc.p((s.bb_b+s.bb_t)/2, (s.bb_l+s.bb_r)/2);
         var cd = cc.p((d.bb_b+d.bb_t)/2, (d.bb_l+d.bb_r)/2);
@@ -77,12 +79,14 @@ var Physics = {
             var dir = Physics.calculAngle(a);
             enemy.hurt(dir);
             enemy.attack();
-        }, emptyFunction, emptyFunction);
+        }.bind(this), null, null,null);
+                                  //}, emptyFunction, emptyFunction);
 
         space.addCollisionHandler(ATTACK_COL_TYPE, MUSHROOM_COL_TYPE,function(a){
             var mushroom = a.getB().obj.view;
             GameController.gameScene.sisi.gotMushroom(mushroom);
-        }, emptyFunction, emptyFunction);
+        //}, emptyFunction, emptyFunction);
+                                 }.bind(this), null, null,null);
     },
     update:function(){
         this.world.step(CPSTEP);

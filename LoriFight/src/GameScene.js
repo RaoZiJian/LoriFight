@@ -24,8 +24,9 @@ var CameraLayer = cc.LayerColor.extend({
         this.init(c4b);
         this.setTouchEnabled(true);
     },
-    onTouchBegan:function(touch){
-        var pos = touch.getLocation();
+    onTouchesBegan:function(touch){
+        var pos = touch[0].getLocation();
+    
         GameController.gameScene.sisi.setTarget(cc.pSub(pos,this.getPosition()));
     }
 });
