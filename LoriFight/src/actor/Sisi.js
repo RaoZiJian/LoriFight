@@ -37,21 +37,6 @@ var Sisi = ccs.Armature.extend({
         this.body.shape.setCollisionType(10);
     },
 
-    showEmotion: function(emotion) {
-        if(!this.emotion) {
-            this.emotion = emotion;
-            emotion.setAnchorPoint(0.5, 0);
-            var size = this.getContentSize();
-            emotion.setPosition(size.width/2, size.height + 10);
-            this.addChild(emotion, "emotion");
-            this.schedule(this.removeEmotion, 3);
-        }
-    },
-
-    removeEmotion: function() {
-        this.removeChildByTag("emotion");
-    },
-
     setTarget: function(tar) {
         this.target = tar;
         this.moving = true;
@@ -71,9 +56,21 @@ var Sisi = ccs.Armature.extend({
         this.attackSpeed = speed;
     },
 
-    setMushroom: function(mushroom) {
+    gotMushroom: function(mushroom) {
         this.mushroom = mushroom;
         mushroom.trigger();
+        this.anger += mushroom.anger;
+        var menuUI = GameController.gameScene.gameMenuUI;
+
+        var prev = menuUI.angerFire.length;
+        menuUI.setAngerExpression(this.anger);
+        var curr = menuUI.angerFire.length;
+        if(prev == 4 && curr == 5)
+            this.explode();
+    },
+
+    explode: function() {
+
     },
 
     stop: function() {

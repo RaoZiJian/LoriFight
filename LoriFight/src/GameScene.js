@@ -26,6 +26,7 @@ var GameScene = BaseScene.extend({
     ground: null,
     items: null,
     staticObjs: null,
+    gameMenuUI: null,
 
     // Camera
     camera: null,
@@ -70,8 +71,8 @@ var GameScene = BaseScene.extend({
 
         //this.camera = new Camera(this.sisi, this);
 
-        var gameMenuUI = new GameUILayer();
-        gameMenuUI.init();
+        this.gameMenuUI = new GameUILayer();
+        this.gameMenuUI.init();
         this.addChild(gameMenuUI,5);
         //...
 

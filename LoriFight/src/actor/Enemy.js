@@ -96,11 +96,6 @@ var Enemy = cc.Sprite.extend({
         }
     },
 
-    stopAttack: function() {
-        this.attacking = false;
-        this.moving ? this.walk() : this.stand();
-    },
-
     attack: function() {
         this.attacking = true;
         this.unschedule(this.stopAttack);
@@ -110,7 +105,6 @@ var Enemy = cc.Sprite.extend({
             this.lastAttack = now;
             this.scheduleOnce(this.slash,0);
         }
-        this.scheduleOnce(this.stopAttack, 1.5);
     },
 
     slash: function() {
