@@ -18,6 +18,18 @@ GameLayer.create = function (color) {
     return null;
 };
 
+var CameraLayer = cc.LayerColor.extend({
+    ctor:function(c4b){
+        this._super();
+        this.init(c4b);
+        this.setTouchEnabled(true);
+    },
+    onTouchBegan:function(touch){
+        var pos = touch.getLocation();
+        GameController.gameScene.sisi.setTarget(cc.pSub(pos,this.getPosition()));
+    }
+});
+
 
 var GameScene = BaseScene.extend({
     res: game_resources,
@@ -46,7 +58,7 @@ var GameScene = BaseScene.extend({
         var winMid = this.winMid = cc.p(winSize.width/2, winSize.height/2);
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
 
-        var camera = this.camera = cc.LayerColor.create(cc.c4b(0,255,0,30));
+        var camera = this.camera = new CameraLayer(cc.c4b(0,255,0,30));
         this.addChild(camera);
         //camera.addChild(this.debugNode);
         camera.setPosition(winMid);
@@ -76,8 +88,6 @@ var GameScene = BaseScene.extend({
         this.addChild(gameMenuUI,5);
         //...
 
-        camera.setTouchEnabled(true);
-        camera.onTouchBegan = this.onTouchBegan.bind(this);
 
         this.pause = false;
 
@@ -97,8 +107,5 @@ var GameScene = BaseScene.extend({
             //this.camera.update();
         }
     },
-    onTouchBegan:function(touch){
-        var pos = touch.getLocation();
-        this.sisi.setTarget(cc.pSub(pos,this.camera.getPosition()));
-    }
+
 });

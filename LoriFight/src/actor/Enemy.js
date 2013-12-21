@@ -241,7 +241,7 @@ var WolfLeader = Wolf.extend({
         this._super(lvl, pos);
         this.buddies = [];
         EnemyLeaderContainer.push(this);
-        var offset = this.radius*10+groupsize;
+        var offset = this.radius*12+groupsize*4;
         for(var i = 0; i < groupsize; i++)
         {
             var buddy = new Wolf(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
