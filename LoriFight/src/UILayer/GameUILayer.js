@@ -14,7 +14,7 @@ var shinningLayer = cc.Layer.extend({
    }
 });
 
-var GameUILayer = cc.UILayer.extend({
+var GameUILayer = ccs.UILayer.extend({
 
     init:function(){
 
