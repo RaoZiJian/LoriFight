@@ -36,6 +36,11 @@ s_ZombieAttack3_Png     = "res/Animations/zombieAttack3.png";
 s_ZombieAttack4_Png     = "res/Animations/zombieAttack4.png";
 s_ZombieMove1_Png       = "res/Animations/zombieMove1.png";
 s_ZombieMove2_Png       = "res/Animations/zombieMove2.png";
+s_Anger1_Png            = "res/UI/anger1.png";
+s_Anger2_Png            = "res/UI/anger2.png";
+s_Anger3_Png            = "res/UI/anger3.png";
+s_Anger4_Png            = "res/UI/anger4.png";
+s_Anger5_Png            = "res/UI/anger5.png";
 
 // YUYE
 
@@ -77,6 +82,11 @@ var menu_resources = [
     {src:s_ZombieAttack4_Png},
     {src:s_ZombieMove1_Png},
     {src:s_ZombieMove2_Png},
+    {src:s_Anger1_Png},
+    {src:s_Anger2_Png},
+    {src:s_Anger3_Png},
+    {src:s_Anger4_Png},
+    {src:s_Anger5_Png},
     // YUYE
 
     // HUABIN

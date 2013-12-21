@@ -50,12 +50,12 @@ var GameUILayer = ccs.UILayer.extend({
         GameController.gameScene.camera.onTouchBegan(touch, event);
     },
 
-    onTouchMoved: function(touches, event) {
+    onTouchMoved: function(touch, event) {
         this._super(touch, event);
         //GameController.gameScene.camera.onTouchMoved(touch, event);
     },
 
-    onTouchEnded: function(touches, event) {
+    onTouchEnded: function(touch, event) {
         this._super(touch, event);
         //GameController.gameScene.camera.onTouchEnded(touch, event);
     },
