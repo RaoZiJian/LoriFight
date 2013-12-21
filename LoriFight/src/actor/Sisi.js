@@ -3,8 +3,7 @@
  */
 var ATTACK_COL_TYPE  = 20;
 
-
-var Sisi = cc.Sprite.extend({
+var Sisi = ccs.Armature.extend({
 
     level: 1,
     attack: 0,
@@ -21,31 +20,46 @@ var Sisi = cc.Sprite.extend({
     body: null,
 
     mushroom: null,
+    emotion: null,
 
     skill: null,
 
     attackPos:null,
     ctor: function() {
         this._super();
-        this.init(s_sisi, cc.rect(0, 0, 52, 110));
+
+        //this.init(s_sisi, cc.rect(0, 0, 52, 110));
+        this.init("CCArmature");
+
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(10);
     },
 
-    initWithConfig: function(config) {
-        this.level = config.level;
-        this.moveSpeed = config.speed;
-        this.attackSpeed = config.speed;
+    showEmotion: function(emotion) {
+        if(!this.emotion) {
+            this.emotion = emotion;
+            emotion.setAnchorPoint(0.5, 0);
+            var size = this.getContentSize();
+            emotion.setPosition(size.width/2, size.height + 10);
+            this.addChild(emotion, "emotion");
+            this.schedule(this.removeEmotion, 3);
+        }
+    },
 
-        this.setPosition(config.pos);
-        this.body.setPosition(config.pos);
-        this.target = config.pos;
-
+    removeEmotion: function() {
+        this.removeChildByTag("emotion");
     },
 
     setTarget: function(tar) {
         this.target = tar;
         this.moving = true;
+
+        if(this.target.x < this.getPosition().x)
+            this.setScaleX(-1);
+        else
+            this.setScaleX(1);
+
+        this.walk();
     },
 
     setMoveSpeed: function(speed) {
@@ -61,6 +75,9 @@ var Sisi = cc.Sprite.extend({
         mushroom.trigger();
     },
 
+    stop: function() {
+        this.getAnimation().stop();
+    },
 
     attack: function(pos) {
         var now = Date.now();
@@ -73,14 +90,15 @@ var Sisi = cc.Sprite.extend({
     },
     slash:function(){
         this.slashobj = new Slash(this.attackPos);
+        this.getAnimation().play(["Attacking", "Standing"]);
     },
 
     walk: function() {
-
+        this.getAnimation().play("Walking");
     },
 
-    stand: function() {
-
+    stand: function(delay, duration) {
+        this.getAnimation().play("Standing", delay, duration);
     },
 
     attacked: function() {
@@ -91,7 +109,7 @@ var Sisi = cc.Sprite.extend({
 
     },
 
-    update: function() {
+    updateSisi: function() {
         // Control sprite's physic node
         // Apply force with speed
         var tar = this.target, pos;

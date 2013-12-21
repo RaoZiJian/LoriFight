@@ -31,16 +31,24 @@ var GameScene = BaseScene.extend({
     camera: null,
     sisi: null,
     winMid:null,
+
+    // Pause
+    pause: false,
+
     onEnter: function () {
+        // Load armature
+        ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
+
         this._super();
         this.scheduleUpdate();
-        var winSize = this.winMid = cc.Director.getInstance().getWinSize();
+        var winSize = cc.Director.getInstance().getWinSize();
+        var winMid = this.winMid = cc.p(winSize.width/2, winSize.height/2);
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
 
         var camera = this.camera = cc.LayerColor.create(cc.c4b(0,255,0,30));
         this.addChild(camera);
         camera.addChild(this.debugNode);
-        camera.setPosition(winSize.width/2, winSize.height/2);
+        camera.setPosition(winMid);
 
 /*        var layer = GameLayer.create(new cc.Color4B(0,0,255,40));
         layer.setContentSize(cc.size(400, 200));
@@ -69,18 +77,22 @@ var GameScene = BaseScene.extend({
 
         camera.setTouchEnabled(true);
         camera.onTouchBegan = this.onTouchBegan.bind(this);
+
+        this.pause = false;
     },
+
     update:function()
     {
-        Physics.update();
-        EnemyController.update();
+        if(!this.pause) {
+            Physics.update();
+            EnemyController.update();
 
-        this.sisi.update();
-        var sisipos = this.sisi.getPosition();
-        var ws = this.winMid;
-        this.camera.setPosition(cc.pAdd(cc.pNeg(sisipos), cc.p(ws.width/2, ws.height/2)));
+            this.sisi.updateSisi();
+            var sisipos = this.sisi.getPosition();
+            this.camera.setPosition(cc.pAdd(cc.pNeg(sisipos), this.winMid));
 
-        //this.camera.update();
+            //this.camera.update();
+        }
     },
     onTouchBegan:function(touch){
         var pos = touch.getLocation();
