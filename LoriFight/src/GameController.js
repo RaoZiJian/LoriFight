@@ -50,7 +50,7 @@ var Physics = {
         space.iterations = 20;
         //space.gravity = cp.v(0, 0);//no gravity
         space.sleepTimeThreshold = 1;
-        space.damping = 0.6;
+        space.damping = 0.2;
         // comment this if does not work on JSB
         space.useSpatialHash(50,200);
         var emptyFunction = function(){return true};

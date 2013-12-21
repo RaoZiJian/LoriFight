@@ -8,7 +8,7 @@ var Sisi = ccs.Armature.extend({
     level: 1,
     hp: 10000,
     power: 0,
-    attackSpeed: 300,
+    attackSpeed: 500,
     lastAttack:0,
     moveSpeed: 200,
     weight: 10,
@@ -131,19 +131,19 @@ var Sisi = ccs.Armature.extend({
     updateSisi: function() {
         // Control sprite's physic node
         // Apply force with speed
-        var tar = this.target, pos;
-        if(!this.attacking && this.moving && tar) {
+        var tar = this.target, pos = this.body.body.p;
+        if(tar && cc.pDistance(pos,tar)>7)
+        {
             this.body.targetMove(tar, this.moveSpeed);
 
-            pos = this.body.body.p;
-            if(cc.pDistance(pos,tar)<5) {
-                this.moving = false;
-                this.body.body.setVel(cc.p(0, 0));
-                this.stand();
-            }
         }
-        else pos = this.body.body.p;
-
+        else{
+            this.moving = false;
+            this.target = null;
+            //this.body.body.setVel(cc.p(0, 0));
+            if(!this.attacking)
+            this.stand();
+        }
         this.setPosition(pos);
         this.setZOrder(-pos.y);
     }
