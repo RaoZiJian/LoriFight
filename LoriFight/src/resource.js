@@ -6,6 +6,7 @@
 
 // HUABIN
 s_sisi = "res/grossini.png";
+s_logo = "res/logo.png";
 
 
 var menu_resources = [
@@ -16,7 +17,8 @@ var menu_resources = [
     // YUYE
 
     // HUABIN
-    {src:s_sisi}
+    {src:s_sisi},
+    {src:s_logo}
 
 ];
 
