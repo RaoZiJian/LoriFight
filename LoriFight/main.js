@@ -25,9 +25,6 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-// Raccourcis
-var gameController = GameController;
-
 var cocos2dApp = cc.Application.extend({
     config:document['ccConfig'],
     ctor:function () {
@@ -65,8 +62,8 @@ var cocos2dApp = cc.Application.extend({
         director.setAnimationInterval(1.0 / this.config['frameRate']);
 
         // Load scene
-        gameController.init(this);
-        gameController.transitionToScene(gameController.menuScene);
+        GameController.init(this);
+        GameController.transitionToScene(GameController.menuScene);
 
         return true;
     }

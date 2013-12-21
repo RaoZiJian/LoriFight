@@ -6,7 +6,8 @@ var ATTACK_COL_TYPE  = 20;
 var Sisi = ccs.Armature.extend({
 
     level: 1,
-    attack: 0,
+    hp: 10000,
+    power: 0,
     attackSpeed: 300,
     lastAttack:0,
     moveSpeed: 100,
@@ -107,8 +108,10 @@ var Sisi = ccs.Armature.extend({
         this.getAnimation().play("Standing");
     },
 
-    attacked: function() {
-
+    attacked: function(power) {
+        this.hp -= power;
+        if(this.hp < 0)
+            this.falldown();
     },
 
     falldown: function() {

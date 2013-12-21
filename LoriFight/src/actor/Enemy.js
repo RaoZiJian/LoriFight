@@ -44,7 +44,8 @@ var EnemyController = {
 
 var Enemy = cc.Sprite.extend({
     hp:100,
-    attack:10,
+    power:10,
+    attackSpeed:800,
     level:1,
     maxSpeed:50,
     accel:20,
@@ -54,6 +55,19 @@ var Enemy = cc.Sprite.extend({
     activated:false,
     color:null,
     blood:null,
+
+    // Animations
+    attackAnime:null,
+    runAnime:null,
+
+    // Tags
+    attacking: false,
+    moving: false,
+    lastAttack: 0,
+
+    // Sisi
+    enemy: null,
+
     ctor:function(lvl, pos, color){
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, this.maxSpeed, pos);
@@ -66,6 +80,8 @@ var Enemy = cc.Sprite.extend({
         this.body.shape.setCollisionType(ENEMY_COL_TYPE);
         if(color)
         this.setColor(color);
+
+        this.enemy = GameController.gameScene.sisi;
     },
     activate:function(){
         if(!this.activated)
@@ -73,6 +89,43 @@ var Enemy = cc.Sprite.extend({
             EnemyActive.push(this);
             this.activated = true;
         }
+    },
+
+    stopAttack: function() {
+        this.attacking = false;
+        this.moving ? this.walk() : this.stand();
+    },
+
+    attack: function() {
+        this.attacking = true;
+        this.unschedule(this.stopAttack);
+        var now = Date.now();
+        if(now - this.lastAttack > this.attackSpeed)
+        {
+            this.lastAttack = now;
+            this.attackPos = pos;
+            this.scheduleOnce(this.slash,0);
+        }
+        this.scheduleOnce(this.stopAttack, 1.5);
+    },
+
+    slash: function() {
+        if(this.attackAnime)
+            this.runAction(this.attackAnime);
+
+        this.enemy.attacked(this.power);
+    },
+
+    stand: function() {
+        if(this.attackAnime)
+            this.stopAction(this.attackAnime);
+        if(this.runAnime)
+            this.stopAction(this.runAnime);
+    },
+
+    walk: function() {
+        if(this.runAnime)
+            this.runAction(this.runAnime);
     },
 
     hurt:function(angle){

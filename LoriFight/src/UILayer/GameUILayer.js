@@ -47,17 +47,17 @@ var GameUILayer = ccs.UILayer.extend({
 
     onTouchBegan: function(touch, event) {
         this._super(touch, event);
-        gameController.gameScene.camera.onTouchBegan(touch, event);
+        GameController.gameScene.camera.onTouchBegan(touch, event);
     },
 
     onTouchMoved: function(touches, event) {
         this._super(touch, event);
-        //gameController.gameScene.camera.onTouchMoved(touch, event);
+        //GameController.gameScene.camera.onTouchMoved(touch, event);
     },
 
     onTouchEnded: function(touches, event) {
         this._super(touch, event);
-        //gameController.gameScene.camera.onTouchEnded(touch, event);
+        //GameController.gameScene.camera.onTouchEnded(touch, event);
     },
 
     setBloodBarPercent:function(value){

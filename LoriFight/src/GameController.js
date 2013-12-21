@@ -59,14 +59,17 @@ var Physics = {
         space.addCollisionHandler(10,ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
             //var angle = cc.RADIANS_TO_DEGREES(cc.pToAngle(cc.pNeg(cc.p(a.contacts[0].n.x, a.contacts[0].n.y))));
             //TODO: player attack this angle
-            gameController.gameScene.sisi.attack(a.getPoint(0));
+            GameController.gameScene.sisi.attack(a.getPoint(0));
             return true;
-                                  },emptyFunction,emptyFunction);
+        },emptyFunction,emptyFunction);
 
         space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE, emptyFunction,function(a){
             var enemy = a.getB().obj.view;
-            enemy.hurt(0);
-        },emptyFunction,emptyFunction);
+            var n = a.contacts[0].n;
+            var dir = cc.v2f(n.x, -n.y);
+            enemy.hurt(cc.pToAngle(dir));
+            enemy.attack();
+        });
     },
     update:function(){
         this.world.step(CPSTEP);
