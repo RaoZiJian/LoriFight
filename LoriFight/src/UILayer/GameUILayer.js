@@ -26,7 +26,7 @@ var GameUILayer = ccs.UILayer.extend({
 
         if(this._super()){
 
-    //        this.addWidget(ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1));
+            //this.addWidget(ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1));
             this.widget = ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1);
             this.addWidget(this.widget);
 

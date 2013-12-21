@@ -70,6 +70,8 @@ var Enemy = cc.Sprite.extend({
     // Sisi
     enemy: null,
 
+    spriteFrameCache: null,
+
     ctor:function(lvl, pos, color){
         this._super();
         this.body = new PhysicsObject(this.weight, this.radius, this.maxSpeed, pos);
@@ -84,6 +86,7 @@ var Enemy = cc.Sprite.extend({
         this.setColor(color);
 
         this.enemy = GameController.gameScene.sisi;
+        this.spriteFrameCache = cc.SpriteFrameCache.getInstance();
     },
     activate:function(){
         if(!this.activated)
@@ -182,7 +185,19 @@ var Enemy = cc.Sprite.extend({
 var Slime = Enemy.extend({
 
     ctor:function(lvl, pos){
-        this._super(lvl, pos)
+        this._super(lvl, pos);
+
+        var cache = this.spriteFrameCache;
+        cache.addSpriteFrames(s_slime_plist, s_slime_png);
+        this.initWithSpriteFrame(cache.getSpriteFrame("slime1.png"));
+
+        var run = cc.Animation.create([cache.getSpriteFrame("slime1.png"), cache.getSpriteFrame("slime2.png")], 0.2);
+        var attack = cc.Animation.create([cache.getSpriteFrame("slime1.png"), cache.getSpriteFrame("slime2.png")], 0.2);
+        this.runAnime = cc.RepeatForever.create(cc.Animate.create(run));
+        this.attackAnime = cc.RepeatForever.create(cc.Animate.create(attack));
+        this.runAnime.retain();
+        this.attackAnime.retain();
+        this.scheduleOnce(this.walk, Math.random());
     }
 });
 var SlimeLeader = Slime.extend({
@@ -196,6 +211,87 @@ var SlimeLeader = Slime.extend({
         for(var i = 0; i < groupsize; i++)
         {
             var buddy = new Slime(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
+            this.buddies.push(buddy);
+        }
+    },
+    activate:function(){
+        this._super();
+        for(var i=0; i < this.buddies.length; i++)
+        {
+            this.buddies[i].activate();
+        }
+    }
+});
+
+var Wolf = Enemy.extend({
+
+    ctor:function(lvl, pos){
+        this._super(lvl, pos);
+
+        var cache = this.spriteFrameCache;
+        cache.addSpriteFrames(s_loup_plist, s_loup_png);
+        this.initWithSpriteFrame(cache.getSpriteFrame("wolfWalk1.png"));
+
+        var run = cc.Animation.create([cache.getSpriteFrame("wolfWalk1.png"), cache.getSpriteFrame("wolfWalk2.png")], 0.3);
+        var attack = cc.Animation.create([cache.getSpriteFrame("wolfBite1.png"), cache.getSpriteFrame("wolfBite2.png")], 0.3);
+        this.runAnime = cc.RepeatForever.create(cc.Animate.create(run));
+        this.attackAnime = cc.RepeatForever.create(cc.Animate.create(attack));
+        this.runAnime.retain();
+        this.attackAnime.retain();
+    }
+});
+var WolfLeader = Slime.extend({
+    buddies:null,
+    ctor:function(lvl, pos, groupsize)
+    {
+        this._super(lvl, pos);
+        this.buddies = [];
+        EnemyLeaderContainer.push(this);
+        var offset = this.radius*10+groupsize;
+        for(var i = 0; i < groupsize; i++)
+        {
+            var buddy = new Wolf(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
+            this.buddies.push(buddy);
+        }
+    },
+    activate:function(){
+        this._super();
+        for(var i=0; i < this.buddies.length; i++)
+        {
+            this.buddies[i].activate();
+        }
+    }
+});
+
+
+var Zombie = Enemy.extend({
+
+    ctor:function(lvl, pos){
+        this._super(lvl, pos);
+
+        var cache = this.spriteFrameCache;
+        cache.addSpriteFrames(s_zombie_plist, s_zombie_png);
+        this.initWithSpriteFrame(cache.getSpriteFrame("zombieMove1.png"));
+
+        var run = cc.Animation.create([cache.getSpriteFrame("zombieMove1.png"), cache.getSpriteFrame("zombieMove2.png")], 0.3);
+        var attack = cc.Animation.create([cache.getSpriteFrame("zombieAttack3.png"), cache.getSpriteFrame("zombieAttack4.png")], 0.3);
+        this.runAnime = cc.RepeatForever.create(cc.Animate.create(run));
+        this.attackAnime = cc.RepeatForever.create(cc.Animate.create(attack));
+        this.runAnime.retain();
+        this.attackAnime.retain();
+    }
+});
+var ZombieLeader = Slime.extend({
+    buddies:null,
+    ctor:function(lvl, pos, groupsize)
+    {
+        this._super(lvl, pos);
+        this.buddies = [];
+        EnemyLeaderContainer.push(this);
+        var offset = this.radius*10+groupsize;
+        for(var i = 0; i < groupsize; i++)
+        {
+            var buddy = new Zombie(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
             this.buddies.push(buddy);
         }
     },
