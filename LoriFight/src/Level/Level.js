@@ -29,7 +29,7 @@ var level1_data =
         },
         leader1 :
         {
-            className: Leader1,
+            className: "Leader1",
             level : 0,
             initPosition : 0,
             memenberNum:0,
