@@ -64,7 +64,7 @@ var GameScene = BaseScene.extend({
 
         var gameMenuUI = new GameUILayer();
         gameMenuUI.init();
-        //this.addChild(gameMenuUI,5);
+        this.addChild(gameMenuUI,5);
         //...
 
         camera.setTouchEnabled(true);
