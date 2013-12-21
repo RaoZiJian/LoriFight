@@ -46,12 +46,13 @@ var CPSTEP = 1/60;
 var Physics = {
     world:null,
     calculVector: function(a) {
-        cc.log(a.getNormal(0).x);
-        cc.log(a.getNormal(0).y);
-        var s = a.a, d = a.b;
+        /*var s = a.a, d = a.b;
         var cs = cc.p((s.bb_b+s.bb_t)/2, (s.bb_l+s.bb_r)/2);
         var cd = cc.p((d.bb_b+d.bb_t)/2, (d.bb_l+d.bb_r)/2);
-        return cc.pSub(cs, cd);
+        */
+        var n = a.getNormal(0);
+        var v = cc.p(n.x, -n.y);
+        return v;
     },
     calculAngle: function(a) {
         return cc.pToAngle( this.calculVector(a) );

@@ -45,7 +45,7 @@ var EnemyController = {
 };
 
 var Enemy = cc.Sprite.extend({
-    hp:10000,
+    hp:100,
     power:10,
     attackSpeed:800,
     level:1,
@@ -134,7 +134,8 @@ var Enemy = cc.Sprite.extend({
 
     hurt:function(angle){
         // Direction
-        if(Math.abs(angle) < Math.PI/2)
+        var left = Math.abs(angle) < Math.PI/2 ? true : false;
+        if(left)
             this.setScaleX(-1);
         else this.setScaleX(1);
 
@@ -153,12 +154,12 @@ var Enemy = cc.Sprite.extend({
         {
             this.blood = cc.ParticleSystem.create(fx_blood);
             this.addChild(this.blood);
-            this.blood.setRotation(-angle);
+            this.blood.setRotation(left ? Math.PI : 0);
             this.blood.setPositionType(cc.PARTICLE_TYPE_RELATIVE);
             //this.blood.setAutoRemoveOnFinish(true)
         }
         else{
-            this.blood.setRotation(-angle);
+            this.blood.setRotation(left ? Math.PI : 0);
             this.blood.resetSystem();
         }
 

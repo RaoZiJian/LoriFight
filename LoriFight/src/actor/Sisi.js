@@ -65,7 +65,7 @@ var Sisi = ccs.Armature.extend({
     gotMushroom: function(mushroom) {
         this.mushroom = mushroom;
         mushroom.trigger();
-        this.anger += mushroom.anger;
+        this.anger += mushroom.angerValue;
 
         var prev = this.uiLayer.angerFire.length;
         this.uiLayer.setAngerExpression(this.anger);
@@ -99,6 +99,12 @@ var Sisi = ccs.Armature.extend({
         {
             this.lastAttack = now;
             this.attackPos = pos;
+            if(this.mushroom && this.mushroom.sisiAttacked) {
+                var ended = this.mushroom.sisiAttacked(this);
+                if(ended) {
+                    this.mushroom = null;
+                }
+            }
             this.scheduleOnce(this.slash,0);
         }
         this.scheduleOnce(this.stopAttack, 0.8);
