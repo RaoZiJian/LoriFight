@@ -17,6 +17,8 @@ var Camera = cc.Layer.extend({
         target.setAnchorPoint(0.5, 0.5);
         target.setPosition(0, 0);
         this.addChild(target);
+
+        this.setTouchEnabled(true);
     },
 
     update: function() {
@@ -33,5 +35,11 @@ var Camera = cc.Layer.extend({
         }
 
         this.target.setPosition(0, 0);
+    },
+
+    onTouchesBegan: function(touches, event) {
+        var pos = touches[0].getLocation();
+        var targetpos = cc.pSub(pos, this.getPosition());
+        this.target.setPosition(targetpos);
     }
 });

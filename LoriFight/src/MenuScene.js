@@ -4,14 +4,8 @@
 
 var MenuLayer = cc.LayerColor.extend({
 
-    sisi: null,
-
     init: function(color) {
         this._super(color);
-
-        this.sisi = new Sisi();
-        this.sisi.setPosition(100, 100);
-        this.addChild(this.sisi);
 
         var winSize = cc.Director.getInstance().getWinSize();
         var logo = cc.Sprite.create(s_logo);

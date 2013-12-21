@@ -33,7 +33,7 @@ var GameScene = BaseScene.extend({
 
     onEnter: function () {
         this._super();
-        var layer = GameLayer.create(new cc.Color4B(0,0,255,255));
+        var layer = GameLayer.create(new cc.Color4B(0,0,255,80));
 
         this.scheduleUpdate();
         this.debugNode = cc.PhysicsDebugNode.create(Physics.world);
@@ -42,6 +42,7 @@ var GameScene = BaseScene.extend({
 
         // Sisi will be added automatically
         this.camera = new Camera(this.sisi, this);
+        this.sisi.setZOrder(2);
 
         // All layer add to camera
         this.camera.addChild(this.debugNode);
