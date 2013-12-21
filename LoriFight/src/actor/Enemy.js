@@ -276,6 +276,9 @@ var SlimeLeader = Slime.extend({
             this.buddies.push(buddy);
         }
     },
+    getGroup: function() {
+        return this.buddies
+    },
     activate:function(){
         this._super();
         for(var i=0; i < this.buddies.length; i++)

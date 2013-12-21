@@ -34,10 +34,9 @@ var itemSprite = cc.Sprite.extend({
    },
 
    destroyMushroom:function(){
-
+       this.removeFromParent();
        Physics.world.removeShape(this.body.shape);
        Physics.world.removeBody(this.body.body);
-       this.removeFromParent();
    }
 });
 
@@ -49,7 +48,7 @@ var goldenMushroom = itemSprite.extend({
         this._super(pos);
         this.initWithFile(s_ShineMushroom_Png);
         this.name = "golden";
-        this.duration = 9999999999;
+        this.duration = 0;
         this.angerValue = 30;
     },
 
