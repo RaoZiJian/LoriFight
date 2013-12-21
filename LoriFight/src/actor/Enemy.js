@@ -240,7 +240,7 @@ var Wolf = Enemy.extend({
         this.attackAnime.retain();
     }
 });
-var WolfLeader = Slime.extend({
+var WolfLeader = Wolf.extend({
     buddies:null,
     ctor:function(lvl, pos, groupsize)
     {
@@ -281,7 +281,7 @@ var Zombie = Enemy.extend({
         this.attackAnime.retain();
     }
 });
-var ZombieLeader = Slime.extend({
+var ZombieLeader = Zombie.extend({
     buddies:null,
     ctor:function(lvl, pos, groupsize)
     {
