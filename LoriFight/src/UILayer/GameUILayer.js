@@ -44,6 +44,21 @@ var GameUILayer = ccs.UILayer.extend({
 
     },
 
+    onTouchBegan: function(touch, event) {
+        this._super(touch, event);
+        gameController.gameScene.sisilayer.onTouchBegan(touch, event);
+    },
+
+    onTouchMoved: function(touches, event) {
+        this._super(touch, event);
+        //gameController.gameScene.sisilayer.onTouchMoved(touch, event);
+    },
+
+    onTouchEnded: function(touches, event) {
+        this._super(touch, event);
+        //gameController.gameScene.sisilayer.onTouchEnded(touch, event);
+    },
+
     setBloodBarPercent:function(value){
         this.bloodBar.setPercent(value)
     },

@@ -29,7 +29,11 @@ var GameScene = BaseScene.extend({
 
     // Camera
     camera: null,
+
+    // Object
     sisi: null,
+    sisilayer: null,
+    pointer: null,
 
     onEnter: function () {
         this._super();
@@ -45,13 +49,18 @@ var GameScene = BaseScene.extend({
         this.sisi.setAnchorPoint(0.5, 0.5);
         this.sisi.body.setPosition(cc.p(winSize.width/2, winSize.height/2));
 
-        var sisilayer = new SisiLayer();
-        sisilayer.setContentSize(winSize);
-        sisilayer.setAnchorPoint(0, 0);
-        sisilayer.setPosition(0, 0);
-        sisilayer.setZOrder(2);
-        sisilayer.setSisi(this.sisi);
-        this.addChild(sisilayer);
+        this.sisilayer = new SisiLayer();
+        this.sisilayer.setContentSize(winSize);
+        this.sisilayer.setAnchorPoint(0, 0);
+        this.sisilayer.setPosition(0, 0);
+        this.sisilayer.setZOrder(2);
+        this.sisilayer.setSisi(this.sisi);
+        this.addChild(this.sisilayer);
+
+        this.pointer = cc.DrawNode.create();
+        var red = cc.c4f(1, 0, 0, 1);
+        this.pointer.drawDot(cc.p(0, 0), 6, red);
+        this.addChild(this.pointer);
 
         this.camera = new Camera(this.sisi, this);
 
