@@ -55,7 +55,9 @@ var Physics = {
 
         space.addCollisionHandler(ATTACK_COL_TYPE,ENEMY_COL_TYPE, function(a){
             var enemy = a.getB().obj.view;
-            enemy.hurt(0);
+            var n = a.contacts[0].n;
+            var dir = cc.v2f(n.x, -n.y);
+            enemy.hurt(cc.pToAngle(dir));
         });
     },
     update:function(){

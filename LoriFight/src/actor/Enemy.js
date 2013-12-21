@@ -75,6 +75,11 @@ var Enemy = cc.Sprite.extend({
         }
     },
     hurt:function(angle){
+        // Backward
+        var v = cc.p(12000, 0);
+        var impulse = cc.pRotateByAngle(v, cc.p(0,0), angle);
+        this.body.body.applyImpulse(impulse, cp.v(0, 0));
+
         //spawn a particle
         if(!this.blood)
         {

@@ -30,11 +30,11 @@ var GameUILayer = ccs.UILayer.extend({
             this.widget = ccs.GUIReader.getInstance().widgetFromJsonFile(s_GameMenuUI_1);
             this.addWidget(this.widget);
 
-            this.settingBtn    = this.getWidgetByName("settingBtn");
+            //this.settingBtn    = this.getWidgetByName("settingBtn");
             this.bloodBar      = this.getWidgetByName("blood");
             this.distanceScore = this.getWidgetByName("Score");
 
-            this.settingBtn.addTouchEventListener(this.settingBtnCallback, this);
+            //this.settingBtn.addTouchEventListener(this.settingBtnCallback, this);
             this.setBloodBarPercent(100);
             this.setScore(0);
         }
