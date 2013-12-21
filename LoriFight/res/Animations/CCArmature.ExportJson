@@ -1,0 +1,409 @@
+{
+  "content_scale": 1.0,
+  "armature_data": [
+    {
+      "strVersion": "1.1.0.0",
+      "version": 1.1,
+      "name": "CCArmature",
+      "bone_data": [
+        {
+          "name": "Body1",
+          "parent": "",
+          "x": 7.6467514038085938,
+          "y": -13.273246765136719,
+          "z": 3,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.77543819,
+          "kY": 1.77543819,
+          "arrow_x": 19.33195686340332,
+          "arrow_y": -1.3606694665213581E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "CCBody.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 5.302104,
+                  "y": 0.942183733,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.77543831,
+                  "kY": -1.77543819
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Head1",
+          "parent": "Body1",
+          "x": 19.259387969970703,
+          "y": -0.349691241979599,
+          "z": 5,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -0.0403368473,
+          "kY": 0.0403368473,
+          "arrow_x": 39.758514404296875,
+          "arrow_y": 1.4335430023493245E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "CCHead.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 22.3347054,
+                  "y": -0.941169262,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 1.81577516,
+                  "kY": -1.81577587
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LeftArm1",
+          "parent": "Body1",
+          "x": 16.125358581542969,
+          "y": 2.1245353221893311,
+          "z": 4,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 3.93010473,
+          "kY": -3.93010473,
+          "arrow_x": 23.971168518066406,
+          "arrow_y": -2.3024367692414671E-06,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "CCArm.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 12.2170563,
+                  "y": 3.27774239,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 4.12851858,
+                  "kY": 2.15466666
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LeftFoot1",
+          "parent": "Body1",
+          "x": 0.66639196872711182,
+          "y": 4.9682474136352539,
+          "z": 2,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 3.673973,
+          "kY": -3.673973,
+          "arrow_x": 18.861066818237305,
+          "arrow_y": 1.0974383258144371E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "rightFoot.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 9.532649,
+                  "y": -0.07844806,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.38465071,
+                  "kY": 1.89853442
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RightFoot1",
+          "parent": "Body1",
+          "x": -0.21773199737071991,
+          "y": -1.0490721464157105,
+          "z": 1,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 2.78933287,
+          "kY": -2.78933287,
+          "arrow_x": 22.297847747802734,
+          "arrow_y": -1.7685040802462026E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "LeftFoot.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 13.4770994,
+                  "y": 0.0228853226,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.01389492,
+                  "kY": 1.01389456
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_data": [
+    {
+      "name": "CCArmature",
+      "mov_data": [
+        {
+          "name": "Walking",
+          "dr": 11,
+          "lp": true,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "sc": 0.333333343,
+          "mov_bone_data": [
+            {
+              "name": "Head1",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": -1.9582672119140625,
+                  "y": 0.40643304586410522,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0146324392,
+                  "kY": -0.0146324392,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "color": {
+                    "a": 255,
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                  }
+                }
+              ]
+            },
+            {
+              "name": "LeftArm1",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.371682048,
+                  "kY": -0.371682048,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "color": {
+                    "a": 255,
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Body1",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true
+                }
+              ]
+            },
+            {
+              "name": "LeftFoot1",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": -0.18474215269088745,
+                  "y": 1.5703086853027344,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "color": {
+                    "a": 255,
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                  }
+                },
+                {
+                  "dI": 0,
+                  "x": -3.3187623023986816,
+                  "y": -3.6882469654083252,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.02568686,
+                  "kY": 1.02568686,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true
+                }
+              ]
+            },
+            {
+              "name": "RightFoot1",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.2032163143157959,
+                  "y": 0.97913360595703125,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.72577321529388428,
+                  "y": 3.4969067573547363,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.47027421,
+                  "kY": -1.47027421,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "color": {
+                    "a": 255,
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_data": [
+    {
+      "name": "CCHead",
+      "width": 68.0,
+      "height": 60.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "CCBody",
+      "width": 21.0,
+      "height": 22.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "CCArm",
+      "width": 16.0,
+      "height": 28.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "LeftFoot",
+      "width": 19.0,
+      "height": 21.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "rightFoot",
+      "width": 14.0,
+      "height": 20.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    }
+  ],
+  "config_file_path": [
+    "CCArmature0.plist"
+  ]
+}
