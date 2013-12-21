@@ -57,7 +57,7 @@ var Physics = {
         space.addCollisionHandler(10,ENEMY_COL_TYPE,emptyFunction,function(a,b,c){
             var sisi = GameController.gameScene.sisi;
             var n = a.contacts[0].n;
-            sisi.setDirection(n.x);
+            sisi.setDirection(-n.x);
             sisi.attack(a.getPoint(0));
             return true;
         },emptyFunction,emptyFunction);

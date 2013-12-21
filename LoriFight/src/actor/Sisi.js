@@ -10,7 +10,7 @@ var Sisi = ccs.Armature.extend({
     power: 0,
     attackSpeed: 300,
     lastAttack:0,
-    moveSpeed: 100,
+    moveSpeed: 200,
     weight: 10,
     radius: 20,
     anger: 0,
@@ -59,6 +59,8 @@ var Sisi = ccs.Armature.extend({
         this.setDirection(this.target.x - this.getPosition().x);
 
         this.walk();
+        this.attacking = false;
+        this.unschedule(this.stopAttack);
     },
 
     setMoveSpeed: function(speed) {
