@@ -155,6 +155,8 @@ var Sisi = ccs.Armature.extend({
         sisiAngry.initialize();
         sisiAngry.setPosition(this.getPosition());
         sisiAngry.body.setPosition(cc.p(0,0));
+        sisiAngry.killed = this.killed;
+        sisiAngry.anger = this.anger;
 
         var parent = this.getParent();
         parent.removeChild(this);
@@ -268,6 +270,14 @@ var Sisi = ccs.Armature.extend({
 });
 
 var SisiAngry = Sisi.extend({
+    hp: SISI_DATA.base_hp,
+    fullHp: SISI_DATA.base_hp,
+    power: SISI_DATA.base_power * 2,
+    attackSpeed: 400,
+    lastAttack:0,
+    moveSpeed: SISI_DATA.maxSpeed * 1.5,
+    weight: SISI_DATA.weight * 1.5,
+
     initialize: function() {
         this.init("CCAngryAnimation");
 

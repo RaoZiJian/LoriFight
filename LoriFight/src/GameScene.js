@@ -168,12 +168,12 @@ var GameScene = BaseScene.extend({
             cc.Spawn.create(cc.ScaleTo.create(0.1, -1.4, 1.4), this.fadeOut),
             this.postAction );
         this.camera.addChild(this.cutSprite);
-
+/*
         this.winLayer = new WinLayer();
         this.addChild(this.winLayer, 20000, "win");
         this.winLayer.setAnchorPoint(0.5, 0.5);
         this.winLayer.setPosition(winMid);
-        //this.winLayer.setOpacity(0);
+        //this.winLayer.setOpacity(0);*/
 
         this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 
@@ -268,10 +268,24 @@ var GameScene = BaseScene.extend({
     },
 
     win: function() {
+        var layer = new WinLayer();
 
+        if (layer && layer.init(cc.c4b(0, 0, 0, 0), 9))
+        {
+            layer.setPosition(0, 0);
+            layer.setAnchorPoint(0.5, 0.5);
+            this.addChild(layer, 20000, 2);
+        }
     },
 
     lost: function() {
+        var layer = new FailLayer();
 
+        if (layer && layer.init(cc.c4b(0, 0, 0, 0), 1))
+        {
+            layer.setPosition(0, 0);
+            layer.setAnchorPoint(0.5, 0.5);
+            this.addChild(layer, 20000, 2);
+        }
     }
 });
