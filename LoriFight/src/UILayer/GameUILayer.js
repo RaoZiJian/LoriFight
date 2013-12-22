@@ -12,6 +12,7 @@ var GameUILayer = ccs.UILayer.extend({
     angerFire:null,
     winSize:null,
     shinningSprite:null,
+    mushroomBuffArray:null,
 
     init:function(){
 
@@ -35,6 +36,8 @@ var GameUILayer = ccs.UILayer.extend({
             this.shinningSprite.setAnchorPoint(cc.p(0,0));
             this.shinningSprite.setPosition(cc.p(0,0));
             this.addChild(this.shinningSprite,-1);
+
+            this.mushroomBuffArray = new Array();
         }
     },
 
@@ -118,5 +121,17 @@ var GameUILayer = ccs.UILayer.extend({
     setShinningLevel:function(level){
         this.shinningSprite.setVisible(true);
         this.shinningSprite.setOpacity(level);
+    },
+
+    addMushroomBuffStatus:function(mushroomBuff){
+
+        this.mushroomBuffArray.push(mushroomBuff);
+
+        mushroomBuff.setAnchorPoint(cc.p(0,0))
+        mushroomBuff.setPosition(cc.p(this.bloodBar.getPosition().x + this.mushroomBuffArray.length * 60 + 80,this.bloodBar.getPosition().y -20));
+
+        cc.log(mushroomBuff.getPosition());
+
+        this.addChild(mushroomBuff);
     }
 });
