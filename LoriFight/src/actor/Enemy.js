@@ -348,7 +348,13 @@ var WolfLeader = Wolf.extend({
         {
             this.buddies[i].activate();
         }
-    }
+    },
+                             die:function(){
+                             this._super();
+                             var idx = EnemyLeaderContainer.indexOf(this);
+                             if(idx !== -1)
+                             EnemyLeaderContainer.splice(idx,1);
+                             }
 });
 
 
@@ -399,5 +405,11 @@ var ZombieLeader = Zombie.extend({
         {
             this.buddies[i].activate();
         }
-    }
+    },
+                                 die:function(){
+                                 this._super();
+                                 var idx = EnemyLeaderContainer.indexOf(this);
+                                 if(idx !== -1)
+                                 EnemyLeaderContainer.splice(idx,1);
+                                 }
 });

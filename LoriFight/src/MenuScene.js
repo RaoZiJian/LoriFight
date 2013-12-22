@@ -8,29 +8,32 @@ var MenuLayer = cc.LayerColor.extend({
         this._super(color);
 
         var winSize = cc.Director.getInstance().getWinSize();
-        var logo = cc.Sprite.create(s_logo);
+        this.setTouchEnabled(true);
 
+        var menu = cc.Menu.create();
+        this.addChild(menu, 1, 2);
+        menu.setPosition(0, 0);
+
+        var logo = cc.Sprite.create(s_logo);
         var enterGame = cc.MenuItemSprite.create(logo,cc.Sprite.create(s_logo));
         enterGame.setCallback(function(){
             cc.Director.getInstance().pushScene(GameController.gameScene);
         }, this);
-        var menu = cc.Menu.create(enterGame);
-        menu.alignItemsVerticallyWithPadding(10);
-        this.addChild(menu, 1, 2);
-        menu.setPosition(winSize.width / 2, winSize.height / 2);
+        enterGame.setPosition(winSize.width / 2, winSize.height / 2);
 
-        //this.setTouchEnabled(true);
+        menu.addChild(enterGame,1,2);
+
         return true;
     },
 
-    onTouchBegan: function(touch, event) {
-        cc.log("asdjanjksdnajksdna");
+    onTouchesBegan: function(touch, event) {
+
     },
 
-    onTouchMoved: function(touch, event) {
+    onTouchesMoved: function(touch, event) {
     },
 
-    onTouchEnded: function(touch, event) {
+    onTouchesEnded: function(touch, event) {
     }
 });
 MenuLayer.create = function (color) {
