@@ -29,7 +29,6 @@ var ItemSprite = cc.Sprite.extend({
     },
 
     trigger:function(){
-        this.attackTimes = 0;
     },
 
     destroyMushroom:function(){
@@ -57,15 +56,17 @@ var GoldenMushroom = ItemSprite.extend({
 
     trigger:function(){
         this.attackTimes = 0;
+        var buffSprite = cc.Sprite.create(s_ShineBuff_Png,cc.rect(0, 0, 41, 48));
+        GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
     },
 
     sisiAttacked:function(sisi){
 
         this.attackTimes++;
         this.waitCancel = true;
-        GameController.gameScene.gameMenuUI.setShinningLevel(100 + this.attackTimes*155/30);
+        GameController.gameScene.gameMenuUI.setShinningLevel(100 + 155/20 * this.attackTimes);
 
-        if(this.attackTimes>30){
+        if(this.attackTimes>20){
             GameController.gameScene.gameMenuUI.setShinningLevel(0);
             return true;
         }else{
@@ -99,6 +100,8 @@ var StickyMushroom = ItemSprite.extend({
        var sisiLocal = GameController.gameScene.sisi;
        sisiLocal.setMoveSpeed(0.1 * sisiLocal.moveSpeed);
        sisiLocal.setAttackSpeed(0.1 * sisiLocal.attackSpeed);
+       var buffSprite = cc.Sprite.create(s_StickyBuff_Png,cc.rect(0, 0, 41, 48));
+       GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
    }
 });
 
@@ -116,6 +119,8 @@ var RoarMushroom = ItemSprite.extend({
 
     trigger:function(){
         this.scheduleOnce(this.createWolves,0);
+        var buffSprite = cc.Sprite.create(s_RoarBuff_Png,cc.rect(0, 0, 41, 48));
+        GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
     },
 
     createWolves:function(){
@@ -140,6 +145,8 @@ var ShiftMushroom = ItemSprite.extend({
 
         var sisiLocal = GameController.gameScene.sisi;
         sisiLocal.setMoveSpeed(50 * sisiLocal.moveSpeed);
+        var buffSprite = cc.Sprite.create(s_AcuteBuff_Png,cc.rect(0, 0, 41, 48));
+        GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
     }
  });
 
@@ -157,7 +164,18 @@ var VisibleMushroom = ItemSprite.extend({
 
     trigger:function(){
 
+        var buffSprite = cc.Sprite.create(s_VisibleBuff_Png,cc.rect(0, 0, 41, 48));
+        GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
         GameController.gameScene.sisi.setOpacity(0);
+    },
+
+    destroyMushroom:function(){
+
+        GameController.gameScene.sisi.setOpacity(255);
+        this.removeFromParent();
+        Physics.world.removeShape(this.body.shape);
+        Physics.world.removeBody(this.body.body);
+        this.destroyed = true;
     }
 });
 
