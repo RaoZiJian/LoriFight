@@ -48,9 +48,10 @@ var Sisi = ccs.Armature.extend({
 
     body: null,
 
-    mushroom: null,
+    mushrooms: null,
     emotion: null,
     cutting: null,
+    cutAction: null,
 
     skill: null,
 
@@ -71,6 +72,10 @@ var Sisi = ccs.Armature.extend({
         this.addChild(this.cutting);
         this.cutting.setAnchorPoint(0, 0.5);
         this.cutting.setPosition(this.getContentSize().width, this.getContentSize().height/2);
+
+        //this.cutAction = new cc.Spawn.create(cc.ScaleTo.create(2, 0.5), cc.);
+
+        this.mushrooms = [];
 
         if(!this.loadFromLocal())
             this.setLevel(1);
@@ -123,12 +128,23 @@ var Sisi = ccs.Armature.extend({
         this.power = this.preserved.power;
     },
 
+    removeMushroom: function() {
+        for(var i = 0, l = this.mushrooms.length; i < this.mushrooms.length; i++) {
+            var mushroom = this.mushrooms[i];
+            if(mushroom.destroyed && !mushroom.sisiAttacked) {
+                var res = this.mushrooms.splice(i, 1);
+                if(res.length != 0) i--;
+            }
+        }
+
+    },
+
     gotMushroom: function(mushroom) {
         this.preserved.power = this.power;
         this.preserved.attackSpeed = this.attackSpeed;
         this.preserved.moveSpeed = this.moveSpeed;
 
-        this.mushroom = mushroom;
+        this.mushrooms.push( mushroom );
         mushroom.trigger();
         this.anger += mushroom.angerValue;
 
@@ -142,7 +158,8 @@ var Sisi = ccs.Armature.extend({
             this.scheduleOnce(this.resetPreserved, mushroom.duration);
         }
 
-        this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0)
+        this.removeMushroom();
+        this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0);
     },
 
     explode: function() {
@@ -151,6 +168,10 @@ var Sisi = ccs.Armature.extend({
 
     stop: function() {
         this.getAnimation().stop();
+    },
+
+    cutEffect: function() {
+        this.cutting.runAction()
     },
 
     stopAttack: function() {
@@ -170,10 +191,13 @@ var Sisi = ccs.Armature.extend({
         {
             this.lastAttack = now;
             this.attackPos = pos;
-            if(this.mushroom && this.mushroom.sisiAttacked) {
-                var ended = this.mushroom.sisiAttacked(this);
-                if(ended) {
-                    this.mushroom = null;
+            for(var i = 0, l = this.mushrooms.length; i < l; i++) {
+                var mushroom = this.mushrooms[i];
+                if(mushroom && mushroom.sisiAttacked) {
+                    var ended = mushroom.sisiAttacked(this);
+                    if(ended) {
+                        this.removeMushroom(mushroom);
+                    }
                 }
             }
             this.scheduleOnce(this.slash,0.0016);

@@ -12,6 +12,7 @@ var ItemSprite = cc.Sprite.extend({
     texture:null,
     duration:null,
     angerValue:null,
+    destroyed:false,
 
     // physique
     body: null,
@@ -35,6 +36,7 @@ var ItemSprite = cc.Sprite.extend({
         this.removeFromParent();
         Physics.world.removeShape(this.body.shape);
         Physics.world.removeBody(this.body.body);
+        this.destroyed = true;
     }
 });
 
