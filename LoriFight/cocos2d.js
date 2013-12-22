@@ -58,7 +58,8 @@
 
             'src/Item/item.js',
             'src/UILayer/GameUILayer.js',
-            'src/Level/Level.js'
+            'src/Level/Level.js',
+            'src/WinLayer'
             //'src/myApp.js'//add your own files in order here
         ]
     };
