@@ -4,7 +4,7 @@
 
 var FailLayer = cc.LayerColor.extend({
 
-    init: function(color)
+    init: function(color,score)
     {
         this._super(color);
 
@@ -21,7 +21,7 @@ var FailLayer = cc.LayerColor.extend({
         this.addChild(bg,1,2);
 
 
-        this.showPoint(9,this);
+        this.showPoint(score,this);
 
 
         var rePlaySp = cc.Sprite.create(s_win_replay);
@@ -139,7 +139,7 @@ var FailLayer = cc.LayerColor.extend({
     }
 
 });
-
+/*
 FailLayer.create = function (color) {
     var layer = new FailLayer();
     if (layer && layer.init(color)) {
@@ -160,3 +160,4 @@ var FailScene = BaseScene.extend({
         this.addChild(this.layer);
     }
 });
+*/
