@@ -48,7 +48,7 @@
             'src/actor/Skill.js',
             'src/actor/Weapon.js',
 
-            'src/WinLaye.js',
+            'src/WinLayer.js',
 
             'src/GameController.js',
             'src/MenuScene.js',
