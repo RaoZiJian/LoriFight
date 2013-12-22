@@ -60,7 +60,7 @@ var GameUILayer = ccs.UILayer.extend({
         if(angerValue>=100){
             this.angerExpression = cc.Sprite.create(s_Anger2_Png);
             this.angerFire = new Array(3);
-        }else if(300>angerValue>=200){
+        }else if(300>angerValue && angerValue>=200){
             this.angerExpression = cc.Sprite.create(s_Anger3_Png);
             this.angerFire = new Array(4);
         }else if(angerValue>=300){
@@ -69,7 +69,7 @@ var GameUILayer = ccs.UILayer.extend({
         }else if(angerValue<=50){
             this.angerExpression = cc.Sprite.create(s_Anger5_Png);
             this.angerFire = new Array(1);
-        }else if(50<angerValue<100){
+        }else if(50<angerValue && angerValue<100){
             this.angerExpression = cc.Sprite.create(s_Anger1_Png);
             this.angerFire = new Array(2);
         }
