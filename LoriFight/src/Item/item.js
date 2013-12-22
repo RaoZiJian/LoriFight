@@ -44,6 +44,7 @@ var GoldenMushroom = ItemSprite.extend({
     duration: 0,
     name: "golden",
     angerValue: 30,
+    waitCancel: false,
 
     ctor:function(pos){
         this._super(pos);
@@ -57,10 +58,12 @@ var GoldenMushroom = ItemSprite.extend({
     },
 
     sisiAttacked:function(sisi){
+
         this.attackTimes++;
-        GameController.gameScene.gameMenuUI.setShinningLevel(240);
-        if(this.attackTimes>5){
-            GameController.gameScene.gameMenuUI.setShinningLevel(0);
+        this.waitCancel = true;
+        GameController.gameScene.gameMenuUI.setShinningLevel(100 + this.attackTimes*10);
+
+        if(this.attackTimes>30){
             return true;
         }else{
             return false;
@@ -125,14 +128,9 @@ var RoarMushroom = ItemSprite.extend({
     },
 
     trigger:function(){
-        this.roarWerewolf();
-    },
-
-    roarWerewolf:function(){
-
-
+        GameController.gameScene.addEnemies(WolfLeader, GameController.gameScene.sisi.level+2, this.getPosition(), 30);
     }
-});
+ });
 
 var ShiftMushroom = ItemSprite.extend({
     name: "shift",

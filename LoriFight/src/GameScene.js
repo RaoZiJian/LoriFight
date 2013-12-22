@@ -89,7 +89,6 @@ var GameScene = BaseScene.extend({
         this.pause = false;
 
         var shinningMushroom = new GoldenMushroom(cc.p(200,300));
-        shinningMushroom.trigger();
         this.camera.addChild(shinningMushroom);
 
         //var sticky = new StickyMushroom(cc.p(400,500));
