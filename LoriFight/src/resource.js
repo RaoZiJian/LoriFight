@@ -106,7 +106,21 @@ var menu_resources = [
     {src:s_ShineMushroom_Png},
     {src:s_ShineBuff_Png},
     // YUYE
-
+    {src:s_win_star1},
+    {src:s_win_star2},
+    {src:s_win_num1},
+    {src:s_win_num2},
+    {src:s_win_num3},
+    {src:s_win_num4},
+    {src:s_win_num5},
+    {src:s_win_num6},
+    {src:s_win_num7},
+    {src:s_win_num8},
+    {src:s_win_num9},
+    {src:s_win_num0},
+    {src:s_win_winBgPic},
+    {src:s_win_replay},
+    {src:s_win_next},
     // HUABIN
     {src:s_sisi},
     {src:s_logo},
