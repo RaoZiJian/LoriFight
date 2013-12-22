@@ -391,6 +391,19 @@ var Zombie = Enemy.extend({
         this.scheduleOnce(this.walk, Math.random());
         //GameController.gameScene.zombieBatch.addChild(this);
 
+    },
+
+    attack: function() {
+        this.attacking = true;
+        this.unschedule(this.stopAttack);
+        var now = Date.now();
+        if(now - this.lastAttack > this.attackSpeed)
+        {
+            this.lastAttack = now;
+            this.scheduleOnce(this.slash,0);
+        }
+        this.scheduleOnce(this.stopAttack, 0.8);
+        cc.AudioEngine.getInstance().playEffect(a_Zombie_Mp3);
     }
 });
 var ZombieLeader = Zombie.extend({

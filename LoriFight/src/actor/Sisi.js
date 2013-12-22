@@ -5,8 +5,8 @@ var SISI_COL_TYPE = 10;
 var ATTACK_COL_TYPE  = 20;
 
 var SISI_DATA = {
-    base_levelup_xp: 5000,
-    levelup_xp_step: 5000,
+    base_levelup_xp: 500,
+    levelup_xp_step: 100,
     base_hp: 500,
     hp_step: 200,
     base_power: 50,
@@ -48,7 +48,7 @@ var Sisi = ccs.Armature.extend({
 
     body: null,
 
-    mushrooms: null,
+    mushroom: null,
     emotion: null,
 
     skill: null,
@@ -65,12 +65,8 @@ var Sisi = ccs.Armature.extend({
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(SISI_COL_TYPE);
 
-        this.mushrooms = [];
-
         if(!this.loadFromLocal())
             this.setLevel(1);
-
-        this.updateScore();
     },
 
     saveToLocal: function() {
@@ -120,23 +116,12 @@ var Sisi = ccs.Armature.extend({
         this.power = this.preserved.power;
     },
 
-    updateMushrooms: function() {
-        for(var i = 0, l = this.mushrooms.length; i < this.mushrooms.length; i++) {
-            var mushroom = this.mushrooms[i];
-            mushroom.refresh();
-            if(mushroom.isEnded) {
-                var res = this.mushrooms.splice(i, 1);
-                if(res.length != 0) i--;
-            }
-        }
-    },
-
     gotMushroom: function(mushroom) {
         this.preserved.power = this.power;
         this.preserved.attackSpeed = this.attackSpeed;
         this.preserved.moveSpeed = this.moveSpeed;
 
-        this.mushrooms.push( mushroom );
+        this.mushroom = mushroom;
         mushroom.trigger();
         this.anger += mushroom.angerValue;
 
@@ -146,8 +131,11 @@ var Sisi = ccs.Armature.extend({
         if(prev == 4 && curr == 5) {
             this.explode();
         }
+        else {
+            this.scheduleOnce(this.resetPreserved, mushroom.duration);
+        }
 
-        this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0);
+        this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0)
     },
 
     explode: function() {
@@ -175,10 +163,10 @@ var Sisi = ccs.Armature.extend({
         {
             this.lastAttack = now;
             this.attackPos = pos;
-            for(var i = 0, l = this.mushrooms.length; i < l; i++) {
-                var mushroom = this.mushrooms[i];
-                if(mushroom && mushroom.sisiAttacked) {
-                    mushroom.sisiAttacked(this);
+            if(this.mushroom && this.mushroom.sisiAttacked) {
+                var ended = this.mushroom.sisiAttacked(this);
+                if(ended) {
+                    this.mushroom = null;
                 }
             }
             this.scheduleOnce(this.slash,0.0016);
@@ -194,13 +182,16 @@ var Sisi = ccs.Armature.extend({
             this.exp = 0;
             this.saveToLocal();
         }
-        this.updateScore();
+        var score = this.levelBut - this.killed;
+        this.uiLayer.setScore(score >= 0 ? score : 0);
+        if(score <= 0) {
+            GameController.gameScene.win();
+        }
     },
 
     slash:function(){
         this.slashobj = new Slash(this.attackPos);
         this.getAnimation().play(["Attacking", this.moving ? "Walking" : "Standing"]);
-        GameController.gameScene.cutEffect();
     },
     walk: function() {
         this.getAnimation().play("Walking");
@@ -226,14 +217,6 @@ var Sisi = ccs.Armature.extend({
         x < 0 ? this.setScaleX(-1) : this.setScaleX(1);
     },
 
-    updateScore: function() {
-        var score = this.levelBut - this.killed;
-        this.uiLayer.setScore(score >= 0 ? score : 0);
-        if(score <= 0) {
-            GameController.gameScene.win();
-        }
-    },
-
     updateSisi: function() {
         // Control sprite's physic node
         // Apply force with speed
@@ -243,17 +226,15 @@ var Sisi = ccs.Armature.extend({
             this.body.targetMove(tar, this.moveSpeed);
 
         }
-        else if(this.moving) {
+        else{
             this.moving = false;
             this.target = null;
             //this.body.body.setVel(cc.p(0, 0));
             if(!this.attacking)
-                this.stand();
+            this.stand();
         }
         this.setPosition(pos);
         this.setZOrder(-pos.y);
-
-        this.updateMushrooms();
     }
 
 });
