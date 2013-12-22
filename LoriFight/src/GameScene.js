@@ -86,6 +86,9 @@ var GameScene = BaseScene.extend({
     preAction: null,
     postAction: null,
 
+    // win layer
+    winLayer: null,
+
     onEnter: function () {
         // Load armature
 
@@ -160,6 +163,12 @@ var GameScene = BaseScene.extend({
             cc.Spawn.create(cc.ScaleTo.create(0.1, -1.4, 1.4), this.fadeOut),
             this.postAction );
         this.camera.addChild(this.cutSprite);
+
+        this.winLayer = new WinLayer();
+        this.addChild(this.winLayer, 20000, "win");
+        this.winLayer.setAnchorPoint(0.5, 0.5);
+        this.winLayer.setPosition(winMid);
+        //this.winLayer.setOpacity(0);
         
         this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 

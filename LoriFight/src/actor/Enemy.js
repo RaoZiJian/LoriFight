@@ -281,6 +281,9 @@ var SlimeLeader = Slime.extend({
         for(var i = 0; i < groupsize; i++)
         {
             var buddy = new Slime(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
+            var s = Math.random() * 0.8 + 0.6;
+            buddy.setScale(s);
+            buddy.setColor(cc.c3b(255 * Math.random(), 255 * Math.random(), 255 * Math.random()));
             this.buddies.push(buddy);
         }
     },
@@ -401,6 +404,8 @@ var ZombieLeader = Zombie.extend({
         for(var i = 0; i < groupsize; i++)
         {
             var buddy = new Zombie(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
+            var s = Math.random()*0.5 + 1;
+            buddy.setScale(s);
             this.buddies.push(buddy);
         }
     },

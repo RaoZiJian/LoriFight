@@ -3,7 +3,6 @@
  */
 
 var WinLayer = cc.LayerColor.extend({
-
     init: function(color,score)
     {
         this._super(color);

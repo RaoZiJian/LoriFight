@@ -50,7 +50,7 @@
 
             'src/GameController.js',
             'src/WinLayer.js',
-            'src/StartLayer.js',
+            'src/StartScene.js',
             'src/FailLayer.js',
             'src/MenuScene.js',
             'src/LevelScene.js',
