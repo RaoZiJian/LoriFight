@@ -36,6 +36,24 @@ s_AngerFire_Png         = "res/UI/angerFire.png";
 s_Shinning_Png          = "res/UI/shinning.png";
 
 // YUYE
+s_win_star1             = "res/UI/star1.png";
+s_win_star2             = "res/UI/star2.png";
+s_win_num1              = "res/UI/num1.png";
+s_win_num2              = "res/UI/num2.png";
+s_win_num3              = "res/UI/num3.png";
+s_win_num4              = "res/UI/num4.png";
+s_win_num5              = "res/UI/num5.png";
+s_win_num6              = "res/UI/num6.png";
+s_win_num7              = "res/UI/num7.png";
+s_win_num8              = "res/UI/num8.png";
+s_win_num9              = "res/UI/num9.png";
+s_win_num0              = "res/UI/num0.png";
+s_win_winBgPic          = "res/UI/winBgPic.png";
+s_win_replay            = "res/UI/replay.png";
+s_win_next              = "res/UI/next.png";
+//s_win_                  = "res/UI/.png";
+
+
 
 // HUABIN
 var s_sisi = "res/grossini.png";
