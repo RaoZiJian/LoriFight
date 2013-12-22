@@ -50,6 +50,7 @@
 
             'src/GameController.js',
             'src/WinLayer.js',
+            'src/startScene.js',
             'src/MenuScene.js',
             'src/LevelScene.js',
             'src/GameScene.js',
@@ -60,6 +61,7 @@
             'src/Item/item.js',
             'src/UILayer/GameUILayer.js',
             'src/Level/Level.js'
+
             //'src/myApp.js'//add your own files in order here
         ]
     };

@@ -17,7 +17,7 @@ var MenuLayer = cc.LayerColor.extend({
         var logo = cc.Sprite.create(s_logo);
         var enterGame = cc.MenuItemSprite.create(logo,cc.Sprite.create(s_logo));
         enterGame.setCallback(function(){
-            cc.Director.getInstance().pushScene(GameController.gameScene);
+            cc.Director.getInstance().pushScene(GameController.menuScene);
         }, this);
         enterGame.setPosition(winSize.width / 2, winSize.height / 2);
 

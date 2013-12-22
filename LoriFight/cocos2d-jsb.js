@@ -82,6 +82,6 @@ director.setContentScaleFactor(resourceSize.width / designSize.width);
 
 director.setDisplayStats(true);
 director.setAnimationInterval(1.0 / 60);
-var mainScene = new MyScene();
-director.runWithScene(mainScene);
+var startScene = new StartScene();
+director.runWithScene(startScene);
 
