@@ -26,7 +26,7 @@ var ENEMY_DATA = {
         power_step: 3,
         maxSpeed: 100,
         accel: 40,
-        radius: 35,
+        radius: 28,
         weight: 3
     },
 
@@ -123,9 +123,6 @@ var Enemy = cc.Sprite.extend({
         this.setPosition(pos);
         //this.setScale(0.5);
         this.body.shape.setCollisionType(ENEMY_COL_TYPE);
-        if(color)
-            this.setColor(color);
-
         this.enemy = GameController.gameScene.sisi;
         this.spriteFrameCache = cc.SpriteFrameCache.getInstance();
         GameController.gameScene.camera.addChild(this);
@@ -283,7 +280,7 @@ var SlimeLeader = Slime.extend({
             var buddy = new Slime(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
             var s = Math.random() * 0.8 + 0.6;
             buddy.setScale(s);
-            buddy.setColor(cc.c3b(100 + 100 * Math.random(), 20 * 100 * Math.random(), 50 + 60 * Math.random()));
+            //buddy.setColor(cc.c3b(100 + 100 * Math.random(), 20 * 100 * Math.random(), 50 + 60 * Math.random()));
             this.buddies.push(buddy);
         }
     },
