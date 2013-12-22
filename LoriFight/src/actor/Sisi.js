@@ -50,8 +50,6 @@ var Sisi = ccs.Armature.extend({
 
     mushrooms: null,
     emotion: null,
-    cutting: null,
-    cutAction: null,
 
     skill: null,
 
@@ -66,14 +64,6 @@ var Sisi = ccs.Armature.extend({
 
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(SISI_COL_TYPE);
-
-        this.cutting = new cc.Sprite.create(s_cut_png, cc.rect(0, 0, 143, 102));
-        this.cutting.setOpacity(0);
-        this.addChild(this.cutting);
-        this.cutting.setAnchorPoint(0, 0.5);
-        this.cutting.setPosition(this.getContentSize().width, this.getContentSize().height/2);
-
-        //this.cutAction = new cc.Spawn.create(cc.ScaleTo.create(2, 0.5), cc.);
 
         this.mushrooms = [];
 
@@ -158,7 +148,6 @@ var Sisi = ccs.Armature.extend({
             this.scheduleOnce(this.resetPreserved, mushroom.duration);
         }
 
-        this.removeMushroom();
         this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0);
     },
 
@@ -168,10 +157,6 @@ var Sisi = ccs.Armature.extend({
 
     stop: function() {
         this.getAnimation().stop();
-    },
-
-    cutEffect: function() {
-        this.cutting.runAction()
     },
 
     stopAttack: function() {
@@ -223,6 +208,7 @@ var Sisi = ccs.Armature.extend({
     slash:function(){
         this.slashobj = new Slash(this.attackPos);
         this.getAnimation().play(["Attacking", this.moving ? "Walking" : "Standing"]);
+        GameController.gameScene.cutEffect();
     },
     walk: function() {
         this.getAnimation().play("Walking");
@@ -266,6 +252,8 @@ var Sisi = ccs.Armature.extend({
         }
         this.setPosition(pos);
         this.setZOrder(-pos.y);
+
+        this.removeMushroom();
     }
 
 });

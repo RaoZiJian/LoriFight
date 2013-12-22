@@ -78,6 +78,10 @@ var GameScene = BaseScene.extend({
 
     slimeBatch:null,
 
+    cutSprite: null,
+    cutAction: null,
+    cutting: false,
+
     onEnter: function () {
         // Load armature
         ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
@@ -132,6 +136,19 @@ var GameScene = BaseScene.extend({
         var shift = new ShiftMushroom(cc.p(100,533));
         this.camera.addChild(shift);
 
+
+        this.cutSprite = new cc.Sprite.create(s_cut_png, cc.rect(0, 0, 143, 102));
+        this.cutSprite.setOpacity(0);
+        this.cutSprite._setZOrder(10000);
+        this.cutSprite.setScaleX(-0.5, 0.5);
+        this.cutSprite.setAnchorPoint(0.5, 0.5);
+
+        this.cutAction = cc.Sequence.create( cc.CallFunc.create(this.blockCut, this),
+            cc.Spawn.create(cc.ScaleTo.create(0.2, -1.2, 1.2), cc.FadeIn.create(0.2)),
+            cc.Spawn.create(cc.ScaleTo.create(0.1, -1.4, 1.4), cc.FadeOut.create(0.1)),
+            cc.CallFunc.create(this.reactiveCut, this));
+        this.camera.addChild(this.cutSprite);
+        
         this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 
     },
@@ -179,6 +196,22 @@ var GameScene = BaseScene.extend({
 
     addEnemies: function(type, level, pos, count) {
         new type(level, pos, count);
+    },
+
+    cutEffect: function() {
+        if(!this.cutting) {
+            this.cutSprite.setScaleX( this.sisi.getScaleX() < 0 ? -0.5 : 0.5, 0.5);
+            this.cutSprite.setPosition( cc.pAdd(this.sisi.getPosition(), cc.p(this.sisi.getContentSize().width/2, 0)) );
+            this.cutSprite.runAction(this.cutAction);
+        }
+    },
+    blockCut: function() {
+        this.cutting = true;
+    },
+    reactiveCut: function() {
+        this.cutting = false;
+        this.cutSprite.setScale(-0.5, 0.5);
+        this.cutSprite.setOpacity(0);
     },
 
     update:function()
