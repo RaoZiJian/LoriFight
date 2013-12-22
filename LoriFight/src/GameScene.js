@@ -18,7 +18,7 @@ GameLayer.create = function (color) {
     return null;
 };
 
-var CameraLayer = cc.LayerColor.extend({
+var CameraLayer = cc.Layer.extend({
     ctor:function(c4b){
         this._super();
         this.init(c4b);
@@ -51,8 +51,9 @@ var GameScene = BaseScene.extend({
     camera: null,
     sisi: null,
     winMid: null,
-    mapSize: cc.size(0, 0),
+    mapSize: cc.size(3000, 2500),
     mapSisiPos: cc.p(0, 0),
+    mapNode:null,
 
     // Pause
     pause: false,
@@ -70,7 +71,7 @@ var GameScene = BaseScene.extend({
         this.gameMenuUI = new GameUILayer();
         this.gameMenuUI.init();
 
-        var camera = this.camera = new CameraLayer(cc.c4b(0,255,0,30));
+        var camera = this.camera = new CameraLayer();
         this.addChild(camera);
         //camera.addChild(this.debugNode);
         camera.setPosition(winMid);
@@ -128,6 +129,8 @@ var GameScene = BaseScene.extend({
 
             this.addEnemies(this.enemiesClass[classid], Math.ceil(Math.random()*maxlvl), pos, count);
         }
+        var map =this.mapNode = new RandomMap(this.mapSize.width, this.mapSize.height);
+        this.camera.addChild(map.rt, -5000);
     },
 
     addEnemies: function(type, level, pos, count) {

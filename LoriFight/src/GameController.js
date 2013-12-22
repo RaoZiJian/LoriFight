@@ -99,6 +99,13 @@ var Physics = {
         this.world.step(CPSTEP);
     }
 };
+var StaticObjec = cc.Class.extend({
+    ctor:function(radius,pos){
+        this.shape = new cp.CircleShape(Physics.world.staticBody,radius, pos);
+        Physics.world.addStaticShape(this.shape);
+        this.shape.obj = this;
+    }
+});
 
 var PhysicsObject = cc.Class.extend({
     body:null,
@@ -145,3 +152,49 @@ var PhysicsObject = cc.Class.extend({
         this.view = v;
     }
 });
+var COLLISION_TYPE_FLOOR = 50;
+var RandomMap = cc.Class.extend({
+    rt:null,
+    ctor:function(width, height){
+        width = (width>4096)? 4096:width;
+        height = (height>4096)? 4096: height;
+
+        this.rt = cc.RenderTexture.create(width, height);
+        //generate bondaries
+        var staticBody = Physics.world.staticBody;
+        var halfw = width/2;
+        var halfh = height/2;
+        var walls = [new cp.SegmentShape(staticBody, cp.v(-halfw, -halfh), cp.v(halfw, -halfh), 30), // bottom
+            new cp.SegmentShape(staticBody, cp.v(-halfw, halfh), cp.v(halfw, halfh), 30), // top
+            new cp.SegmentShape(staticBody, cp.v(-halfw, halfh), cp.v(-halfw, -halfh), 30), // left
+            new cp.SegmentShape(staticBody, cp.v(halfw, halfh), cp.v(halfw, -halfh), 30)      // right
+        ];
+        for (var i = 0; i < walls.length; i++) {
+            var wall = walls[i];
+            wall.setElasticity(0);
+            wall.setFriction(0);
+            wall.setCollisionType(COLLISION_TYPE_FLOOR);
+            Physics.world.addStaticShape(wall);
+        }
+        //draw the base map
+        var tempSprite = cc.Sprite.create(map_base);
+        //this.addChild(background, Z_MOUNTAINS , cc._p(0.2, 0.2), cc._p(0,-150));
+        //tempSprite.getTexture().setTexParameters(gl.LINEAR, gl.LINEAR, gl.REPEAT, gl.CLAMP_TO_EDGE);
+        this.rt.beginWithClear(0,255,0,255);
+        //this.rt.setAnchorPoint(cc.p(0,0));
+        this.rt.addChild(tempSprite);
+        tempSprite.setVisible(true);
+        tempSprite.setAnchorPoint(cc.p(0,0));
+        for(var w=0; w < width; w+=128)
+        {
+            for(var h=0; h < height; h+=128)
+            {
+                tempSprite.setPosition(w,h);
+                tempSprite.visit();
+            }
+        }
+        this.rt.end();
+        tempSprite.removeFromParent();
+    }
+});
+
