@@ -112,7 +112,9 @@ var GameScene = BaseScene.extend({
         this.addChild(camera);
         //camera.addChild(this.debugNode);
         camera.setPosition(winMid);
-
+        var blur = cc.Sprite.create(s_blur);
+        blur.setAnchorPoint(cc.p(0,0));
+        this.addChild(blur,-99999);
 /*        var layer = GameLayer.create(new cc.Color4B(0,0,255,40));
         layer.setContentSize(cc.size(400, 200));
         camera.addChild(layer);*/
