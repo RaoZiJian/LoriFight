@@ -63,7 +63,7 @@ var cocos2dApp = cc.Application.extend({
 
         // Load scene
         GameController.init(this);
-        GameController.transitionToScene(GameController.menuScene);
+        GameController.transitionToScene(GameController.startScene);
 
         return true;
     }

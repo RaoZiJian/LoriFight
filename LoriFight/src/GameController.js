@@ -9,6 +9,7 @@ var BaseScene = cc.Scene.extend({
 var GameController ={
     app: null,
     director: null,
+    startScene: null,
     menuScene: null,
     levelScene: null,
     gameScene: null,
@@ -17,6 +18,7 @@ var GameController ={
     current: null,
     init: function(app) {
         this.app = app;
+        this.startScene = new StartScene();
         this.menuScene = new MenuScene();
         this.levelScene = new LevelScene();
         this.gameScene = new GameScene();
