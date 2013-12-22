@@ -41,7 +41,7 @@ var ItemSprite = cc.Sprite.extend({
     },
 
     refresh: function() {
-        if(Date.now() - this.starttime >= this.duration * 1000)
+        if(this.duration && (Date.now() - this.starttime >= this.duration * 1000))
             this.endSelf();
     },
 

@@ -32,9 +32,9 @@ var Sisi = ccs.Armature.extend({
     radius: SISI_DATA.radius,
     anger: 0,
 
-    levelBut: 70,
+    levelBut: 200,
 
-    preserved: {
+    ipreserved: {
         power: 0,
         attackSpeed: 0,
         moveSpeed: 0
@@ -114,9 +114,9 @@ var Sisi = ccs.Armature.extend({
     },
 
     resetPreserved: function() {
-        this.setMoveSpeed(this.preserved.moveSpeed);
-        this.setAttackSpeed(this.preserved.attackSpeed);
-        this.power = this.preserved.power;
+        this.setMoveSpeed(this.ipreserved.moveSpeed);
+        this.setAttackSpeed(this.ipreserved.attackSpeed);
+        this.power = this.ipreserved.power;
     },
 
     updateMushrooms: function() {
@@ -131,9 +131,9 @@ var Sisi = ccs.Armature.extend({
     },
 
     gotMushroom: function(mushroom) {
-        this.preserved.power = this.power;
-        this.preserved.attackSpeed = this.attackSpeed;
-        this.preserved.moveSpeed = this.moveSpeed;
+        this.ipreserved.power = this.power;
+        this.ipreserved.attackSpeed = this.attackSpeed;
+        this.ipreserved.moveSpeed = this.moveSpeed;
 
         this.mushrooms.push( mushroom );
         mushroom.trigger();
