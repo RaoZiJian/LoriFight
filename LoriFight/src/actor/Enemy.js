@@ -26,7 +26,7 @@ var ENEMY_DATA = {
         power_step: 3,
         maxSpeed: 100,
         accel: 40,
-        radius: 35,
+        radius: 28,
         weight: 3
     },
 
@@ -123,9 +123,6 @@ var Enemy = cc.Sprite.extend({
         this.setPosition(pos);
         //this.setScale(0.5);
         this.body.shape.setCollisionType(ENEMY_COL_TYPE);
-        if(color)
-            this.setColor(color);
-
         this.enemy = GameController.gameScene.sisi;
         this.spriteFrameCache = cc.SpriteFrameCache.getInstance();
         GameController.gameScene.camera.addChild(this);
@@ -289,7 +286,7 @@ var SlimeLeader = Slime.extend({
             var s = Math.random() * 0.8 + 0.6;
             buddy.setScale(s);
             //buddy.setRadius(s * buddy.radius);
-            buddy.setColor(cc.c3b(100 + 100 * Math.random(), 20 * 100 * Math.random(), 50 + 60 * Math.random()));
+            //buddy.setColor(cc.c3b(100 + 100 * Math.random(), 20 * 100 * Math.random(), 50 + 60 * Math.random()));
             this.buddies.push(buddy);
         }
     },
@@ -409,7 +406,6 @@ var Zombie = Enemy.extend({
             this.scheduleOnce(this.slash,0);
         }
         this.scheduleOnce(this.stopAttack, 0.8);
-        cc.AudioEngine.getInstance().playEffect(a_Zombie_Mp3);
     }
 });
 var ZombieLeader = Zombie.extend({
@@ -439,7 +435,8 @@ var ZombieLeader = Zombie.extend({
     die:function(){
     this._super();
     var idx = EnemyLeaderContainer.indexOf(this);
-    if(idx !== -1)
+        cc.AudioEngine.getInstance().playEffect(a_Zombie_Mp3);
+        if(idx !== -1)
         EnemyLeaderContainer.splice(idx,1);
 }
 });

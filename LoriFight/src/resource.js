@@ -2,6 +2,9 @@
 fx_blood            = "res/spark.plist";
 fx_pop              = "res/pop.plist";
 map_base            = "res/basegrass.png";
+ps_mapPlist         = "res/MapItems0.plist";
+ps_mapPNG           = "res/MapItems0.png";
+s_blur              = "res/blur.png";
 
 // ZIJIAN
 s_blood                 = "res/UI/blood.png";
@@ -89,6 +92,9 @@ var menu_resources = [
     {src:fx_blood},
     {src:fx_pop},
     {src:map_base},
+    {src:ps_mapPlist},
+    {src:ps_mapPNG},
+    {src:s_blur},
 
     // ZIJIAN
     {src:s_blood},

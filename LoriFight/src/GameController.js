@@ -108,7 +108,13 @@ var StaticObjec = cc.Class.extend({
         this.shape.obj = this;
     }
 });
-
+var StaticObjec = cc.Class.extend({
+    ctor:function(radius,pos){
+        this.shape = new cp.CircleShape(Physics.world.staticBody,radius, pos);
+        Physics.world.addStaticShape(this.shape);
+        this.shape.obj = this;
+    }
+});
 var PhysicsObject = cc.Class.extend({
     body:null,
     shape:null,
@@ -178,11 +184,28 @@ var RandomMap = cc.Class.extend({
             wall.setCollisionType(COLLISION_TYPE_FLOOR);
             Physics.world.addStaticShape(wall);
         }
+        cc.SpriteFrameCache.getInstance().addSpriteFrames(ps_mapPlist,ps_mapPNG);
+        var itemstrList = ["scene.psd_Psd.Dir/keng.png",
+            "scene.psd_Psd.Dir/keng2.png",
+            "scene.psd_Psd.Dir/dibanshikuai.png",
+            "scene.psd_Psd.Dir/caopi.png",
+            "scene.psd_Psd.Dir/caopi2.png",
+            "scene.psd_Psd.Dir/caopi3.png",
+            "scene.psd_Psd.Dir/caopi1.png",
+            "scene.psd_Psd.Dir/caogu.png",
+            "scene.psd_Psd.Dir/caogu2.png"];
+        var itemList = [];
+        var itemFreq = [15,15,5,1,1,1,1,8,8];
+        for(var i = 0; i < itemstrList.length; i++)
+        {
+            itemList[i] = cc.Sprite.createWithSpriteFrameName(itemstrList[i]);
+        }
+
         //draw the base map
         var tempSprite = cc.Sprite.create(map_base);
         //this.addChild(background, Z_MOUNTAINS , cc._p(0.2, 0.2), cc._p(0,-150));
         //tempSprite.getTexture().setTexParameters(gl.LINEAR, gl.LINEAR, gl.REPEAT, gl.CLAMP_TO_EDGE);
-        this.rt.beginWithClear(0,255,0,255);
+        this.rt.beginWithClear(0.27450980392157,0.30980392156863,0.23529411764706,1);
         //this.rt.setAnchorPoint(cc.p(0,0));
         this.rt.addChild(tempSprite);
         tempSprite.setVisible(true);
@@ -195,8 +218,37 @@ var RandomMap = cc.Class.extend({
                 tempSprite.visit();
             }
         }
+
+
+        for(var i = 0; i < itemList.length; i ++)
+        {
+            for(var k = 0; k < itemFreq[i]; k++)
+            {
+                itemList[i].setPosition(Math.random()*width, Math.random()*height);
+                itemList[i].visit();
+            }
+        }
+
+
+
         this.rt.end();
         tempSprite.removeFromParent();
+        this.generateObstacles(width, height);
+
+    },
+    generateObstacles:function(width, height){
+        var cam = GameController.gameScene.camera;
+
+        for(var i = 0; i < 50; i++)
+        {
+            var tree = cc.Sprite.createWithSpriteFrameName("scene.psd_Psd.Dir/yingguanmu2.png");
+            cam.addChild(tree);
+            var x = Math.random()*width-width/2;
+            var y = Math.random()*height-height/2;
+            tree.setPosition(x,y);
+            tree.setZOrder(-y);
+            new StaticObjec(85,cc.p(x,y));
+        }
     }
 });
 

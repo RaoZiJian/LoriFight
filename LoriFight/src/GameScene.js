@@ -27,7 +27,7 @@ var CameraLayer = cc.Layer.extend({
     onTouchBegan:function(){},
     onTouchesBegan:function(touch){
         var pos = touch[0].getLocation();
-    
+
         GameController.gameScene.sisi.setTarget(cc.pSub(pos,this.getPosition()));
     }
 });
@@ -112,7 +112,9 @@ var GameScene = BaseScene.extend({
         this.addChild(camera);
         //camera.addChild(this.debugNode);
         camera.setPosition(winMid);
-
+        var blur = cc.Sprite.create(s_blur);
+        blur.setAnchorPoint(cc.p(0,0));
+        this.addChild(blur,-99999);
 /*        var layer = GameLayer.create(new cc.Color4B(0,0,255,40));
         layer.setContentSize(cc.size(400, 200));
         camera.addChild(layer);*/
@@ -172,7 +174,7 @@ var GameScene = BaseScene.extend({
         this.winLayer.setAnchorPoint(0.5, 0.5);
         this.winLayer.setPosition(winMid);
         //this.winLayer.setOpacity(0);
-        
+
         this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 
     },
@@ -209,7 +211,7 @@ var GameScene = BaseScene.extend({
         var origin = cc.pSub(sisiPos, this.sisi.getPosition());
 
         var w = size.width, h = size.height;
-        var nb = (w * h / (640*480)) * this.difficult;
+        var nb = (w * h / (960*640)) * this.difficult;
         if(nb == 0) nb = 1;
         for(var i = 0; i < nb; ++i) {
             this.randomEnemies(w, h, origin, maxlvl);

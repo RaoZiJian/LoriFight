@@ -224,6 +224,7 @@ var Sisi = ccs.Armature.extend({
         this.uiLayer.setBloodBarPercent(100 * this.hp / this.fullHp);
         if(this.hp < 0)
             this.falldown();
+        cc.AudioEngine.getInstance().playEffect(a_CCttack_Mp3);
     },
 
     falldown: function() {
