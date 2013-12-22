@@ -36,8 +36,8 @@ s_AngerFire_Png         = "res/UI/angerFire.png";
 s_Shinning_Png          = "res/UI/shinning.png";
 
 // YUYE
-s_win_star1             = "res/UI/star1.png";
-s_win_star2             = "res/UI/star2.png";
+s_win_star1             = "res/UI/start1.png";
+s_win_star2             = "res/UI/start2.png";
 s_win_num1              = "res/UI/num1.png";
 s_win_num2              = "res/UI/num2.png";
 s_win_num3              = "res/UI/num3.png";
@@ -71,7 +71,7 @@ var s_youlost_png = "res/UI/youlose.png";
 var s_mushroomtxt_png = "res/UI/mushroom.png";
 var s_cry_png = "res/UI/cry.png";
 var s_happy_png = "res/UI/happy.png";
-var s_cut_png = "res/UI/cut.png";
+var s_cut_png = "res/Effect/cut.png";
 
 var menu_resources = [
     // WUHAO
