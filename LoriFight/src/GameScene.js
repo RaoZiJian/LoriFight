@@ -18,7 +18,7 @@ GameLayer.create = function (color) {
     return null;
 };
 
-var CameraLayer = cc.LayerColor.extend({
+var CameraLayer = cc.Layer.extend({
     ctor:function(c4b){
         this._super();
         this.init(c4b);
@@ -27,10 +27,28 @@ var CameraLayer = cc.LayerColor.extend({
     onTouchBegan:function(){},
     onTouchesBegan:function(touch){
         var pos = touch[0].getLocation();
-    
+
         GameController.gameScene.sisi.setTarget(cc.pSub(pos,this.getPosition()));
     }
 });
+
+/*var ResultLayer = cc.Layer.extend({
+    panel: null,
+    cry: null,
+    happy: null,
+    title: null,
+    nextBtn: null,
+    replayBtn: null,
+    mushroomtxt: null,
+
+    ctor: function() {
+        this._super();
+        this.init();
+
+        this.panel = cc.Sprite.initWithFile(s_result_panel, cc.rect(0, 0, 760, 422));
+        this.head = cc.Sprite.initWithFile(s_cry_png, cc.rect(0, 0, 760, 422));
+    }
+});*/
 
 
 var GameScene = BaseScene.extend({
@@ -51,15 +69,33 @@ var GameScene = BaseScene.extend({
     camera: null,
     sisi: null,
     winMid: null,
-    mapSize: cc.size(0, 0),
+    mapSize: cc.size(3000, 2500),
     mapSisiPos: cc.p(0, 0),
+    mapNode:null,
 
     // Pause
     pause: false,
 
+    slimeBatch:null,
+
+    cutSprite: null,
+    cutAction: null,
+    cutting: false,
+    fadeIn: null,
+    fadeOut: null,
+    preAction: null,
+    postAction: null,
+
+    // win layer
+    winLayer: null,
+
     onEnter: function () {
         // Load armature
+
         ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
+        cc.AudioEngine.getInstance().preloadSound(a_BKMusic_Mp3);
+        cc.AudioEngine.getInstance().preloadSound(a_Zombie_Mp3);
+        cc.AudioEngine.getInstance().playMusic(a_BKMusic_Mp3,true);
 
         this._super();
 
@@ -70,7 +106,7 @@ var GameScene = BaseScene.extend({
         this.gameMenuUI = new GameUILayer();
         this.gameMenuUI.init();
 
-        var camera = this.camera = new CameraLayer(cc.c4b(0,255,0,30));
+        var camera = this.camera = new CameraLayer();
         this.addChild(camera);
         //camera.addChild(this.debugNode);
         camera.setPosition(winMid);
@@ -86,23 +122,63 @@ var GameScene = BaseScene.extend({
 
         this.addChild(this.gameMenuUI, 5);
 
+        this.slimeBatch = cc.SpriteBatchNode.create(s_slime_png);
+        camera.addChild(this.slimeBatch);
+        this.zombieBatch = cc.SpriteBatchNode.create(s_zombie_png);
+        camera.addChild(this.zombieBatch);
+        this.wolfBatch = cc.SpriteBatchNode.create(s_loup_png);
+        camera.addChild(this.wolfBatch);
+
         this.pause = false;
 
         var shinningMushroom = new GoldenMushroom(cc.p(200,300));
         this.camera.addChild(shinningMushroom);
 
-        //var sticky = new StickyMushroom(cc.p(400,500));
-        //sticky.trigger();
-        //this.camera.addChild(sticky);
+        var sticky = new StickyMushroom(cc.p(400,500));
+        this.camera.addChild(sticky);
         this.scheduleUpdate();
 
-        this.setup(cc.size(960, 640), cc.p(300, 200), 1, 3);
+        var roar = new RoarMushroom(cc.p(500,300));
+        this.camera.addChild(roar);
+
+        var visible = new VisibleMushroom(cc.p(100,300));
+        this.camera.addChild(visible);
+
+        var shift = new ShiftMushroom(cc.p(100,533));
+        this.camera.addChild(shift);
+
+
+        this.cutSprite = new cc.Sprite.create(s_cut_png, cc.rect(0, 0, 143, 102));
+        this.cutSprite.setOpacity(0);
+        this.cutSprite._setZOrder(10000);
+        this.cutSprite.setScaleX(-0.5, 0.5);
+        this.cutSprite.setAnchorPoint(0.5, 0.5);
+
+        this.fadeIn = cc.FadeIn.create(0.2);
+        this.fadeOut = cc.FadeOut.create(0.1);
+        this.preAction = cc.CallFunc.create(this.blockCut, this);
+        this.postAction = cc.CallFunc.create(this.reactiveCut, this);
+        this.cutAction = cc.Sequence.create( this.preAction,
+            cc.Spawn.create(cc.ScaleTo.create(0.2, -1.2, 1.2), this.fadeIn),
+            cc.Spawn.create(cc.ScaleTo.create(0.1, -1.4, 1.4), this.fadeOut),
+            this.postAction );
+        this.camera.addChild(this.cutSprite);
+
+        this.winLayer = new WinLayer();
+        this.addChild(this.winLayer, 20000, "win");
+        this.winLayer.setAnchorPoint(0.5, 0.5);
+        this.winLayer.setPosition(winMid);
+        //this.winLayer.setOpacity(0);
+
+        this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 
     },
 
     randomEnemies: function(w, h, origin, maxlvl) {
-        var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), origin );
-
+        //var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), cc.pNeg(origin) );
+        w = w-200;
+        h = h-200;
+        var pos = cc.p(w*Math.random()-(w/2), h*Math.random()-(h/2));
         var classid = Math.floor(Math.random() * 3);
         var count;
         if(classid == 0) {
@@ -130,15 +206,38 @@ var GameScene = BaseScene.extend({
         var origin = cc.pSub(sisiPos, this.sisi.getPosition());
 
         var w = size.width, h = size.height;
-        var nb = (w * h / (960*640)) * this.difficult;
+        var nb = (w * h / (640*480)) * this.difficult;
         if(nb == 0) nb = 1;
         for(var i = 0; i < nb; ++i) {
             this.randomEnemies(w, h, origin, maxlvl);
         }
+        var map =this.mapNode = new RandomMap(this.mapSize.width, this.mapSize.height);
+        this.camera.addChild(map.rt, -5000);
     },
 
     addEnemies: function(type, level, pos, count) {
         new type(level, pos, count);
+    },
+
+    cutEffect: function() {
+        if(!this.cutting) {
+            var s = this.sisi.getScaleX() < 0 ? -1 : 1;
+            this.cutAction = cc.Sequence.create( this.preAction,
+                cc.Spawn.create(cc.ScaleTo.create(0.2, s * -1.2, 1.2), this.fadeIn),
+                cc.Spawn.create(cc.ScaleTo.create(0.1, s * -1.4, 1.4), this.fadeOut),
+                this.postAction );
+            this.cutSprite.setScaleX( s * -0.5, 0.5);
+            this.cutSprite.setPosition( cc.pAdd(this.sisi.getPosition(), cc.p( s * this.sisi.getContentSize().width/2, 0)) );
+            this.cutSprite.runAction(this.cutAction);
+        }
+    },
+    blockCut: function() {
+        this.cutting = true;
+    },
+    reactiveCut: function() {
+        this.cutting = false;
+        this.cutSprite.setScale(-0.5, 0.5);
+        this.cutSprite.setOpacity(0);
     },
 
     update:function()
