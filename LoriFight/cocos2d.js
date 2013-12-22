@@ -48,6 +48,8 @@
             'src/actor/Skill.js',
             'src/actor/Weapon.js',
 
+            'src/WinLaye.js',
+
             'src/GameController.js',
             'src/MenuScene.js',
             'src/LevelScene.js',
@@ -58,8 +60,7 @@
 
             'src/Item/item.js',
             'src/UILayer/GameUILayer.js',
-            'src/Level/Level.js',
-            'src/WinLayer'
+            'src/Level/Level.js'
             //'src/myApp.js'//add your own files in order here
         ]
     };
