@@ -123,12 +123,12 @@ var GameScene = BaseScene.extend({
         var shift = new ShiftMushroom(cc.p(100,533));
         this.camera.addChild(shift);
 
-        this.setup(cc.size(960, 640), cc.p(300, 200), 1, 3);
+        this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 
     },
 
     randomEnemies: function(w, h, origin, maxlvl) {
-        var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), origin );
+        var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), cc.pNeg(origin) );
 
         var classid = Math.floor(Math.random() * 3);
         var count;
