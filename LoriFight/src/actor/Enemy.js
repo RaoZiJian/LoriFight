@@ -136,6 +136,11 @@ var Enemy = cc.Sprite.extend({
         }
     },
 
+    setRadius: function(radius) {
+        this.radius = radius;
+        this.body.setRadius(radius);
+    },
+
     stopAttack: function() {
         this.attacking = false;
         this.walk();
@@ -280,6 +285,7 @@ var SlimeLeader = Slime.extend({
             var buddy = new Slime(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
             var s = Math.random() * 0.8 + 0.6;
             buddy.setScale(s);
+            //buddy.setRadius(s * buddy.radius);
             //buddy.setColor(cc.c3b(100 + 100 * Math.random(), 20 * 100 * Math.random(), 50 + 60 * Math.random()));
             this.buddies.push(buddy);
         }
@@ -415,6 +421,7 @@ var ZombieLeader = Zombie.extend({
             var buddy = new Zombie(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
             var s = Math.random()*0.5 + 1;
             buddy.setScale(s);
+            //buddy.setRadius(s * buddy.radius);
             this.buddies.push(buddy);
         }
     },

@@ -93,7 +93,7 @@ var GameScene = BaseScene.extend({
         // Load armature
 
         ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
-
+        ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_angry_json);
 
         cc.AudioEngine.getInstance().preloadSound(a_BKMusic_Mp3);
         cc.AudioEngine.getInstance().preloadSound(a_Zombie_Mp3);
@@ -120,6 +120,7 @@ var GameScene = BaseScene.extend({
         camera.addChild(layer);*/
 
         this.sisi = new Sisi();
+        this.sisi.initialize();
         this.sisi.setPosition(0,0);
         this.sisi.body.setPosition(cc.p(0,0));
         camera.addChild(this.sisi);

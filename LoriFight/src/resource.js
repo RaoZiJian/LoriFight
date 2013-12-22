@@ -160,7 +160,10 @@ var menu_resources = [
     {src:s_loup_png},
     {src:s_zombie_plist},
     {src:s_zombie_png},
-    {src:s_cut_png}
+    {src:s_cut_png},
+    {src:s_angry_json},
+    {src:s_angry_png},
+    {src:s_angry_plist}
 ];
 
 var level_resources = [
