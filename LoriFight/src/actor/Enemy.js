@@ -403,7 +403,6 @@ var Zombie = Enemy.extend({
             this.scheduleOnce(this.slash,0);
         }
         this.scheduleOnce(this.stopAttack, 0.8);
-        cc.AudioEngine.getInstance().playEffect(a_Zombie_Mp3);
     }
 });
 var ZombieLeader = Zombie.extend({
@@ -432,7 +431,8 @@ var ZombieLeader = Zombie.extend({
     die:function(){
     this._super();
     var idx = EnemyLeaderContainer.indexOf(this);
-    if(idx !== -1)
+        cc.AudioEngine.getInstance().playEffect(a_Zombie_Mp3);
+        if(idx !== -1)
         EnemyLeaderContainer.splice(idx,1);
 }
 });

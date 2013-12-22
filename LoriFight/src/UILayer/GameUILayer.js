@@ -125,13 +125,15 @@ var GameUILayer = ccs.UILayer.extend({
 
     addMushroomBuffStatus:function(mushroomBuff){
 
-        this.mushroomBuffArray.push(mushroomBuff);
+        if(this.mushroomBuffArray != null && this.mushroomBuffArray.length<6){
+            this.mushroomBuffArray.push(mushroomBuff);
 
-        mushroomBuff.setAnchorPoint(cc.p(0,0))
-        mushroomBuff.setPosition(cc.p(this.bloodBar.getPosition().x + this.mushroomBuffArray.length * 60 + 80,this.bloodBar.getPosition().y -20));
+            mushroomBuff.setAnchorPoint(cc.p(0,0))
+            mushroomBuff.setPosition(cc.p(this.bloodBar.getPosition().x + this.mushroomBuffArray.length * 60 + 80,this.bloodBar.getPosition().y -20));
 
-        cc.log(mushroomBuff.getPosition());
+            cc.log(mushroomBuff.getPosition());
 
-        this.addChild(mushroomBuff);
+            this.addChild(mushroomBuff);
+         }
     }
 });

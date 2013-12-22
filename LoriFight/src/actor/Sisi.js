@@ -186,7 +186,6 @@ var Sisi = ccs.Armature.extend({
             this.scheduleOnce(this.slash,0.0016);
         }
         this.scheduleOnce(this.stopAttack, 0.8);
-        cc.AudioEngine.getInstance().playEffect(a_CCttack_Mp3);
     },
     killedOne: function(enemy) {
         this.killed++;
@@ -219,6 +218,7 @@ var Sisi = ccs.Armature.extend({
         this.uiLayer.setBloodBarPercent(100 * this.hp / this.fullHp);
         if(this.hp < 0)
             this.falldown();
+        cc.AudioEngine.getInstance().playEffect(a_CCttack_Mp3);
     },
 
     falldown: function() {
