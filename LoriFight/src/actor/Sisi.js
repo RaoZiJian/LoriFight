@@ -52,11 +52,10 @@ var Sisi = ccs.Armature.extend({
     emotion: null,
 
     skill: null,
+    angerCount: 0,
 
     attackPos:null,
-    ctor: function() {
-        this._super();
-
+    initialize: function() {
         //this.init(s_sisi, cc.rect(0, 0, 52, 110));
         this.init("CCArmature");
 
@@ -68,7 +67,7 @@ var Sisi = ccs.Armature.extend({
         this.mushrooms = [];
 
         //if(!this.loadFromLocal())
-            this.setLevel(1);
+        this.setLevel(1);
 
         this.updateScore();
     },
@@ -139,21 +138,28 @@ var Sisi = ccs.Armature.extend({
         this.mushrooms.push( mushroom );
         mushroom.trigger();
         this.anger += mushroom.angerValue;
+        this.angerCount++;
 
         var prev = this.uiLayer.angerFire.length;
         this.uiLayer.setAngerExpression(this.anger);
         var curr = this.uiLayer.angerFire.length;
-        if(prev == 4 && curr == 5) {
-            this.explode();
+        if(this.angerCount >= 5) {
+            this.scheduleOnce(this.explode, 0);
         }
 
         this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0);
     },
 
     explode: function() {
+        var sisiAngry = new SisiAngry();
+        sisiAngry.initialize();
+        sisiAngry.setPosition(this.getPosition());
+        sisiAngry.body.setPosition(cc.p(0,0));
 
-        this.setArmatureData()
-
+        var parent = this.getParent();
+        parent.removeChild(this);
+        parent.addChild(sisiAngry);
+        GameController.gameScene.sisi = sisiAngry;
     },
 
     stop: function() {
@@ -258,6 +264,30 @@ var Sisi = ccs.Armature.extend({
         this.updateMushrooms();
     }
 
+});
+
+var SisiAngry = Sisi.extend({
+    initialize: function() {
+        this.init("CCAngryAnimation");
+
+        this.uiLayer = GameController.gameScene.gameMenuUI;
+
+        this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
+        this.body.shape.setCollisionType(SISI_COL_TYPE);
+
+        this.mushrooms = [];
+
+        //if(!this.loadFromLocal())
+        this.setLevel(1);
+
+        this.updateScore();
+
+        this.walk();
+    },
+
+    explode: function() {
+
+    }
 });
 
 var Slash = cc.Class.extend({

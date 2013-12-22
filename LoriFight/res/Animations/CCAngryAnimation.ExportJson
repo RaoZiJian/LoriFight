@@ -194,7 +194,7 @@
       "name": "CCAngryAnimation",
       "mov_data": [
         {
-          "name": "AngryWalking",
+          "name": "Walking",
           "dr": 21,
           "lp": true,
           "to": 0,
@@ -487,7 +487,7 @@
           ]
         },
         {
-          "name": "AngryAttacking",
+          "name": "Attacking",
           "dr": 11,
           "lp": false,
           "to": 0,
@@ -780,7 +780,7 @@
           ]
         },
         {
-          "name": "AngryStanding",
+          "name": "Standing",
           "dr": 21,
           "lp": true,
           "to": 0,
