@@ -93,6 +93,8 @@ var GameScene = BaseScene.extend({
         // Load armature
 
         ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
+
+
         cc.AudioEngine.getInstance().preloadSound(a_BKMusic_Mp3);
         cc.AudioEngine.getInstance().preloadSound(a_Zombie_Mp3);
         cc.AudioEngine.getInstance().playMusic(a_BKMusic_Mp3,true);

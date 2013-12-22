@@ -80,6 +80,9 @@ var s_mushroomtxt_png = "res/UI/mushroom.png";
 var s_cry_png = "res/UI/cry.png";
 var s_happy_png = "res/UI/happy.png";
 var s_cut_png = "res/Effect/cut.png";
+var s_angry_json = "res/Animations/CCAngryAnimation.ExportJson";
+var s_angry_png = "res/Animations/CCAngryAnimation0.plist";
+var s_angry_plist = "res/Animations/CCAngryAnimation0.png";
 
 var menu_resources = [
     // WUHAO
@@ -118,6 +121,7 @@ var menu_resources = [
     {src:a_Zombie_Mp3},
     {src:a_BKMusic_Mp3},
     {src:a_CCttack_Mp3},
+
     // YUYE
     {src:s_win_star1},
     {src:s_win_star2},
