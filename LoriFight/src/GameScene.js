@@ -32,6 +32,24 @@ var CameraLayer = cc.LayerColor.extend({
     }
 });
 
+/*var ResultLayer = cc.Layer.extend({
+    panel: null,
+    cry: null,
+    happy: null,
+    title: null,
+    nextBtn: null,
+    replayBtn: null,
+    mushroomtxt: null,
+
+    ctor: function() {
+        this._super();
+        this.init();
+
+        this.panel = cc.Sprite.initWithFile(s_result_panel, cc.rect(0, 0, 760, 422));
+        this.head = cc.Sprite.initWithFile(s_cry_png, cc.rect(0, 0, 760, 422));
+    }
+});*/
+
 
 var GameScene = BaseScene.extend({
     res: game_resources,
