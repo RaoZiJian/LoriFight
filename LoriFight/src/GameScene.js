@@ -81,6 +81,10 @@ var GameScene = BaseScene.extend({
     cutSprite: null,
     cutAction: null,
     cutting: false,
+    fadeIn: null,
+    fadeOut: null,
+    preAction: null,
+    postAction: null,
 
     onEnter: function () {
         // Load armature
@@ -147,10 +151,14 @@ var GameScene = BaseScene.extend({
         this.cutSprite.setScaleX(-0.5, 0.5);
         this.cutSprite.setAnchorPoint(0.5, 0.5);
 
-        this.cutAction = cc.Sequence.create( cc.CallFunc.create(this.blockCut, this),
-            cc.Spawn.create(cc.ScaleTo.create(0.2, -1.2, 1.2), cc.FadeIn.create(0.2)),
-            cc.Spawn.create(cc.ScaleTo.create(0.1, -1.4, 1.4), cc.FadeOut.create(0.1)),
-            cc.CallFunc.create(this.reactiveCut, this));
+        this.fadeIn = cc.FadeIn.create(0.2);
+        this.fadeOut = cc.FadeOut.create(0.1);
+        this.preAction = cc.CallFunc.create(this.blockCut, this);
+        this.postAction = cc.CallFunc.create(this.reactiveCut, this);
+        this.cutAction = cc.Sequence.create( this.preAction,
+            cc.Spawn.create(cc.ScaleTo.create(0.2, -1.2, 1.2), this.fadeIn),
+            cc.Spawn.create(cc.ScaleTo.create(0.1, -1.4, 1.4), this.fadeOut),
+            this.postAction );
         this.camera.addChild(this.cutSprite);
         
         this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
@@ -204,8 +212,13 @@ var GameScene = BaseScene.extend({
 
     cutEffect: function() {
         if(!this.cutting) {
-            this.cutSprite.setScaleX( this.sisi.getScaleX() < 0 ? -0.5 : 0.5, 0.5);
-            this.cutSprite.setPosition( cc.pAdd(this.sisi.getPosition(), cc.p(this.sisi.getContentSize().width/2, 0)) );
+            var s = this.sisi.getScaleX() < 0 ? -1 : 1;
+            this.cutAction = cc.Sequence.create( this.preAction,
+                cc.Spawn.create(cc.ScaleTo.create(0.2, s * -1.2, 1.2), this.fadeIn),
+                cc.Spawn.create(cc.ScaleTo.create(0.1, s * -1.4, 1.4), this.fadeOut),
+                this.postAction );
+            this.cutSprite.setScaleX( s * -0.5, 0.5);
+            this.cutSprite.setPosition( cc.pAdd(this.sisi.getPosition(), cc.p( s * this.sisi.getContentSize().width/2, 0)) );
             this.cutSprite.runAction(this.cutAction);
         }
     },

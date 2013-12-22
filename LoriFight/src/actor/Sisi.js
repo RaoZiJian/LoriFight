@@ -69,6 +69,8 @@ var Sisi = ccs.Armature.extend({
 
         if(!this.loadFromLocal())
             this.setLevel(1);
+
+        this.updateScore();
     },
 
     saveToLocal: function() {
@@ -118,15 +120,15 @@ var Sisi = ccs.Armature.extend({
         this.power = this.preserved.power;
     },
 
-    removeMushroom: function() {
+    updateMushrooms: function() {
         for(var i = 0, l = this.mushrooms.length; i < this.mushrooms.length; i++) {
             var mushroom = this.mushrooms[i];
-            if(mushroom.destroyed && !mushroom.sisiAttacked) {
+            mushroom.refresh();
+            if(mushroom.isEnded) {
                 var res = this.mushrooms.splice(i, 1);
                 if(res.length != 0) i--;
             }
         }
-
     },
 
     gotMushroom: function(mushroom) {
@@ -143,9 +145,6 @@ var Sisi = ccs.Armature.extend({
         var curr = this.uiLayer.angerFire.length;
         if(prev == 4 && curr == 5) {
             this.explode();
-        }
-        else {
-            this.scheduleOnce(this.resetPreserved, mushroom.duration);
         }
 
         this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0);
@@ -179,10 +178,7 @@ var Sisi = ccs.Armature.extend({
             for(var i = 0, l = this.mushrooms.length; i < l; i++) {
                 var mushroom = this.mushrooms[i];
                 if(mushroom && mushroom.sisiAttacked) {
-                    var ended = mushroom.sisiAttacked(this);
-                    if(ended) {
-                        this.removeMushroom(mushroom);
-                    }
+                    mushroom.sisiAttacked(this);
                 }
             }
             this.scheduleOnce(this.slash,0.0016);
@@ -198,11 +194,7 @@ var Sisi = ccs.Armature.extend({
             this.exp = 0;
             this.saveToLocal();
         }
-        var score = this.levelBut - this.killed;
-        this.uiLayer.setScore(score >= 0 ? score : 0);
-        if(score <= 0) {
-            GameController.gameScene.win();
-        }
+        this.updateScore();
     },
 
     slash:function(){
@@ -234,6 +226,14 @@ var Sisi = ccs.Armature.extend({
         x < 0 ? this.setScaleX(-1) : this.setScaleX(1);
     },
 
+    updateScore: function() {
+        var score = this.levelBut - this.killed;
+        this.uiLayer.setScore(score >= 0 ? score : 0);
+        if(score <= 0) {
+            GameController.gameScene.win();
+        }
+    },
+
     updateSisi: function() {
         // Control sprite's physic node
         // Apply force with speed
@@ -253,7 +253,7 @@ var Sisi = ccs.Armature.extend({
         this.setPosition(pos);
         this.setZOrder(-pos.y);
 
-        this.removeMushroom();
+        this.updateMushrooms();
     }
 
 });
