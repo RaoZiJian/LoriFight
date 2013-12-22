@@ -24,6 +24,7 @@ var CameraLayer = cc.LayerColor.extend({
         this.init(c4b);
         this.setTouchEnabled(true);
     },
+    onTouchBegan:function(){},
     onTouchesBegan:function(touch){
         var pos = touch[0].getLocation();
     
@@ -86,7 +87,7 @@ var GameScene = BaseScene.extend({
         this.addChild(this.gameMenuUI, 5);
 
         this.pause = false;
-
+        new SlimeLeader(5,cc.p(200,400), 30)
         var shinningMushroom = new goldenMushroom(cc.p(200,300));
         shinningMushroom.trigger();
         this.camera.addChild(shinningMushroom);

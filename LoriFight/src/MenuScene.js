@@ -19,7 +19,7 @@ var MenuLayer = cc.LayerColor.extend({
         this.addChild(menu, 1, 2);
         menu.setPosition(winSize.width / 2, winSize.height / 2);
 
-        this.setTouchEnabled(true);
+        //this.setTouchEnabled(true);
         return true;
     },
 
