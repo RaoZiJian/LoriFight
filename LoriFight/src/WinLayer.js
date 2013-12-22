@@ -81,6 +81,8 @@ var WinLayer = cc.LayerColor.extend({
         var num1;
         var num2;
 
+
+                                    
         if(0 == totalMasuNum)
         {
             num1 = cc.Sprite.create(s_win_num0);

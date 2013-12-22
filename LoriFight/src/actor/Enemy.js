@@ -26,7 +26,7 @@ var ENEMY_DATA = {
         power_step: 3,
         maxSpeed: 100,
         accel: 40,
-        radius: 20,
+        radius: 35,
         weight: 3
     },
 
@@ -37,7 +37,7 @@ var ENEMY_DATA = {
         power_step: 2,
         maxSpeed: 55,
         accel: 10,
-        radius: 20,
+        radius: 30,
         weight: 10
     }
 }

@@ -2,6 +2,8 @@
 fx_blood            = "res/spark.plist";
 fx_pop              = "res/pop.plist";
 map_base            = "res/basegrass.png";
+ps_mapPlist         = "res/MapItems0.plist";
+ps_mapPNG           = "res/MapItems0.png";
 
 // ZIJIAN
 s_blood                 = "res/UI/blood.png";
@@ -80,12 +82,17 @@ var s_mushroomtxt_png = "res/UI/mushroom.png";
 var s_cry_png = "res/UI/cry.png";
 var s_happy_png = "res/UI/happy.png";
 var s_cut_png = "res/Effect/cut.png";
+var s_angry_json = "res/Animations/CCAngryAnimation.ExportJson";
+var s_angry_png = "res/Animations/CCAngryAnimation0.plist";
+var s_angry_plist = "res/Animations/CCAngryAnimation0.png";
 
 var menu_resources = [
     // WUHAO
     {src:fx_blood},
     {src:fx_pop},
     {src:map_base},
+    {src:ps_mapPlist},
+    {src:ps_mapPNG},
 
     // ZIJIAN
     {src:s_blood},
@@ -118,6 +125,7 @@ var menu_resources = [
     {src:a_Zombie_Mp3},
     {src:a_BKMusic_Mp3},
     {src:a_CCttack_Mp3},
+
     // YUYE
     {src:s_win_star1},
     {src:s_win_star2},
