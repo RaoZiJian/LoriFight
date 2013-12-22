@@ -2,9 +2,9 @@
  * Created by panda on 12/20/13.
  */
 
-var WinLayer = cc.LayerColor.extend({
+var FailLayer = cc.LayerColor.extend({
 
-    init: function(color,score)
+    init: function(color)
     {
         this._super(color);
 
@@ -16,44 +16,12 @@ var WinLayer = cc.LayerColor.extend({
         menu.setPosition(0, 0);
 
 
-        var bg = cc.Sprite.create(s_win_winBgPic);
+        var bg = cc.Sprite.create(s_win_FailBg);
         bg.setPosition(winSize.width / 2, winSize.height / 2);
         this.addChild(bg,1,2);
 
 
-        var startSp1 = cc.Sprite.create(s_win_star1);
-        startSp1.setScale(0.8);
-
-        var startItem1 = cc.MenuItemSprite.create(startSp1,cc.Sprite.create(s_win_star1));
-        startItem1.setCallback(function()
-        {
-            //cc.Director.getInstance().pushScene(GameController.gameScene);
-        }, this);
-        startItem1.setPosition(winSize.width / 2.50, winSize.height / 2.1);
-        menu.addChild(startItem1,1,2);
-        startSp1.setRotation(-10);
-
-        var startSp2 = cc.Sprite.create(s_win_star1);
-        var startItem2 = cc.MenuItemSprite.create(startSp2,cc.Sprite.create(s_win_star1));
-        startItem2.setCallback(function()
-        {
-            ;
-        }, this);
-        startItem2.setPosition(winSize.width / 2, winSize.height / 2);
-        menu.addChild(startItem2,1,2);
-
-        var startSp3 = cc.Sprite.create(s_win_star1);
-        startSp3.setScale(0.8);
-        var startItem3 = cc.MenuItemSprite.create(startSp3,cc.Sprite.create(s_win_star2));
-        startItem3.setCallback(function()
-        {
-            ;
-        }, this);
-        startItem3.setPosition(winSize.width / 1.62, winSize.height / 2.1);
-        menu.addChild(startItem3,1,2);
-        startSp3.setRotation(10);
-
-        this.showPoint(score,this);
+        this.showPoint(9,this);
 
 
         var rePlaySp = cc.Sprite.create(s_win_replay);
@@ -171,9 +139,9 @@ var WinLayer = cc.LayerColor.extend({
     }
 
 });
-/*
-WinLayer.create = function (color) {
-    var layer = new WinLayer();
+
+FailLayer.create = function (color) {
+    var layer = new FailLayer();
     if (layer && layer.init(color)) {
         return layer;
     }
@@ -181,15 +149,14 @@ WinLayer.create = function (color) {
 };
 
 
-var WinScene = BaseScene.extend({
+var FailScene = BaseScene.extend({
     layer: null,
 
     res: menu_resources,
 
     onEnter: function () {
         this._super();
-        this.layer = WinLayer.create(cc.c4b(255,0,0,255));
+        this.layer = FailLayer.create(cc.c4b(255,0,0,255));
         this.addChild(this.layer);
     }
 });
-*/

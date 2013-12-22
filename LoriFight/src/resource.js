@@ -55,9 +55,9 @@ s_win_winBgPic          = "res/UI/winBgPic.png";
 s_win_replay            = "res/UI/replay.png";
 s_win_next              = "res/UI/next.png";
 
-
-s_win_startBg                  = "res/UI/startBg.png";
-s_win_startBtn                  = "res/UI/startBtn.png";
+s_win_startBg           = "res/UI/startBg.png";
+s_win_startBtn          = "res/UI/startBtn.png";
+s_win_FailBg            ="res/UI/FailBg.png";
 //s_win_                  = "res/UI/.png";
 
 
@@ -134,6 +134,7 @@ var menu_resources = [
     {src:s_win_next},
     {src:s_win_startBg},
     {src:s_win_startBtn},
+    {src:s_win_FailBg},
     //{src:},
 // HUABIN
     {src:s_sisi},
