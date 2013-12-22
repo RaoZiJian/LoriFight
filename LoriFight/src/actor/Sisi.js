@@ -182,7 +182,11 @@ var Sisi = ccs.Armature.extend({
             this.exp = 0;
             this.saveToLocal();
         }
-        this.uiLayer.setScore(this.killed);
+        var score = this.levelBut - this.killed;
+        this.uiLayer.setScore(score >= 0 ? score : 0);
+        if(score <= 0) {
+            GameController.gameScene.win();
+        }
     },
 
     slash:function(){
@@ -206,7 +210,7 @@ var Sisi = ccs.Armature.extend({
     },
 
     falldown: function() {
-
+        GameController.gameScene.lost();
     },
 
     setDirection: function(x) {

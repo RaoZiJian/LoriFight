@@ -161,5 +161,13 @@ var GameScene = BaseScene.extend({
                 this.randomEnemies(this.mapSize.width, this.mapSize.height, pos, this.sisi.level);
             }
         }
+    },
+
+    win: function() {
+
+    },
+
+    lost: function() {
+
     }
 });
