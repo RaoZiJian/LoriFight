@@ -152,6 +152,8 @@ var Sisi = ccs.Armature.extend({
 
     explode: function() {
 
+        this.setArmatureData()
+
     },
 
     stop: function() {
