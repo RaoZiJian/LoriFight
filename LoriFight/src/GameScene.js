@@ -210,7 +210,7 @@ var GameScene = BaseScene.extend({
         var origin = cc.pSub(sisiPos, this.sisi.getPosition());
 
         var w = size.width, h = size.height;
-        var nb = (w * h / (640*480)) * this.difficult;
+        var nb = (w * h / (960*640)) * this.difficult;
         if(nb == 0) nb = 1;
         for(var i = 0; i < nb; ++i) {
             this.randomEnemies(w, h, origin, maxlvl);
