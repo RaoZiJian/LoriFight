@@ -67,7 +67,7 @@ var Sisi = ccs.Armature.extend({
 
         this.mushrooms = [];
 
-        if(!this.loadFromLocal())
+        //if(!this.loadFromLocal())
             this.setLevel(1);
 
         this.updateScore();
@@ -190,9 +190,9 @@ var Sisi = ccs.Armature.extend({
 
         this.exp += enemy.exp;
         if(this.exp > this.levelup_exp) {
-            this.setLevel(this.level+1);
+            //this.setLevel(this.level+1);
             this.exp = 0;
-            this.saveToLocal();
+            //this.saveToLocal();
         }
         this.updateScore();
     },
