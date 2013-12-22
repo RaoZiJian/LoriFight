@@ -64,7 +64,13 @@ var s_loup_png = "res/Animations/loup.png";
 var s_loup_plist = "res/Animations/loup.plist";
 var s_zombie_png = "res/Animations/zombie.png";
 var s_zombie_plist = "res/Animations/zombie.plist";
-
+var s_result_panel = "res/UI/resultUI.png";
+var s_replay_png = "res/UI/replay.png";
+var s_next_png = "res/UI/next.png";
+var s_youlost_png = "res/UI/youlose.png";
+var s_mushroomtxt_png = "res/UI/mushroom.png";
+var s_cry_png = "res/UI/cry.png";
+var s_happy_png = "res/UI/happy.png";
 
 var menu_resources = [
     // WUHAO
@@ -112,8 +118,12 @@ var menu_resources = [
     {src:s_loup_plist},
     {src:s_loup_png},
     {src:s_zombie_plist},
-    {src:s_zombie_png}
-
+    {src:s_zombie_png},
+    {src:s_result_panel},
+    {src:s_next_png},
+    {src:s_youlost_png},
+    {src:s_mushroomtxt_png},
+    {src:s_head_png}
 ];
 
 var level_resources = [

@@ -226,12 +226,12 @@ var Sisi = ccs.Armature.extend({
             this.body.targetMove(tar, this.moveSpeed);
 
         }
-        else{
+        else if(this.moving) {
             this.moving = false;
             this.target = null;
             //this.body.body.setVel(cc.p(0, 0));
             if(!this.attacking)
-            this.stand();
+                this.stand();
         }
         this.setPosition(pos);
         this.setZOrder(-pos.y);
