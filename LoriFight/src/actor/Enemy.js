@@ -121,7 +121,6 @@ var Enemy = cc.Sprite.extend({
         //remove this after sprite is properly inited
         this.init(s_sisi, cc.rect(0, 0, 52, 110));
         this.setPosition(pos);
-        GameController.gameScene.camera.addChild(this);
         //this.setScale(0.5);
         this.body.shape.setCollisionType(ENEMY_COL_TYPE);
         if(color)
@@ -129,7 +128,7 @@ var Enemy = cc.Sprite.extend({
 
         this.enemy = GameController.gameScene.sisi;
         this.spriteFrameCache = cc.SpriteFrameCache.getInstance();
-
+        GameController.gameScene.camera.addChild(this);
         this.actionManager = cc.Director.getInstance().getActionManager();
     },
     activate:function(){
@@ -267,6 +266,8 @@ var Slime = Enemy.extend({
         this.runAnime.retain();
         this.attackAnime.retain();
         this.scheduleOnce(this.walk, Math.random());
+        //GameController.gameScene.slimeBatch.addChild(this);
+
     }
 });
 var SlimeLeader = Slime.extend({
@@ -326,6 +327,8 @@ var Wolf = Enemy.extend({
         this.runAnime.retain();
         this.attackAnime.retain();
         this.scheduleOnce(this.walk, Math.random());
+        //GameController.gameScene.wolfBatch.addChild(this);
+
     }
 });
 var WolfLeader = Wolf.extend({
@@ -383,6 +386,8 @@ var Zombie = Enemy.extend({
         this.runAnime.retain();
         this.attackAnime.retain();
         this.scheduleOnce(this.walk, Math.random());
+        //GameController.gameScene.zombieBatch.addChild(this);
+
     }
 });
 var ZombieLeader = Zombie.extend({

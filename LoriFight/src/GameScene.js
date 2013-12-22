@@ -76,6 +76,8 @@ var GameScene = BaseScene.extend({
     // Pause
     pause: false,
 
+    slimeBatch:null,
+
     onEnter: function () {
         // Load armature
         ccs.ArmatureDataManager.getInstance().addArmatureFileInfo(s_CCArmature_ExportJson);
@@ -105,6 +107,13 @@ var GameScene = BaseScene.extend({
 
         this.addChild(this.gameMenuUI, 5);
 
+        this.slimeBatch = cc.SpriteBatchNode.create(s_slime_png);
+        camera.addChild(this.slimeBatch);
+        this.zombieBatch = cc.SpriteBatchNode.create(s_zombie_png);
+        camera.addChild(this.zombieBatch);
+        this.wolfBatch = cc.SpriteBatchNode.create(s_loup_png);
+        camera.addChild(this.wolfBatch);
+
         this.pause = false;
 
         var shinningMushroom = new GoldenMushroom(cc.p(200,300));
@@ -128,8 +137,10 @@ var GameScene = BaseScene.extend({
     },
 
     randomEnemies: function(w, h, origin, maxlvl) {
-        var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), cc.pNeg(origin) );
-
+        //var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), cc.pNeg(origin) );
+        w = w-200;
+        h = h-200;
+        var pos = cc.p(w*Math.random()-(w/2), h*Math.random()-(h/2));
         var classid = Math.floor(Math.random() * 3);
         var count;
         if(classid == 0) {
@@ -157,7 +168,7 @@ var GameScene = BaseScene.extend({
         var origin = cc.pSub(sisiPos, this.sisi.getPosition());
 
         var w = size.width, h = size.height;
-        var nb = (w * h / (960*640)) * this.difficult;
+        var nb = (w * h / (640*480)) * this.difficult;
         if(nb == 0) nb = 1;
         for(var i = 0; i < nb; ++i) {
             this.randomEnemies(w, h, origin, maxlvl);

@@ -5,8 +5,8 @@ var SISI_COL_TYPE = 10;
 var ATTACK_COL_TYPE  = 20;
 
 var SISI_DATA = {
-    base_levelup_xp: 500,
-    levelup_xp_step: 100,
+    base_levelup_xp: 5000,
+    levelup_xp_step: 5000,
     base_hp: 500,
     hp_step: 200,
     base_power: 50,
