@@ -71,6 +71,7 @@ var s_youlost_png = "res/UI/youlose.png";
 var s_mushroomtxt_png = "res/UI/mushroom.png";
 var s_cry_png = "res/UI/cry.png";
 var s_happy_png = "res/UI/happy.png";
+var s_cut_png = "res/UI/cut.png";
 
 var menu_resources = [
     // WUHAO
@@ -133,11 +134,7 @@ var menu_resources = [
     {src:s_loup_png},
     {src:s_zombie_plist},
     {src:s_zombie_png},
-    {src:s_result_panel},
-    {src:s_next_png},
-    {src:s_youlost_png},
-    {src:s_mushroomtxt_png},
-    {src:s_head_png}
+    {src:s_cut_png}
 ];
 
 var level_resources = [

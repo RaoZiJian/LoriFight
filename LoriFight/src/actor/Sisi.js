@@ -50,6 +50,7 @@ var Sisi = ccs.Armature.extend({
 
     mushroom: null,
     emotion: null,
+    cutting: null,
 
     skill: null,
 
@@ -64,6 +65,12 @@ var Sisi = ccs.Armature.extend({
 
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(SISI_COL_TYPE);
+
+        this.cutting = new cc.Sprite.create(s_cut_png, cc.rect(0, 0, 143, 102));
+        this.cutting.setOpacity(0);
+        this.addChild(this.cutting);
+        this.cutting.setAnchorPoint(0, 0.5);
+        this.cutting.setPosition(this.getContentSize().width, this.getContentSize().height/2);
 
         if(!this.loadFromLocal())
             this.setLevel(1);
