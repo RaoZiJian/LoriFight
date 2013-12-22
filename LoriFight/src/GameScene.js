@@ -27,7 +27,7 @@ var CameraLayer = cc.Layer.extend({
     onTouchBegan:function(){},
     onTouchesBegan:function(touch){
         var pos = touch[0].getLocation();
-    
+
         GameController.gameScene.sisi.setTarget(cc.pSub(pos,this.getPosition()));
     }
 });
@@ -171,7 +171,7 @@ var GameScene = BaseScene.extend({
         this.winLayer.setAnchorPoint(0.5, 0.5);
         this.winLayer.setPosition(winMid);
         //this.winLayer.setOpacity(0);
-        
+
         this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 
     },
