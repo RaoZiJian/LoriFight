@@ -57,21 +57,21 @@ var GameUILayer = ccs.UILayer.extend({
             }
         }
 
-        if(angerValue>=100){
-            this.angerExpression = cc.Sprite.create(s_Anger2_Png);
-            this.angerFire = new Array(3);
-        }else if(300>angerValue && angerValue>=200){
-            this.angerExpression = cc.Sprite.create(s_Anger3_Png);
-            this.angerFire = new Array(4);
-        }else if(angerValue>=300){
-            this.angerExpression = cc.Sprite.create(s_Anger4_Png);
-            this.angerFire = new Array(5);
-        }else if(angerValue<=50){
+        if(angerValue<=50){
             this.angerExpression = cc.Sprite.create(s_Anger5_Png);
             this.angerFire = new Array(1);
-        }else if(50<angerValue && angerValue<100){
+        } else if(angerValue>50 && angerValue <=120){
             this.angerExpression = cc.Sprite.create(s_Anger1_Png);
             this.angerFire = new Array(2);
+        }else if(angerValue>120 && angerValue<=200){
+            this.angerExpression = cc.Sprite.create(s_Anger2_Png);
+            this.angerFire = new Array(3);
+        }else if(angerValue>200 && angerValue<=280){
+            this.angerExpression = cc.Sprite.create(s_Anger3_Png);
+            this.angerFire = new Array(4);
+        }else if(angerValue>280){
+            this.angerExpression = cc.Sprite.create(s_Anger4_Png);
+            this.angerFire = new Array(5);
         }
 
         this.angerExpression.setScale(0.6);
@@ -125,7 +125,7 @@ var GameUILayer = ccs.UILayer.extend({
 
     addMushroomBuffStatus:function(mushroomBuff){
 
-        if(this.mushroomBuffArray != null && this.mushroomBuffArray.length<6){
+        if(this.mushroomBuffArray.length<6){
             this.mushroomBuffArray.push(mushroomBuff);
 
             mushroomBuff.setAnchorPoint(cc.p(0,0))
