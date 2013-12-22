@@ -32,6 +32,8 @@ var Sisi = ccs.Armature.extend({
     radius: SISI_DATA.radius,
     anger: 0,
 
+    levelBut: 70,
+
     preserved: {
         power: 0,
         attackSpeed: 0,
@@ -48,6 +50,7 @@ var Sisi = ccs.Armature.extend({
 
     mushroom: null,
     emotion: null,
+    cutting: null,
 
     skill: null,
 
@@ -62,6 +65,12 @@ var Sisi = ccs.Armature.extend({
 
         this.body = new PhysicsObject(this.weight, this.radius, this.moveSpeed);
         this.body.shape.setCollisionType(SISI_COL_TYPE);
+
+        this.cutting = new cc.Sprite.create(s_cut_png, cc.rect(0, 0, 143, 102));
+        this.cutting.setOpacity(0);
+        this.addChild(this.cutting);
+        this.cutting.setAnchorPoint(0, 0.5);
+        this.cutting.setPosition(this.getContentSize().width, this.getContentSize().height/2);
 
         if(!this.loadFromLocal())
             this.setLevel(1);
@@ -180,7 +189,11 @@ var Sisi = ccs.Armature.extend({
             this.exp = 0;
             this.saveToLocal();
         }
-        this.uiLayer.setScore(this.killed);
+        var score = this.levelBut - this.killed;
+        this.uiLayer.setScore(score >= 0 ? score : 0);
+        if(score <= 0) {
+            GameController.gameScene.win();
+        }
     },
 
     slash:function(){
@@ -204,7 +217,7 @@ var Sisi = ccs.Armature.extend({
     },
 
     falldown: function() {
-
+        GameController.gameScene.lost();
     },
 
     setDirection: function(x) {
@@ -220,12 +233,12 @@ var Sisi = ccs.Armature.extend({
             this.body.targetMove(tar, this.moveSpeed);
 
         }
-        else{
+        else if(this.moving) {
             this.moving = false;
             this.target = null;
             //this.body.body.setVel(cc.p(0, 0));
             if(!this.attacking)
-            this.stand();
+                this.stand();
         }
         this.setPosition(pos);
         this.setZOrder(-pos.y);

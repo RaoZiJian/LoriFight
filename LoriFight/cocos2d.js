@@ -49,6 +49,7 @@
             'src/actor/Weapon.js',
 
             'src/GameController.js',
+            'src/WinLayer.js',
             'src/MenuScene.js',
             'src/LevelScene.js',
             'src/GameScene.js',

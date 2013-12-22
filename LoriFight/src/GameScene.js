@@ -32,6 +32,24 @@ var CameraLayer = cc.Layer.extend({
     }
 });
 
+/*var ResultLayer = cc.Layer.extend({
+    panel: null,
+    cry: null,
+    happy: null,
+    title: null,
+    nextBtn: null,
+    replayBtn: null,
+    mushroomtxt: null,
+
+    ctor: function() {
+        this._super();
+        this.init();
+
+        this.panel = cc.Sprite.initWithFile(s_result_panel, cc.rect(0, 0, 760, 422));
+        this.head = cc.Sprite.initWithFile(s_cry_png, cc.rect(0, 0, 760, 422));
+    }
+});*/
+
 
 var GameScene = BaseScene.extend({
     res: game_resources,
@@ -90,16 +108,45 @@ var GameScene = BaseScene.extend({
         this.pause = false;
 
         var shinningMushroom = new GoldenMushroom(cc.p(200,300));
-        shinningMushroom.trigger();
         this.camera.addChild(shinningMushroom);
 
-        //var sticky = new StickyMushroom(cc.p(400,500));
-        //sticky.trigger();
-        //this.camera.addChild(sticky);
+        var sticky = new StickyMushroom(cc.p(400,500));
+        this.camera.addChild(sticky);
         this.scheduleUpdate();
 
-        this.setup(cc.size(960 * 2, 640 * 2), cc.p(300, 200), 1, 3);
+        var roar = new RoarMushroom(cc.p(500,300));
+        this.camera.addChild(roar);
 
+        var visible = new VisibleMushroom(cc.p(100,300));
+        this.camera.addChild(visible);
+
+        var shift = new ShiftMushroom(cc.p(100,533));
+        this.camera.addChild(shift);
+
+        this.setup(cc.size(960, 640), cc.p(300, 200), 1, 3);
+
+    },
+
+    randomEnemies: function(w, h, origin, maxlvl) {
+        var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), origin );
+
+        var classid = Math.floor(Math.random() * 3);
+        var count;
+        if(classid == 0) {
+            count = Math.round(Math.random() * 50);
+        }
+        else if(classid == 1) {
+            count = Math.round(Math.random() * 30);
+        }
+        else {
+            count = Math.round(Math.random() * 20);
+        }
+
+//            this.enemies.push({'type': this.enemiesClass[classid],
+//                               'level': Math.ceil(Math.random()*maxlvl),
+//                               'pos': pos,
+//                               'count': count});
+        this.addEnemies(this.enemiesClass[classid], Math.ceil(Math.random()*maxlvl), pos, count);
     },
 
     setup: function(size, sisiPos, difficult, maxlvl) {
@@ -113,21 +160,7 @@ var GameScene = BaseScene.extend({
         var nb = (w * h / (960*640)) * this.difficult;
         if(nb == 0) nb = 1;
         for(var i = 0; i < nb; ++i) {
-            var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), origin );
-
-            var classid = Math.floor(Math.random() * 3);
-            var count;
-            if(classid == 0) {
-                count = Math.round(Math.random() * 50);
-            }
-            else if(classid == 1) {
-                count = Math.round(Math.random() * 30);
-            }
-            else {
-                count = Math.round(Math.random() * 20);
-            }
-
-            this.addEnemies(this.enemiesClass[classid], Math.ceil(Math.random()*maxlvl), pos, count);
+            this.randomEnemies(w, h, origin, maxlvl);
         }
         var map =this.mapNode = new RandomMap(this.mapSize.width, this.mapSize.height);
         this.camera.addChild(map.rt, -5000);
@@ -145,7 +178,25 @@ var GameScene = BaseScene.extend({
 
             this.sisi.updateSisi();
             var sisipos = this.sisi.getPosition();
-            this.camera.setPosition(cc.pAdd(cc.pNeg(sisipos), this.winMid));
+            var camPos = cc.pAdd(cc.pNeg(sisipos), this.winMid);
+            this.camera.setPosition(camPos);
+
+            var sisiPos = this.sisi.getPosition();
+            // Add new enemies
+            if(EnemyActive.length < 10 && EnemyLeaderContainer.length < 2) {
+                var pos = cc.p(0, 0);
+                pos.x = sisiPos.x + (Math.random()>0.5 ? 1 : -1) * (Math.random() * 100 + this.winMid.x);
+                pos.y = sisiPos.y + (Math.random()>0.5 ? 1 : -1) * (Math.random() * 100 + this.winMid.y);
+                this.randomEnemies(this.mapSize.width, this.mapSize.height, pos, this.sisi.level);
+            }
         }
+    },
+
+    win: function() {
+
+    },
+
+    lost: function() {
+
     }
 });

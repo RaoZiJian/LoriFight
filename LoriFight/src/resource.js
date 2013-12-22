@@ -37,6 +37,24 @@ s_AngerFire_Png         = "res/UI/angerFire.png";
 s_Shinning_Png          = "res/UI/shinning.png";
 
 // YUYE
+s_win_star1             = "res/UI/start1.png";
+s_win_star2             = "res/UI/start2.png";
+s_win_num1              = "res/UI/num1.png";
+s_win_num2              = "res/UI/num2.png";
+s_win_num3              = "res/UI/num3.png";
+s_win_num4              = "res/UI/num4.png";
+s_win_num5              = "res/UI/num5.png";
+s_win_num6              = "res/UI/num6.png";
+s_win_num7              = "res/UI/num7.png";
+s_win_num8              = "res/UI/num8.png";
+s_win_num9              = "res/UI/num9.png";
+s_win_num0              = "res/UI/num0.png";
+s_win_winBgPic          = "res/UI/winBgPic.png";
+s_win_replay            = "res/UI/replay.png";
+s_win_next              = "res/UI/next.png";
+//s_win_                  = "res/UI/.png";
+
+
 
 // HUABIN
 var s_sisi = "res/grossini.png";
@@ -47,7 +65,14 @@ var s_loup_png = "res/Animations/loup.png";
 var s_loup_plist = "res/Animations/loup.plist";
 var s_zombie_png = "res/Animations/zombie.png";
 var s_zombie_plist = "res/Animations/zombie.plist";
-
+var s_result_panel = "res/UI/resultUI.png";
+var s_replay_png = "res/UI/replay.png";
+var s_next_png = "res/UI/next.png";
+var s_youlost_png = "res/UI/youlose.png";
+var s_mushroomtxt_png = "res/UI/mushroom.png";
+var s_cry_png = "res/UI/cry.png";
+var s_happy_png = "res/UI/happy.png";
+var s_cut_png = "res/Effect/cut.png";
 
 var menu_resources = [
     // WUHAO
@@ -84,7 +109,21 @@ var menu_resources = [
     {src:s_ShineMushroom_Png},
     {src:s_ShineBuff_Png},
     // YUYE
-
+    {src:s_win_star1},
+    {src:s_win_star2},
+    {src:s_win_num1},
+    {src:s_win_num2},
+    {src:s_win_num3},
+    {src:s_win_num4},
+    {src:s_win_num5},
+    {src:s_win_num6},
+    {src:s_win_num7},
+    {src:s_win_num8},
+    {src:s_win_num9},
+    {src:s_win_num0},
+    {src:s_win_winBgPic},
+    {src:s_win_replay},
+    {src:s_win_next},
     // HUABIN
     {src:s_sisi},
     {src:s_logo},
@@ -96,8 +135,8 @@ var menu_resources = [
     {src:s_loup_plist},
     {src:s_loup_png},
     {src:s_zombie_plist},
-    {src:s_zombie_png}
-
+    {src:s_zombie_png},
+    {src:s_cut_png}
 ];
 
 var level_resources = [

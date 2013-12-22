@@ -30,8 +30,7 @@ var GameUILayer = ccs.UILayer.extend({
             this.setBloodBarPercent(100);
             this.setScore(0);
 
-            var aR = new cc.rect(1,2,3,4);
-            this.shinningSprite = cc.Sprite.create(s_Shinning_Png,aR);
+            this.shinningSprite = cc.Sprite.create(s_Shinning_Png,cc.rect(0,0,960,640));
             this.shinningSprite.setVisible(false);
             this.shinningSprite.setAnchorPoint(cc.p(0,0));
             this.shinningSprite.setPosition(cc.p(0,0));
