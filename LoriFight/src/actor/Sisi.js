@@ -32,6 +32,8 @@ var Sisi = ccs.Armature.extend({
     radius: SISI_DATA.radius,
     anger: 0,
 
+    levelBut: 70,
+
     preserved: {
         power: 0,
         attackSpeed: 0,

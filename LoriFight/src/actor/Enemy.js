@@ -2,7 +2,7 @@
  * Created by panda on 12/20/13.
  */
 
-var DIST_TO_PLAYER = 300;
+var DIST_TO_PLAYER = 480;
 
 //collision type constants
 var ENEMY_COL_TYPE = 3;
