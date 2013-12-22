@@ -77,7 +77,7 @@ var GameUILayer = ccs.UILayer.extend({
         this.angerExpression.setScale(0.6);
         this.angerExpression.setOpacity(200);
         this.angerExpression.setAnchorPoint(cc.p(0,0));
-        this.angerExpression.setPosition(cc.p(this.winSize.width/4, this.winSize.height/6));
+        this.angerExpression.setPosition(cc.p(this.winSize.width/4, this.winSize.height/12));
         this.addChild(this.angerExpression);
         this.setAngerFire();
     },
@@ -87,7 +87,7 @@ var GameUILayer = ccs.UILayer.extend({
 
             var angerFireSprite = cc.Sprite.create(s_AngerFire_Png);
             angerFireSprite.setAnchorPoint(cc.p(0,0));
-            angerFireSprite.setPosition(cc.p(this.winSize.width/4 + 55*(i+1), this.winSize.height/6-5));
+            angerFireSprite.setPosition(cc.p(this.winSize.width/4 + 55*(i+1), this.winSize.height/12-5));
             this.addChild(angerFireSprite);
             this.angerFire[i] = angerFireSprite;
         }

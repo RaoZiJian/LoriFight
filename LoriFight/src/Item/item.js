@@ -64,9 +64,9 @@ var GoldenMushroom = ItemSprite.extend({
 
         this.attackTimes++;
         this.waitCancel = true;
-        GameController.gameScene.gameMenuUI.setShinningLevel(100 + 155/20 * this.attackTimes);
+        GameController.gameScene.gameMenuUI.setShinningLevel(100 + 155/10 * this.attackTimes);
 
-        if(this.attackTimes>20){
+        if(this.attackTimes>10){
             GameController.gameScene.gameMenuUI.setShinningLevel(0);
             return true;
         }else{
@@ -83,7 +83,7 @@ var StickyMushroom = ItemSprite.extend({
     name:"sticky",
     texture:null,
     duration:30,
-    angerValue:40,
+    angerValue:60,
 
     // physique
     body: null,
@@ -99,7 +99,7 @@ var StickyMushroom = ItemSprite.extend({
 
        var sisiLocal = GameController.gameScene.sisi;
        sisiLocal.setMoveSpeed(0.1 * sisiLocal.moveSpeed);
-       sisiLocal.setAttackSpeed(0.1 * sisiLocal.attackSpeed);
+       sisiLocal.setAttackSpeed(3 * sisiLocal.attackSpeed);
        var buffSprite = cc.Sprite.create(s_StickyBuff_Png,cc.rect(0, 0, 41, 48));
        GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
    }
@@ -108,7 +108,7 @@ var StickyMushroom = ItemSprite.extend({
 var RoarMushroom = ItemSprite.extend({
     name:"roar",
     duration:30,
-    angerValue:50,
+    angerValue:120,
 
     ctor:function(pos){
         this._super(pos);
@@ -126,13 +126,13 @@ var RoarMushroom = ItemSprite.extend({
     createWolves:function(){
 
         var position = cc.p(this.getPosition().x, this.getPosition().y);
-        GameController.gameScene.addEnemies(WolfLeader, 1, position, 30);
+        GameController.gameScene.addEnemies(WolfLeader, 1, position, 80);
     }
  });
 
 var ShiftMushroom = ItemSprite.extend({
     name: "shift",
-    duration: 30,
+    duration: 60,
     angerValue: 30,
 
     ctor:function(pos){
@@ -145,6 +145,7 @@ var ShiftMushroom = ItemSprite.extend({
 
         var sisiLocal = GameController.gameScene.sisi;
         sisiLocal.setMoveSpeed(50 * sisiLocal.moveSpeed);
+        sisiLocal.setAttackSpeed(0.1 * sisiLocal.attackSpeed);
         var buffSprite = cc.Sprite.create(s_AcuteBuff_Png,cc.rect(0, 0, 41, 48));
         GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
     }

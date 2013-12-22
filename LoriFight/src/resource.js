@@ -35,6 +35,8 @@ s_Anger4_Png            = "res/UI/anger4.png";
 s_Anger5_Png            = "res/UI/anger5.png";
 s_AngerFire_Png         = "res/UI/angerFire.png";
 s_Shinning_Png          = "res/UI/shinning.png";
+a_Zombie_Mp3            = "res/Audio/zombie-17.mp3";
+a_BKMusic_Mp3           = "res/Audio/SDM_FightingBack.mp3";
 
 // YUYE
 s_win_star1             = "res/UI/start1.png";
@@ -108,6 +110,8 @@ var menu_resources = [
     {src:s_Shinning_Png},
     {src:s_ShineMushroom_Png},
     {src:s_ShineBuff_Png},
+    {src:a_Zombie_Mp3},
+    {src:a_BKMusic_Mp3},
     // YUYE
     {src:s_win_star1},
     {src:s_win_star2},
