@@ -61,9 +61,10 @@ var GoldenMushroom = ItemSprite.extend({
 
         this.attackTimes++;
         this.waitCancel = true;
-        GameController.gameScene.gameMenuUI.setShinningLevel(100 + this.attackTimes*10);
+        GameController.gameScene.gameMenuUI.setShinningLevel(100 + this.attackTimes*155/30);
 
         if(this.attackTimes>30){
+            GameController.gameScene.gameMenuUI.setShinningLevel(0);
             return true;
         }else{
             return false;
@@ -71,48 +72,32 @@ var GoldenMushroom = ItemSprite.extend({
     }
   });
 
-var StickyMushroom = cc.Sprite.extend({
+var StickyMushroom = ItemSprite.extend({
 
     weight: 500,
     radius: 20,
 
-    name:null,
+    name:"sticky",
     texture:null,
-    duration:null,
-    angerValue:null,
+    duration:30,
+    angerValue:40,
 
     // physique
     body: null,
 
    ctor:function(pos){
-       this._super();
-       this.body = new PhysicsObject(this.weight, this.radius, 0, pos);
-       this.body.setView(this);
-       this.body.shape.setSensor(true);
-       this.body.shape.setCollisionType(MUSHROOM_COL_TYPE);
-
-       this.setPosition(pos);
-
-       this.name = "sticky";
-       this.duration = 30;
+       this._super(pos);
 
        var mushroom = cc.SpriteBatchNode.create(s_StickyMushroom_Png, 1);
-       this.initWithTexture(mushroom, cc.rect(0, 0, 50, 54), false);
-       this.angerValue = 40;
+       this.initWithTexture(mushroom.getTexture(), cc.rect(0, 0, 50, 54), false);
    },
 
    trigger:function(){
 
        var sisiLocal = GameController.gameScene.sisi;
-       sisiLocal.setMoveSpeed(0.5 * sisiLocal.moveSpeed);
-       sisiLocal.setAttackSpeed(0.5 * sisiLocal.attackSpeed);
-   },
-
-    destroyMushroom:function(){
-        this.removeFromParent();
-        Physics.world.removeShape(this.body.shape);
-        Physics.world.removeBody(this.body.body);
-    }
+       sisiLocal.setMoveSpeed(0.1 * sisiLocal.moveSpeed);
+       sisiLocal.setAttackSpeed(0.1 * sisiLocal.attackSpeed);
+   }
 });
 
 var RoarMushroom = ItemSprite.extend({
@@ -124,11 +109,17 @@ var RoarMushroom = ItemSprite.extend({
         this._super(pos);
 
         var mushroom = cc.SpriteBatchNode.create(s_RoarMushroom_Png, 1);
-        this.initWithTexture(mushroom, cc.rect(0, 0, 50, 53), false);
+        this.initWithTexture(mushroom.getTexture(), cc.rect(0, 0, 50, 53), false);
     },
 
     trigger:function(){
-        GameController.gameScene.addEnemies(WolfLeader, GameController.gameScene.sisi.level+2, this.getPosition(), 30);
+        this.scheduleOnce(this.createWolves,0);
+    },
+
+    createWolves:function(){
+
+        var position = cc.p(this.getPosition().x, this.getPosition().y);
+        GameController.gameScene.addEnemies(WolfLeader, 1, position, 30);
     }
  });
 
@@ -137,34 +128,18 @@ var ShiftMushroom = ItemSprite.extend({
     duration: 30,
     angerValue: 30,
 
-    shiftType:null,
-
-    ctor:function(pos, type){
+    ctor:function(pos){
         this._super(pos);
-
-        if(this.shiftType == "acute"){
-            var mushroom = cc.SpriteBatchNode.create(s_AcuteMushroom_Png, 1);
-            this.initWithTexture(mushroom, cc.rect(0, 0, 41, 66), false);
-        }else if(this.shiftType == "slow"){
-            var mushroom = cc.SpriteBatchNode.create(s_SlowMushroom_Png, 1);
-            this.initWithTexture(mushroom, cc.rect(0, 0, 47, 60), false);
-        }
+        var mushroom = cc.SpriteBatchNode.create(s_AcuteMushroom_Png, 1);
+        this.initWithTexture(mushroom.getTexture(), cc.rect(0, 0, 50, 53), false);
     },
 
     trigger:function(){
 
-      this.movementShift();
-    },
-
-    movementShift:function(){
-
-        if(this.shiftType == "acute"){
-
-        }else if(this.shiftType == "slow"){
-
-        }
+        var sisiLocal = GameController.gameScene.sisi;
+        sisiLocal.setMoveSpeed(50 * sisiLocal.moveSpeed);
     }
-});
+ });
 
 var VisibleMushroom = ItemSprite.extend({
     name: "visible",
@@ -175,11 +150,12 @@ var VisibleMushroom = ItemSprite.extend({
         this._super(pos);
 
         var mushroom = cc.SpriteBatchNode.create(s_VisibleMushroom_Png, 1);
-        this.initWithTexture(mushroom, cc.rect(0, 0, 52, 60), false);
+        this.initWithTexture(mushroom.getTexture(), cc.rect(0, 0, 52, 60), false);
     },
 
     trigger:function(){
 
+        GameController.gameScene.sisi.setOpacity(0);
     }
 });
 

@@ -109,10 +109,18 @@ var GameScene = BaseScene.extend({
         var shinningMushroom = new GoldenMushroom(cc.p(200,300));
         this.camera.addChild(shinningMushroom);
 
-        //var sticky = new StickyMushroom(cc.p(400,500));
-        //sticky.trigger();
-        //this.camera.addChild(sticky);
+        var sticky = new StickyMushroom(cc.p(400,500));
+        this.camera.addChild(sticky);
         this.scheduleUpdate();
+
+        var roar = new RoarMushroom(cc.p(500,300));
+        this.camera.addChild(roar);
+
+        var visible = new VisibleMushroom(cc.p(100,300));
+        this.camera.addChild(visible);
+
+        var shift = new ShiftMushroom(cc.p(100,533));
+        this.camera.addChild(shift);
 
         this.setup(cc.size(960, 640), cc.p(300, 200), 1, 3);
 
