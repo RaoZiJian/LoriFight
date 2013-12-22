@@ -87,14 +87,14 @@ var GameScene = BaseScene.extend({
         this.addChild(this.gameMenuUI, 5);
 
         this.pause = false;
-        new SlimeLeader(5,cc.p(200,400), 30)
-        var shinningMushroom = new goldenMushroom(cc.p(200,300));
+
+        var shinningMushroom = new GoldenMushroom(cc.p(200,300));
         shinningMushroom.trigger();
         this.camera.addChild(shinningMushroom);
 
-        var sticky = new stickyMushroom(cc.p(400,500));
-        sticky.trigger();
-        this.camera.addChild(sticky);
+        //var sticky = new StickyMushroom(cc.p(400,500));
+        //sticky.trigger();
+        //this.camera.addChild(sticky);
         this.scheduleUpdate();
 
         this.setup(cc.size(960 * 2, 640 * 2), cc.p(300, 200), 1, 3);

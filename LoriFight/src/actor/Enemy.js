@@ -31,7 +31,7 @@ var ENEMY_DATA = {
     },
 
     zombie: {
-        hp: 10000,
+        hp: 100,
         base_exp: 50,
         power: 8,
         power_step: 2,
