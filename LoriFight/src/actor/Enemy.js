@@ -283,7 +283,7 @@ var SlimeLeader = Slime.extend({
             var buddy = new Slime(lvl-1, cc.pAdd(pos,cc.p((Math.random()-0.5)*offset, (Math.random()-0.5)*offset)));
             var s = Math.random() * 0.8 + 0.6;
             buddy.setScale(s);
-            buddy.setColor(cc.c3b(255 * Math.random(), 255 * Math.random(), 255 * Math.random()));
+            buddy.setColor(cc.c3b(100 + 100 * Math.random(), 20 * 100 * Math.random(), 50 + 60 * Math.random()));
             this.buddies.push(buddy);
         }
     },
@@ -391,6 +391,19 @@ var Zombie = Enemy.extend({
         this.scheduleOnce(this.walk, Math.random());
         //GameController.gameScene.zombieBatch.addChild(this);
 
+    },
+
+    attack: function() {
+        this.attacking = true;
+        this.unschedule(this.stopAttack);
+        var now = Date.now();
+        if(now - this.lastAttack > this.attackSpeed)
+        {
+            this.lastAttack = now;
+            this.scheduleOnce(this.slash,0);
+        }
+        this.scheduleOnce(this.stopAttack, 0.8);
+        cc.AudioEngine.getInstance().playEffect(a_Zombie_Mp3);
     }
 });
 var ZombieLeader = Zombie.extend({
