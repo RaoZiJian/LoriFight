@@ -243,8 +243,8 @@ var RandomMap = cc.Class.extend({
         {
             var tree = cc.Sprite.createWithSpriteFrameName("scene.psd_Psd.Dir/yingguanmu2.png");
             cam.addChild(tree);
-            var x = Math.random()*width;
-            var y = Math.random()*height;
+            var x = Math.random()*width-width/2;
+            var y = Math.random()*height-height/2;
             tree.setPosition(x,y);
             tree.setZOrder(-y);
             new StaticObjec(85,cc.p(x,y));
