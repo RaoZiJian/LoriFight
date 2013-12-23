@@ -146,8 +146,8 @@ var Sisi = ccs.Armature.extend({
         if(this.angerCount >= 5) {
             this.scheduleOnce(this.explode, 0);
         }
-
-        this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0);
+        else
+            this.scheduleOnce(function() {mushroom.destroyMushroom();}, 0);
     },
 
     explode: function() {

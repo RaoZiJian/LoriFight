@@ -89,6 +89,8 @@ var GameScene = BaseScene.extend({
     // win layer
     winLayer: null,
 
+    swap: false,
+
     onEnter: function () {
         // Load armature
 
@@ -160,20 +162,18 @@ var GameScene = BaseScene.extend({
         this.cutSprite.setAnchorPoint(0.5, 0.5);
 
         this.fadeIn = cc.FadeIn.create(0.2);
-        this.fadeOut = cc.FadeOut.create(0.1);
+        this.fadeOut = cc.FadeOut.create(0.1)
         this.preAction = cc.CallFunc.create(this.blockCut, this);
         this.postAction = cc.CallFunc.create(this.reactiveCut, this);
+        this.fadeIn.retain();
+        this.fadeOut.retain();
+        this.preAction.retain();
+        this.postAction.retain();
         this.cutAction = cc.Sequence.create( this.preAction,
             cc.Spawn.create(cc.ScaleTo.create(0.2, -1.2, 1.2), this.fadeIn),
             cc.Spawn.create(cc.ScaleTo.create(0.1, -1.4, 1.4), this.fadeOut),
             this.postAction );
         this.camera.addChild(this.cutSprite);
-/*
-        this.winLayer = new WinLayer();
-        this.addChild(this.winLayer, 20000, "win");
-        this.winLayer.setAnchorPoint(0.5, 0.5);
-        this.winLayer.setPosition(winMid);
-        //this.winLayer.setOpacity(0);*/
 
         this.setup(cc.size(3000,2500), cc.p(300, 200), 1, 3);
 
@@ -203,6 +203,27 @@ var GameScene = BaseScene.extend({
         this.addEnemies(this.enemiesClass[classid], Math.ceil(Math.random()*maxlvl), pos, count);
     },
 
+    randomMashrooms: function(w, h) {
+        this.swap = !this.swap;
+        var mashroomClass = [GoldenMushroom, StickyMushroom, StickyMushroom, RoarMushroom, RoarMushroom, ShiftMushroom, VisibleMushroom, VisibleMushroom, VisibleMushroom];
+
+            //var pos = cc.pAdd( cc.p(Math.random() * w, Math.random() * h), cc.pNeg(origin) );
+        if(this.swap) {
+            w = w-200;
+            h = h-200;
+            var pos = cc.p(w*Math.random()-(w/2), h*Math.random()-(h/2));
+            var classid = Math.floor(Math.random() * 9);
+            var type = mashroomClass[classid];
+
+    //            this.enemies.push({'type': this.enemiesClass[classid],
+    //                               'level': Math.ceil(Math.random()*maxlvl),
+    //                               'pos': pos,
+    //                               'count': count});
+            var mashroom = new type(pos);
+            this.camera.addChild(mashroom);
+        }
+    },
+
     setup: function(size, sisiPos, difficult, maxlvl) {
         this.mapSize = size;
         this.mapSisiPos = sisiPos;
@@ -215,6 +236,8 @@ var GameScene = BaseScene.extend({
         if(nb == 0) nb = 1;
         for(var i = 0; i < nb; ++i) {
             this.randomEnemies(w, h, origin, maxlvl);
+
+            this.randomMashrooms(w, h);
         }
         var map =this.mapNode = new RandomMap(this.mapSize.width, this.mapSize.height);
         this.camera.addChild(map.rt, -5000);
