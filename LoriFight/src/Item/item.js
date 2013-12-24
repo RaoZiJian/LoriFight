@@ -37,25 +37,25 @@ var ItemSprite = cc.Sprite.extend({
 
     endSelf: function() {
         this.isEnded = true;
+        this.removeFromParent();
         this.sisi.resetPreserved(this);
-    },
-
-    refresh: function() {
-        if(this.duration && (Date.now() - this.starttime >= this.duration * 1000))
-            this.endSelf();
     },
 
     trigger:function(){
         this.isEnded = false;
+
         if(this.duration) {
-            this.starttime = Date.now();
+            var self = this;
+            this.scheduleOnce(function() {
+                self.endSelf();
+            }, this.duration);
         }
     },
 
     destroyMushroom:function(){
-        this.removeFromParent();
         Physics.world.removeShape(this.body.shape);
         Physics.world.removeBody(this.body.body);
+        this.setOpacity(0);
         this.destroyed = true;
     }
 });
@@ -65,7 +65,7 @@ var GoldenMushroom = ItemSprite.extend({
 
     duration: 0,
     name: "golden",
-    angerValue: 30,
+    angerValue: 10,
     waitCancel: false,
 
     ctor:function(pos){
@@ -105,7 +105,7 @@ var StickyMushroom = ItemSprite.extend({
 
     name:"sticky",
     texture:null,
-    duration:30,
+    duration:10,
     angerValue:60,
 
     // physique
@@ -130,7 +130,7 @@ var StickyMushroom = ItemSprite.extend({
 
 var RoarMushroom = ItemSprite.extend({
     name:"roar",
-    duration:30,
+    duration:10,
     angerValue:120,
 
     ctor:function(pos){
@@ -156,7 +156,7 @@ var RoarMushroom = ItemSprite.extend({
 
 var ShiftMushroom = ItemSprite.extend({
     name: "shift",
-    duration: 60,
+    duration: 10,
     angerValue: 30,
 
     ctor:function(pos){
@@ -177,7 +177,7 @@ var ShiftMushroom = ItemSprite.extend({
 
 var VisibleMushroom = ItemSprite.extend({
     name: "visible",
-    duration: 20,
+    duration: 10,
     angerValue: 60,
 
     ctor:function(pos){
@@ -197,13 +197,6 @@ var VisibleMushroom = ItemSprite.extend({
         var buffSprite = cc.Sprite.create(s_VisibleBuff_Png,cc.rect(0, 0, 41, 48));
         GameController.gameScene.gameMenuUI.addMushroomBuffStatus(buffSprite);
         GameController.gameScene.sisi.setOpacity(0);
-    },
-
-    destroyMushroom:function(){
-        this.removeFromParent();
-        Physics.world.removeShape(this.body.shape);
-        Physics.world.removeBody(this.body.body);
-        this.destroyed = true;
     }
 });
 

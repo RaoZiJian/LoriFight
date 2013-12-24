@@ -122,7 +122,6 @@ var Sisi = ccs.Armature.extend({
     updateMushrooms: function() {
         for(var i = 0, l = this.mushrooms.length; i < this.mushrooms.length; i++) {
             var mushroom = this.mushrooms[i];
-            mushroom.refresh();
             if(mushroom.isEnded) {
                 var res = this.mushrooms.splice(i, 1);
                 if(res.length != 0) i--;
